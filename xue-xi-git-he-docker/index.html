@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>学习git和docker | 你有绿豆糕嘛</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://683280yj.github.io/favicon.ico?v=1722085639685">
+<link rel="stylesheet" href="https://683280yj.github.io/styles/main.css">
+
+
+  
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="b站搜索git然后出现了geek hour这个公众号 git那个视频讲解的非常好
+在这之后我又加了他们那个600多人的群 然后因为在配置ssl一直搞定不了，公钥🔑一直都不对头
+后来在哪个老兄的帮助下，大概在一点多解决了这个问题还是非常感谢..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://683280yj.github.io">
+        <img src="https://683280yj.github.io/images/avatar.png?v=1722085639685" class="site-logo">
+        <h1 class="site-title">你有绿豆糕嘛</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/683280yj" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      欢迎关注我
+    </div>
+    <div class="site-footer">
+       | <a class="rss" href="https://683280yj.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">学习git和docker</h2>
+            <div class="post-date">2024-07-23</div>
+            
+            <div class="post-content" v-pre>
+              <p>b站搜索git然后出现了geek hour这个公众号 git那个视频讲解的非常好<br>
+在这之后我又加了他们那个600多人的群 然后因为在配置ssl一直搞定不了，公钥🔑一直都不对头<br>
+后来在哪个老兄的帮助下，大概在一点多解决了这个问题还是非常感谢他的。<br>
+对了 他还讲了关于git github 以及gitlab （一种企业内部项目的分布式git）gitee（这个就相当于国内的github）个人理解下来是这样的——git 引申出github这个开源社区 然后一步步 到了 gitlab这个比较专业的，主要是面向企业的。以及根据网络和国情出现的gitee<br>
+来自🩷<br>
+git、github、gitee和gitlab的区别和联系如下：</p>
+<ul>
+<li><strong>git</strong>：是一种版本控制系统，是一个命令，也是一种工具。它主要用于代码的版本控制。</li>
+<li><strong>github</strong>：是一个基于git实现在线代码托管的仓库，向互联网开放，但企业版需要收费。它是目前全球最大的代码托管平台，可以帮助程序员之间互相交流和学习。</li>
+<li><strong>gitee</strong>：即码云，是开源中国于2013年推出的基于git的代码托管平台、企业级研发效能平台，提供中国本土化的代码托管服务。gitee是oschina免费给企业用的，不用自己搭建环境，可以建立自己的私有仓库。</li>
+<li><strong>gitlab</strong>：是一个基于git的开源仓库管理系统，使用git作为代码管理工具，并在此基础上搭建起来的web服务。gitlab主要针对group和project两个维度进行代码和文档管理，主要用于管理软件开发过程中产生的代码和文档。</li>
+</ul>
+<p>git、github、gitee和gitlab的发展历程如下：</p>
+<ul>
+<li><strong>git</strong>：诞生于Linux内核社区对可用的VCSs（版本控制系统）的挫败感。早期，Linux内核项目使用BitKeeper作为版本控制系统，但后来BitKeeper的版权持有人撤销了免费使用许可。于是，Linux内核主要的开发人员Linus Torvalds开始开发一个新的VCS，并在2005年发布了Git。</li>
+<li><strong>github</strong>：成立于2007年，它的建立者包括目前公司的首席运营官（COO，Chief Operating Officer）PJ Hyett，首席执行官（CEO，Chief Executive Officer）Chris Wanstrath，前首席执行官Tom Preston-Werner，首席信息官（CIO，Chief Information Officer）Scott Chacon。2008年，GitHub正式上线。2018年6月4日，微软宣布，通过75亿美元的股票交易收购代码托管平台GitHub。</li>
+<li><strong>gitee</strong>：于2013年推出，前身是Git@OSC。2016年，gitee推出企业版，打造一体化的云端协作开发平台。2018年，gitee高校版上线。2019年，专注于企业私有化部署的gitee专业版上线。2020年，针对超大规模企业私有化部署gitee旗舰版上线。2020年，承接工信部国家开源托管平台项目。2021年，举办首届全球开源技术峰会GOTC。2022年，gitee用户总数突破800万。2023年，开源中国/gitee获得7.75亿元B+轮战略融资，股份重组成为完全中立平台。</li>
+<li><strong>gitlab</strong>：起源于2011年，由Dmitry Krutskikh和Valery Sizov创建于乌克兰。最初，GitLab是一个基于Ruby on Rails的开源版本控制系统。2014年，GitLab被Y Combinator投资，并迁至美国旧金山。同年，GitLab发布了第一个付费版本GitLab EE（Enterprise Edition）。2015年，GitLab被列入福布斯最有前景的20家初创公司名单。2016年，GitLab被列入《麻省理工学院科技评论》的“2016年十大突破性技术”榜单。</li>
+</ul>
+<p>来源：<a href="https://blog.csdn.net/qianbihua00/article/details/123997732?f_link_type=f_footnote">CSDN博客</a> <a href="http://www.cnblogs.com/R-bear/p/17831812.html?f_link_type=f_footnote">博客园</a> <a href="https://m.baike.com/wiki/Gitee/7008856140398499112?baike_source=doubao&amp;f_link_type=f_footnote">抖音百科</a> <a href="http://m.toutiao.com/group/6646175850473456136/?f_link_type=f_footnote&amp;upstream_biz=doubao">CSDN</a></p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://683280yj.github.io/notion-guan-yu-datebase-de-xin-gong-neng/">
+                  <h3 class="post-title">
+                    notion关于datebase的新功能
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+
+              
+                <div id="disqus_thread" data-aos="fade-in"></div>
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+
+  
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+
+    var options = {
+      shortname: 'yggcmm',
+      apikey: 'o6FD7nF1ChrKerW4LbjZ0fyVsqCjlOauk3awXJcU4Rm8tvt3JN0feu6bWMXIP6Vt',
+    }
+    if ('') {
+      options.api = ''
+    }
+    var dsqjs = new DisqusJS(options)
+
+    </script>
+  
+
+
+
+
+  </body>
+</html>
