@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人网站配置总结 | 你有绿豆糕嘛</title>
+    <meta name="description" content="GitHub Pages、自定义域名、Namecheap、Cloudflare 和 HTTPS 配置的中文总结。">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="个人网站配置总结">
+    <meta property="og:description" content="一份可分享的 GitHub Pages + 自定义域名配置总结。">
+    <meta property="og:url" content="https://idkyjun.me/share/site-setup/">
+    <meta property="og:image" content="https://idkyjun.me/images/avatar.png">
+    <link rel="canonical" href="https://idkyjun.me/share/site-setup/">
+    <link rel="shortcut icon" href="/favicon.ico?v=1722085639685">
+    <link rel="stylesheet" href="/styles/home.css?v=20260528d">
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem('site-theme') || 'light';
+    </script>
+  </head>
+  <body class="zh-home share-home">
+    <header class="topbar">
+      <nav class="nav" aria-label="主导航">
+        <a class="nav-name" href="/">绿豆糕</a>
+        <div class="nav-links">
+          <a href="/share/">分享页</a>
+          <a href="#current">现状</a>
+          <a href="#steps">步骤</a>
+          <a href="#todo">待办</a>
+        </div>
+        <div class="nav-tools">
+          <button class="tool-button" type="button" data-theme-toggle>Mode</button>
+          <a class="tool-button is-active" href="/share/site-setup/" aria-current="page">中</a>
+          <a class="tool-button" href="/en/">EN</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="page page-zh">
+      <article class="doc-page" id="top">
+        <header class="doc-hero">
+          <p class="kicker">Shareable Summary</p>
+          <h1>个人网站配置总结</h1>
+          <p>这份文件记录 <code>idkyjun.me</code> 当前个人网站的发布方式、域名状态和后续迁移到 Cloudflare DNS 时要注意的事情。它不是最终教程，而是一份可以继续更新的个人配置档案。</p>
+        </header>
+
+        <section class="doc-section" id="current">
+          <h2>当前状态</h2>
+          <ul>
+            <li>网站仓库：<code>683280yj/683280yj.github.io</code></li>
+            <li>发布方式：GitHub Pages，从 <code>master</code> 分支根目录发布。</li>
+            <li>自定义域名：<code>idkyjun.me</code>，仓库保留 <code>CNAME</code> 文件。</li>
+            <li>页面结构：中文首页 <code>/</code>，英文主页 <code>/en/</code>，中文分享中心 <code>/share/</code>。</li>
+            <li>HTTPS：GitHub Pages 侧暂时不能强制 HTTPS，原因是证书还没有由 GitHub Pages 签出；这和 DNS/代理链路有关。</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="steps">
+          <h2>已完成的配置</h2>
+          <ol>
+            <li>在 GitHub Pages 仓库中设置自定义域名 <code>idkyjun.me</code>。</li>
+            <li>保留 <code>CNAME</code> 文件，让 Pages 知道当前站点的正式域名。</li>
+            <li>重构首页：英文页作为实用个人主页，中文页作为文件总结与分享入口。</li>
+            <li>新增 <code>/share/</code>，把学习笔记、工具记录、比赛复盘和网站配置放到一个中文分享中心。</li>
+            <li>本地和线上确认 GitHub Pages 构建成功，新页面已经发布。</li>
+          </ol>
+        </section>
+
+        <section class="doc-section" id="cloudflare">
+          <h2>Cloudflare DNS 迁移建议</h2>
+          <p>后续如果把 DNS 挂到 Cloudflare，建议让 Cloudflare 接管 DNS 和边缘 SSL，而不是迁移 Namecheap 送的 SSL 证书。GitHub Pages 常用记录可以先按下面准备：</p>
+          <pre><code>A      @      185.199.108.153
+A      @      185.199.109.153
+A      @      185.199.110.153
+A      @      185.199.111.153
+CNAME  www    683280yj.github.io</code></pre>
+          <p>迁移后再回 GitHub Pages 检查证书状态，等证书签出后再打开强制 HTTPS。</p>
+        </section>
+
+        <section class="doc-section" id="todo">
+          <h2>后续待办</h2>
+          <ul>
+            <li>补一份 Cloudflare 后台截图版教程。</li>
+            <li>把 DNS 切换前后的记录导出保存，避免以后忘记配置来源。</li>
+            <li>等 GitHub Pages 证书签出后，开启 Enforce HTTPS。</li>
+            <li>继续往 <code>/share/</code> 添加可分享的 PDF、模板、课程笔记和项目总结。</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <span>© 2026 idkyjun.me</span>
+      <a href="#top">回到顶部</a>
+    </footer>
+
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var themeButton = document.querySelector('[data-theme-toggle]');
+        function setTheme(theme) {
+          root.dataset.theme = theme;
+          localStorage.setItem('site-theme', theme);
+          if (themeButton) themeButton.textContent = theme === 'dark' ? 'Light' : 'Mode';
+        }
+        if (themeButton) {
+          themeButton.addEventListener('click', function () {
+            setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
+          });
+        }
+        setTheme(root.dataset.theme || 'light');
+      })();
+    </script>
+  </body>
+</html>
