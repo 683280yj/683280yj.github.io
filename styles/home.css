@@ -51,6 +51,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+code {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.08em 0.28em;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -280,6 +290,11 @@ h3 {
   margin-bottom: 28px;
 }
 
+.zh-section-head p:last-child {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
 .zh-section h2 {
   margin-bottom: 0;
   font-size: 2.35rem;
@@ -459,6 +474,39 @@ h3 {
   margin-top: 32px;
 }
 
+.compact-section {
+  padding-bottom: 58px;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.quick-card {
+  min-height: 116px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 18px;
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.quick-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.quick-card strong {
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.12rem;
+}
+
 .section {
   padding: 52px 0 76px;
   border-bottom: 1px solid var(--line);
@@ -551,6 +599,78 @@ h3 {
   font-size: 1.14rem;
 }
 
+/* Chinese share page */
+.share-hero {
+  padding: 72px 0 54px;
+  border-bottom: 1px solid var(--line);
+}
+
+.share-hero h1 {
+  margin: 0 0 18px;
+  font-size: 3.55rem;
+}
+
+.share-hero p:last-child {
+  max-width: 760px;
+  margin: 0;
+  color: var(--text);
+  font-size: 1.08rem;
+}
+
+.share-section {
+  padding: 52px 0 68px;
+  border-bottom: 1px solid var(--line);
+}
+
+.share-section h2 {
+  margin-bottom: 0;
+  font-size: 2.2rem;
+}
+
+.share-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.share-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 22px;
+  background: var(--surface);
+}
+
+.share-item:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.share-type {
+  display: inline-flex;
+  margin-bottom: 14px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  color: var(--green);
+  background: var(--green-soft);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.share-item h3 {
+  margin-bottom: 10px;
+  font-size: 1.35rem;
+}
+
+.share-item p {
+  margin: 0 0 16px;
+}
+
+.share-item > a,
+.share-item h3 a {
+  color: var(--accent);
+  font-weight: 800;
+}
+
 .footer {
   padding: 28px 0 42px;
   display: flex;
@@ -600,7 +720,9 @@ h3 {
   }
 
   .zh-note-grid,
-  .zh-tool-list {
+  .zh-tool-list,
+  .quick-grid,
+  .share-list {
     grid-template-columns: 1fr;
   }
 
@@ -649,6 +771,10 @@ h3 {
 
   .zh-hero h1 {
     font-size: 2.75rem;
+  }
+
+  .share-hero h1 {
+    font-size: 2.5rem;
   }
 
   .zh-lead {
