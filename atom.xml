@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://683280yj.github.io</id>
+    <id>https://idkyjun.me</id>
     <title>你有绿豆糕嘛</title>
     <updated>2024-07-27T13:07:22.693Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://683280yj.github.io"/>
-    <link rel="self" href="https://683280yj.github.io/atom.xml"/>
+    <link rel="alternate" href="https://idkyjun.me"/>
+    <link rel="self" href="https://idkyjun.me/atom.xml"/>
     <subtitle>欢迎关注我</subtitle>
-    <logo>https://683280yj.github.io/images/avatar.png</logo>
-    <icon>https://683280yj.github.io/favicon.ico</icon>
+    <logo>https://idkyjun.me/images/avatar.png</logo>
+    <icon>https://idkyjun.me/favicon.ico</icon>
     <rights>All rights reserved 2024, 你有绿豆糕嘛</rights>
     <entry>
         <title type="html"><![CDATA[7.23]]></title>
-        <id>https://683280yj.github.io/sleep-up-late/</id>
-        <link href="https://683280yj.github.io/sleep-up-late/">
+        <id>https://idkyjun.me/sleep-up-late/</id>
+        <link href="https://idkyjun.me/sleep-up-late/">
         </link>
         <updated>2024-07-27T12:14:12.000Z</updated>
         <summary type="html"><![CDATA[<ul>
@@ -33,29 +33,29 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[三创比赛小计]]></title>
-        <id>https://683280yj.github.io/san-chuang-bi-sai-xiao-ji/</id>
-        <link href="https://683280yj.github.io/san-chuang-bi-sai-xiao-ji/">
+        <id>https://idkyjun.me/san-chuang-bi-sai-xiao-ji/</id>
+        <link href="https://idkyjun.me/san-chuang-bi-sai-xiao-ji/">
         </link>
         <updated>2024-07-23T15:05:43.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[学习git和docker]]></title>
-        <id>https://683280yj.github.io/xue-xi-git-he-docker/</id>
-        <link href="https://683280yj.github.io/xue-xi-git-he-docker/">
+        <id>https://idkyjun.me/xue-xi-git-he-docker/</id>
+        <link href="https://idkyjun.me/xue-xi-git-he-docker/">
         </link>
         <updated>2024-07-23T14:57:18.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[notion关于datebase的新功能]]></title>
-        <id>https://683280yj.github.io/notion-guan-yu-datebase-de-xin-gong-neng/</id>
-        <link href="https://683280yj.github.io/notion-guan-yu-datebase-de-xin-gong-neng/">
+        <id>https://idkyjun.me/notion-guan-yu-datebase-de-xin-gong-neng/</id>
+        <link href="https://idkyjun.me/notion-guan-yu-datebase-de-xin-gong-neng/">
         </link>
         <updated>2024-07-23T14:50:53.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[关于位置]]></title>
-        <id>https://683280yj.github.io/guan-yu-wei-zhi/</id>
-        <link href="https://683280yj.github.io/guan-yu-wei-zhi/">
+        <id>https://idkyjun.me/guan-yu-wei-zhi/</id>
+        <link href="https://idkyjun.me/guan-yu-wei-zhi/">
         </link>
         <updated>2024-07-23T14:47:27.000Z</updated>
         <summary type="html"><![CDATA[<p>查询一下“locate on”和“locate in”都有表示位置的意思，但在使用上有一些区别：</p>
@@ -91,22 +91,22 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[md学习]]></title>
-        <id>https://683280yj.github.io/md-xue-xi-e/</id>
-        <link href="https://683280yj.github.io/md-xue-xi-e/">
+        <id>https://idkyjun.me/md-xue-xi-e/</id>
+        <link href="https://idkyjun.me/md-xue-xi-e/">
         </link>
         <updated>2024-07-23T14:42:07.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[关于]]></title>
-        <id>https://683280yj.github.io/about/</id>
-        <link href="https://683280yj.github.io/about/">
+        <id>https://idkyjun.me/about/</id>
+        <link href="https://idkyjun.me/about/">
         </link>
         <updated>2024-07-22T08:53:31.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello 欢迎来到我的网站]]></title>
-        <id>https://683280yj.github.io/hello-gridea/</id>
-        <link href="https://683280yj.github.io/hello-gridea/">
+        <id>https://idkyjun.me/hello-gridea/</id>
+        <link href="https://idkyjun.me/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎来到我的网站 <strong>yggcmm</strong> ！<br>
