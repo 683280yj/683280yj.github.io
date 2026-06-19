@@ -16,7 +16,7 @@
     <link rel="alternate" hreflang="zh-CN" href="https://idkyjun.me/">
     <link rel="alternate" type="application/atom+xml" title="你有绿豆糕嘛 RSS" href="/atom.xml">
     <link rel="shortcut icon" href="/favicon.ico?v=1722085639685">
-    <link rel="stylesheet" href="/styles/home.css?v=20260619a">
+    <link rel="stylesheet" href="/styles/home.css?v=20260619b">
     <!-- 内联主题初始化：防止 FOUC（未样式内容闪烁）-->
     <script>
       (function() {
@@ -38,6 +38,7 @@
           <a href="#about">关于</a>
           <a href="#files">文件</a>
           <a href="#summaries">总结</a>
+          <a href="#projects">项目</a>
           <a href="/share/">分享页</a>
           <a href="/portfolio/">作品集</a>
           <a href="/links/">链接</a>
@@ -139,6 +140,51 @@
             <span>三创、日记、健身、图床与记录习惯</span>
           </a>
         </div>
+      </section>
+
+      <!-- 项目展示 -->
+      <section class="zh-section zh-projects" id="projects">
+        <div class="zh-section-head">
+          <p class="kicker">Featured Projects</p>
+          <h2>项目展示</h2>
+          <p>我做过的一些实践项目，从网站搭建到自动化工具。</p>
+        </div>
+        <div class="zh-project-grid">
+          <article class="zh-project-card">
+            <div class="zh-project-image">
+              <div class="zh-project-placeholder">idkyjun.me</div>
+            </div>
+            <div class="zh-project-content">
+              <time datetime="2024">2024 — 至今</time>
+              <h3><a href="https://idkyjun.me">个人网站搭建</a></h3>
+              <p>基于 Gridea + 手写 HTML/CSS 搭建的个人站点，部署在 GitHub Pages，通过 Cloudflare 管理 DNS 和 CDN。包含中英双语首页、分享页、链接页等多个独立页面。</p>
+              <div class="zh-project-tags">
+                <span>GitHub Pages</span>
+                <span>Cloudflare</span>
+                <span>HTML/CSS</span>
+                <span>全栈</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="zh-project-card">
+            <div class="zh-project-image">
+              <div class="zh-project-placeholder">JobPilot</div>
+            </div>
+            <div class="zh-project-content">
+              <time datetime="2026">2026</time>
+              <h3><a href="/jobpilot/">JobPilot 求职自动化助手</a></h3>
+              <p>基于 Electron + React + TypeScript + Playwright + SQLite 的桌面端求职工具。从微信消息解析招聘信息、看板管理投递状态、自动填写在线申请表单。</p>
+              <div class="zh-project-tags">
+                <span>Electron</span>
+                <span>React</span>
+                <span>Playwright</span>
+                <span>SQLite</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <a class="text-link" href="/portfolio/">查看更多 →</a>
       </section>
 
       <!-- 联系 -->
