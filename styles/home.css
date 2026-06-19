@@ -941,3 +941,125 @@ h1, h2, h3 {
     flex-direction: column;
   }
 }
+
+/* ============================
+   Links Page Styles
+   ============================ */
+
+.links-section {
+  margin-bottom: var(--space-3xl);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.section-desc {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+
+.link-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent);
+}
+
+.link-icon {
+  font-size: var(--text-xl);
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+}
+
+.link-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.link-name {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 2px;
+  line-height: 1.4;
+}
+
+.link-url {
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+}
+
+.link-desc {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.link-arrow {
+  flex-shrink: 0;
+  color: var(--color-muted);
+  transition: all var(--transition-fast);
+  margin-top: var(--space-xs);
+}
+
+.link-card:hover .link-arrow {
+  color: var(--color-accent);
+  transform: translate(2px, -2px);
+}
+
+.back-home {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.back-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  transition: color var(--transition-fast);
+}
+
+.back-link:hover {
+  color: var(--color-accent-hover);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .links-grid {
+    grid-template-columns: 1fr;
+  }
+}
