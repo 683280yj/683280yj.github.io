@@ -16,7 +16,7 @@
     <link rel="alternate" hreflang="zh-CN" href="https://idkyjun.me/">
     <link rel="alternate" type="application/atom+xml" title="你有绿豆糕嘛 RSS" href="/atom.xml">
     <link rel="shortcut icon" href="/favicon.ico?v=1722085639685">
-    <link rel="stylesheet" href="/styles/home.css?v=20260619a">
+    <link rel="stylesheet" href="/styles/home.css?v=20260619b">
     <!-- 内联主题初始化：防止 FOUC（未样式内容闪烁）-->
     <script>
       (function() {
@@ -38,9 +38,10 @@
           <a href="#about">关于</a>
           <a href="#files">文件</a>
           <a href="#summaries">总结</a>
+          <a href="#projects">项目</a>
+          <a href="#gallery">画廊</a>
           <a href="/share/">分享页</a>
           <a href="/portfolio/">作品集</a>
-          <a href="/links/">链接</a>
           <a href="#contact">联系</a>
         </div>
         <div class="nav-tools">
@@ -55,7 +56,7 @@
       <!-- Hero：左侧文案 + 右侧资料卡 -->
       <section class="zh-hero" id="about">
         <div class="zh-hero-copy">
-          <p class="kicker">Files / Summaries / Sharing</p>
+          <p class="kicker">Files / Summaries / Sharing / Projects</p>
           <h1>你有绿豆糕嘛</h1>
           <p class="zh-lead">这里整理我最近写过、修过、学过的文件和总结。中文页主要承担"分享入口"的角色：把分散的笔记、工具记录和复盘材料收拢起来，方便之后回看，也方便发给别人。</p>
           <div class="zh-tags" aria-label="网站关键词">
@@ -63,6 +64,7 @@
             <span>总结</span>
             <span>分享</span>
             <span>复盘</span>
+            <span>项目</span>
           </div>
         </div>
 
@@ -73,9 +75,10 @@
             <p>新的文件和总结会先放在这里，再慢慢整理成可分享的材料。</p>
           </div>
           <nav class="zh-card-links" aria-label="快捷链接">
+            <a href="#projects">项目展示</a>
+            <a href="#gallery">贴图画廊</a>
             <a href="/share/">分享页</a>
             <a href="/portfolio/">作品集</a>
-            <a href="/links/">链接</a>
             <a href="/archives/">归档</a>
             <a href="https://github.com/683280yj" target="_blank" rel="noreferrer noopener">GitHub</a>
           </nav>
@@ -91,11 +94,6 @@
         </div>
         <div class="zh-note-grid">
           <article class="zh-note-card featured-note">
-            <time datetime="2026-06-19">2026-06-19</time>
-            <h3><a href="/jobpilot/">JobPilot：求职自动化助手</a></h3>
-            <p>用 Electron + Playwright 造了个求职自动化工具，从微信消息解析招聘信息、看板管理投递状态、自动填写在线申请表单。</p>
-          </article>
-          <article class="zh-note-card">
             <time datetime="2024-07-27">2024-07-27</time>
             <h3><a href="/sleep-up-late/">7.23</a></h3>
             <p>博客、图床、健身和生活观察的混合记录。适合当作"个人博客开始阶段"的原始样本。</p>
@@ -139,6 +137,109 @@
             <span>三创、日记、健身、图床与记录习惯</span>
           </a>
         </div>
+      </section>
+
+      <!-- 奇瑞 Jaecoo & Omoda 项目展示区 -->
+      <section class="zh-section zh-projects" id="projects">
+        <div class="zh-section-head">
+          <p class="kicker">Featured Projects</p>
+          <h2>奇瑞 Jaecoo & Omoda 项目</h2>
+          <p>参与奇瑞汽车 Jaecoo 和 Omoda 品牌的相关项目，涵盖设计、开发和营销等方面。</p>
+        </div>
+
+        <div class="zh-project-grid">
+          <!-- Jaecoo 项目卡片 -->
+          <article class="zh-project-card">
+            <div class="zh-project-image" aria-label="Jaecoo 项目预览图">
+              <div class="zh-project-placeholder">Jaecoo</div>
+            </div>
+            <div class="zh-project-content">
+              <time datetime="2025-01">2025</time>
+              <h3><a href="#">Jaecoo 品牌项目</a></h3>
+              <p>参与 Jaecoo 品牌的市场推广和数字化项目，负责设计与开发工作。包括品牌视觉系统优化、官网改版、社交媒体内容创意等。</p>
+              <div class="zh-project-tags">
+                <span>汽车</span>
+                <span>品牌</span>
+                <span>数字化</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Omoda 项目卡片 -->
+          <article class="zh-project-card">
+            <div class="zh-project-image" aria-label="Omoda 项目预览图">
+              <div class="zh-project-placeholder">Omoda</div>
+            </div>
+            <div class="zh-project-content">
+              <time datetime="2025-03">2025</time>
+              <h3><a href="#">Omoda 系列项目</a></h3>
+              <p>Omoda 产品线的用户体验优化和视觉设计，提升品牌形象。涵盖产品详情页、配置器交互、营销活动页面等。</p>
+              <div class="zh-project-tags">
+                <span>设计</span>
+                <span>UX</span>
+                <span>品牌</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <a class="text-link" href="/portfolio/">查看更多项目 →</a>
+      </section>
+
+      <!-- 闲鱼大学生贴图画廊区 -->
+      <section class="zh-section zh-stickers-gallery" id="gallery">
+        <div class="zh-section-head">
+          <p class="kicker">Creative Gallery</p>
+          <h2>闲鱼大学生贴图</h2>
+          <p>收集整理与大学生生活相关的闲鱼贴图，展现校园文化的趣味性和创造力。</p>
+        </div>
+
+        <div class="zh-sticker-grid">
+          <!-- 贴图卡片 1-6 -->
+          <figure class="zh-sticker-card">
+            <div class="zh-sticker-image" aria-label="贴图 1">
+              <span class="zh-sticker-label">🎓 考试周</span>
+            </div>
+            <figcaption>期末考试生存指南</figcaption>
+          </figure>
+
+          <figure class="zh-sticker-card">
+            <div class="zh-sticker-image" aria-label="贴图 2">
+              <span class="zh-sticker-label">💰 穷学生</span>
+            </div>
+            <figcaption>生活费告急表情包</figcaption>
+          </figure>
+
+          <figure class="zh-sticker-card">
+            <div class="zh-sticker-image" aria-label="贴图 3">
+              <span class="zh-sticker-label">📚 抢课</span>
+            </div>
+            <figcaption>选课大战实录</figcaption>
+          </figure>
+
+          <figure class="zh-sticker-card">
+            <div class="zh-sticker-image" aria-label="贴图 4">
+              <span class="zh-sticker-label">🍜 食堂</span>
+            </div>
+            <figcaption>食堂干饭日常</figcaption>
+          </figure>
+
+          <figure class="zh-sticker-card">
+            <div class="zh-sticker-image" aria-label="贴图 5">
+              <span class="zh-sticker-label">😴 早八</span>
+            </div>
+            <figcaption>早八人精神状态</figcaption>
+          </figure>
+
+          <figure class="zh-sticker-card">
+            <div class="zh-sticker-image" aria-label="贴图 6">
+              <span class="zh-sticker-label">🏠 宿舍</span>
+            </div>
+            <figcaption>宿舍生活图鉴</figcaption>
+          </figure>
+        </div>
+
+        <a class="text-link" href="#">浏览全部贴图 →</a>
       </section>
 
       <!-- 联系 -->
