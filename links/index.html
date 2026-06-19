@@ -8,622 +8,837 @@
   <link rel="canonical" href="https://idkyjun.me/links/" />
   <link rel="stylesheet" href="/styles/home.css" />
   <link rel="icon" type="image/svg+xml" href="/images/avatar.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* ===== 电商风格覆盖 ===== */
+    /* ===== 电商风格重设计 ===== */
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      background: #f5f5f7;
-    }
-
-    .page-header {
-      text-align: center;
-      padding: 48px 0 32px;
-    }
-    .page-title {
-      font-family: var(--font-serif);
-      font-size: 36px;
-      font-weight: 700;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
       color: #1a1a2e;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-    .page-desc {
-      font-size: 15px;
-      color: #6b7280;
-      max-width: 560px;
-      margin: 0 auto;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
-    /* 分类标签 */
-    .category-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      padding: 0 0 40px;
-      flex-wrap: wrap;
-    }
-    .category-tab {
-      padding: 8px 20px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 500;
-      color: #6b7280;
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-    .category-tab:hover,
-    .category-tab.active {
-      background: #1a1a2e;
-      color: #fff;
-      border-color: #1a1a2e;
-    }
-
-    /* 链接网格 — 电商卡片风格 */
-    .links-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-      padding-bottom: 60px;
-    }
-
-    .link-card {
-      background: #fff;
-      border-radius: 16px;
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      position: relative;
-    }
-    .link-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    /* 卡片顶部色条 */
-    .link-card-banner {
-      height: 6px;
-      background: linear-gradient(90deg, #6366f1, #8b5cf6, #a78bfa);
-    }
-    .link-card-banner.self-host { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-    .link-card-banner.community { background: linear-gradient(90deg, #10b981, #34d399); }
-    .link-card-banner.academic { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-    .link-card-banner.tools { background: linear-gradient(90deg, #ef4444, #f87171); }
-    .link-card-banner.fun { background: linear-gradient(90deg, #ec4899, #f472b6); }
-
-    .link-card-body {
-      padding: 24px;
-    }
-
-    .link-card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      margin-bottom: 16px;
-      background: #f8f9fa;
-    }
-
-    .link-card-category {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: #6366f1;
-      margin-bottom: 8px;
-    }
-    .link-card-category.self-host { color: #d97706; }
-    .link-card-category.community { color: #059669; }
-    .link-card-category.academic { color: #2563eb; }
-    .link-card-category.tools { color: #dc2626; }
-    .link-card-category.fun { color: #db2777; }
-
-    .link-card-name {
-      font-size: 16px;
-      font-weight: 650;
-      color: #1a1a2e;
-      margin-bottom: 6px;
-      line-height: 1.4;
-    }
-
-    .link-card-url {
-      font-size: 12px;
-      color: #9ca3af;
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      margin-bottom: 10px;
-    }
-
-    .link-card-desc {
-      font-size: 13.5px;
-      color: #6b7280;
-      line-height: 1.65;
-      margin-bottom: 16px;
-    }
-
-    /* 卡片底部"访问"按钮 */
-    .link-card-footer {
+    /* ===== 导航栏 ===== */
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 14px;
-      border-top: 1px solid #f3f4f6;
+      padding: 0 clamp(24px, 5vw, 80px);
+      z-index: 9999;
     }
-    .link-card-visit {
-      font-size: 13px;
-      font-weight: 500;
-      color: #6366f1;
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a2e;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
       display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: gap 0.2s ease;
-    }
-    .link-card:hover .link-card-visit {
       gap: 8px;
     }
-    .link-card-visit svg {
-      width: 14px;
-      height: 14px;
-      transition: transform 0.2s ease;
-    }
-    .link-card:hover .link-card-visit svg {
-      transform: translate(2px, -2px);
+
+    .nav-link {
+      padding: 8px 16px;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.2s ease;
     }
 
-    .link-card-tag {
-      font-size: 11px;
-      color: #9ca3af;
-      background: #f3f4f6;
-      padding: 3px 8px;
-      border-radius: 6px;
+    .nav-link:hover {
+      color: #1a1a2e;
+      background: rgba(0, 0, 0, 0.04);
     }
 
-    /* 分类标题 */
-    .links-category {
-      margin-bottom: 48px;
+    .nav-link.active {
+      color: #fff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
-    .links-category:last-child {
-      margin-bottom: 0;
+
+    /* ===== Hero 区域 ===== */
+    .hero {
+      margin-top: 64px;
+      padding: 80px clamp(24px, 5vw, 80px) 40px;
+      text-align: center;
     }
-    .category-header {
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(102, 126, 234, 0.1);
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #667eea;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge::before {
+      content: "✨";
+      font-size: 14px;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 800;
+      color: #1a1a2e;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #4a4a68 50%, #667eea 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: #64748b;
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+
+    /* ===== 分类标签栏（胶囊按钮） ===== */
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto 48px;
+      padding: 0 clamp(16px, 3vw, 40px);
+    }
+
+    .cat-tab {
+      padding: 10px 22px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      background: #fff;
+      border: 1.5px solid #e2e8f0;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .cat-tab:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: transparent;
+    }
+
+    /* 各分类的 hover 颜色 */
+    .cat-tab[data-cat="selfhost"]:hover,
+    .cat-tab[data-cat="selfhost"].active {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(102, 126, 234, 0.35);
+    }
+    .cat-tab[data-cat="community"]:hover,
+    .cat-tab[data-cat="community"].active {
+      background: linear-gradient(135deg, #11998e, #38ef7d);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(17, 153, 142, 0.35);
+    }
+    .cat-tab[data-cat="academic"]:hover,
+    .cat-tab[data-cat="academic"].active {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(240, 147, 251, 0.35);
+    }
+    .cat-tab[data-cat="tools"]:hover,
+    .cat-tab[data-cat="tools"].active {
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(79, 172, 254, 0.35);
+    }
+    .cat-tab[data-cat="fun"]:hover,
+    .cat-tab[data-cat="fun"].active {
+      background: linear-gradient(135deg, #fa709a, #fee140);
+      color: #1a1a2e;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(250, 112, 154, 0.35);
+    }
+
+    /* ===== 主内容区 ===== */
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 60px) 80px;
+    }
+
+    .section-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #e5e7eb;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #f1f5f9;
     }
-    .category-emoji {
-      font-size: 24px;
-    }
-    .category-name {
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-size: 20px;
       font-weight: 700;
       color: #1a1a2e;
     }
-    .category-count {
-      font-size: 13px;
-      color: #9ca3af;
-      margin-left: auto;
+
+    .section-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
     }
 
-    /* 返回首页 */
-    .back-home {
-      text-align: center;
-      padding: 40px 0 60px;
+    .section-count {
+      font-size: 13px;
+      color: #94a3b8;
+      background: #f8fafc;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-weight: 500;
     }
-    .back-link {
+
+    /* ===== 电商商品卡片网格 ===== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    /* ===== 单个产品卡片 ===== */
+    .product-card {
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        0 4px 12px rgba(0, 0, 0, 0.04);
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .product-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.08),
+        0 8px 16px rgba(0, 0, 0, 0.05);
+      border-color: transparent;
+    }
+
+    .product-card:hover::before {
+      opacity: 1;
+    }
+
+    /* 卡片顶部渐变条 */
+    .card-banner {
+      height: 120px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card-banner::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to top, rgba(255,255,255,1), transparent);
+    }
+
+    .card-emoji {
+      font-size: 52px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .card-emoji {
+      transform: scale(1.15) rotate(-5deg);
+    }
+
+    /* 渐变色 — 按分类 */
+    .banner-selfhost { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .banner-community { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+    .banner-academic { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .banner-tools { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .banner-fun { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+    /* 卡片主体 */
+    .card-body {
+      padding: 20px 22px 24px;
+    }
+
+    /* 分类标签 */
+    .card-tag {
+      display: inline-block;
+      padding: 4px 11px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .tag-selfhost { background: rgba(102, 126, 234, 0.1); color: #667eea; }
+    .tag-community { background: rgba(17, 153, 142, 0.1); color: #11998e; }
+    .tag-academic { background: rgba(245, 87, 108, 0.1); color: #f5576c; }
+    .tag-tools { background: rgba(79, 172, 254, 0.1); color: #4facfe; }
+    .tag-fun { background: rgba(250, 112, 154, 0.1); color: #fa709a; }
+
+    /* 站点名称 */
+    .card-name {
+      font-size: 19px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+
+    /* URL 地址 */
+    .card-url {
+      font-size: 12px;
+      color: #94a3b8;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      margin-bottom: 10px;
+      word-break: break-all;
+    }
+
+    /* 描述文字 */
+    .card-desc {
+      font-size: 13.5px;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    /* 底部操作区 */
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    /* 访问按钮 */
+    .visit-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: #6366f1;
+      padding: 9px 18px;
+      background: #1a1a2e;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 10px;
       text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .visit-btn:hover {
+      transform: translateX(3px);
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.35);
+    }
+
+    .visit-btn-arrow {
       font-size: 14px;
+      transition: transform 0.25s ease;
+    }
+
+    .visit-btn:hover .visit-btn-arrow {
+      transform: translateX(3px);
+    }
+
+    /* ===== 页脚 ===== */
+    .page-footer {
+      text-align: center;
+      padding: 40px 20px 60px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .footer-link {
+      color: #667eea;
+      text-decoration: none;
       font-weight: 500;
-      transition: gap 0.2s ease;
-    }
-    .back-link:hover {
-      gap: 10px;
+      transition: color 0.2s ease;
     }
 
-    /* 深色模式 */
-    html[data-theme="dark"] body {
-      background: #111827;
+    .footer-link:hover {
+      color: #764ba2;
     }
-    html[data-theme="dark"] .link-card {
-      background: #1f2937;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    }
-    html[data-theme="dark"] .link-card:hover {
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-    html[data-theme="dark"] .link-card-name { color: #f9fafb; }
-    html[data-theme="dark"] .link-card-desc { color: #9ca3af; }
-    html[data-theme="dark"] .link-card-body { background: #1f2937; }
-    html[data-theme="dark"] .link-card-icon { background: #374151; }
-    html[data-theme="dark"] .link-card-footer { border-color: #374151; }
-    html[data-theme="dark"] .link-card-tag { background: #374151; color: #9ca3af; }
-    html[data-theme="dark"] .page-title { color: #f9fafb; }
-    html[data-theme="dark"] .category-name { color: #f9fafb; }
-    html[data-theme="dark"] .category-header { border-color: #374151; }
 
-    /* 响应式 */
-    @media (max-width: 640px) {
-      .links-grid {
-        grid-template-columns: 1fr;
-      }
-      .page-title {
-        font-size: 28px;
-      }
+    /* ===== 响应式 ===== */
+    @media (max-width: 768px) {
+      .hero { padding: 50px 20px 30px; }
+      .hero-title { font-size: 28px; }
+      .cards-grid { grid-template-columns: 1fr; gap: 16px; }
+      .category-tabs { gap: 6px; margin-bottom: 32px; }
+      .cat-tab { padding: 8px 14px; font-size: 12px; }
+      .main-content { padding: 0 16px 60px; }
+      .nav-links { display: none; }  /* 移动端隐藏导航 */
+    }
+
+    /* ===== 动画 ===== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .product-card {
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .product-card:nth-child(1) { animation-delay: 0.05s; }
+    .product-card:nth-child(2) { animation-delay: 0.1s; }
+    .product-card:nth-child(3) { animation-delay: 0.15s; }
+    .product-card:nth-child(4) { animation-delay: 0.2s; }
+    .product-card:nth-child(5) { animation-delay: 0.25s; }
+    .product-card:nth-child(6) { animation-delay: 0.3s; }
+    .product-card:nth-child(7) { animation-delay: 0.35s; }
+    .product-card:nth-child(8) { animation-delay: 0.4s; }
+    .product-card:nth-child(9) { animation-delay: 0.45s; }
+    .product-card:nth-child(10) { animation-delay: 0.5s; }
+    .product-card:nth-child(11) { animation-delay: 0.55s; }
+    .product-card:nth-child(12) { animation-delay: 0.6s; }
+
+    /* ===== 暗色模式 ===== */
+    @media (prefers-color-scheme: dark) {
+      body { background: linear-gradient(135deg, #0f1117 0%, #1a1a2e 100%); }
+      .nav-bar { background: rgba(15, 17, 23, 0.85); border-bottom-color: rgba(255,255,255,0.06); }
+      .nav-logo { color: #f1f5f9; }
+      .nav-link { color: #94a3b8; }
+      .nav-link:hover { color: #f1f5f9; background: rgba(255,255,255,0.06); }
+      .hero-title { background: linear-gradient(135deg, #f1f5f9 0%, #94a3b8 50%, #a78bfa 100%); -webkit-background-clip: text; background-clip: text; }
+      .hero-desc { color: #94a3b8; }
+      .cat-tab { background: #1e2030; border-color: rgba(255,255,255,0.08); color: #94a3b8; }
+      .product-card { background: #16182a; border-color: rgba(255,255,255,0.05); box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2); }
+      .product-card:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 8px 20px rgba(0,0,0,0.3); }
+      .section-title { color: #f1f5f9; }
+      .section-count { background: #1e2030; color: #64748b; }
+      .section-header { border-bottom-color: #1e2030; }
+      .card-name { color: #f1f5f9; }
+      .card-url { color: #64748b; }
+      .card-desc { color: #94a3b8; }
+      .card-footer { border-top-color: #1e2030; }
+      .card-meta { color: #64748b; }
+      .page-footer { color: #64748b; }
+      .card-banner::after { background: linear-gradient(to top, #16182a, transparent); }
     }
   </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">跳过导航</a>
 
-  <!-- Header -->
-  <header class="header" id="header">
-    <div class="header-inner">
-      <div class="logo">
-        <a href="/">你有绿豆糕嘛</a>
-      </div>
-      <nav class="nav" aria-label="主导航">
-        <div class="nav-links">
-          <a href="/#about">关于</a>
-          <a href="/#files">文件</a>
-          <a href="/#summaries">总结</a>
-          <a href="/share/">分享页</a>
-          <a href="/portfolio/">作品集</a>
-          <a href="/links/" aria-current="page">链接</a>
-          <a href="/#contact">联系</a>
-        </div>
-        <div class="nav-actions">
-          <button class="theme-toggle" id="theme-toggle" aria-label="切换深色模式">
-            <svg class="icon sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="5" />
-              <line x1="12" y1="1" x2="12" y2="3" />
-              <line x1="12" y1="21" x2="12" y2="23" />
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-              <line x1="1" y1="12" x2="3" y2="12" />
-              <line x1="21" y1="12" x2="23" y2="12" />
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-            </svg>
-            <svg class="icon moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-            </svg>
-          </button>
-        </div>
-      </nav>
+  <!-- 导航栏 -->
+  <nav class="nav-bar">
+    <a href="/" class="nav-logo">🍵 你有绿豆糕嘛</a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">关于</a>
+      <a href="/share/" class="nav-link">分享页</a>
+      <a href="/portfolio/" class="nav-link">作品集</a>
+      <a href="/links/" class="nav-link active">链接</a>
+      <a href="#contact" class="nav-link">联系</a>
+    </div>
+  </nav>
+
+  <!-- Hero 区域 -->
+  <header class="hero">
+    <div class="hero-badge">个人收藏 · 精选好站</div>
+    <h1 class="hero-title">常访链接</h1>
+    <p class="hero-desc">
+      这里整理了我个人常访的优质网站和工具。<br>
+      涵盖自托管服务、学术工具、实用工具等，希望对你也有帮助 ✨
+    </p>
+
+    <!-- 分类筛选 -->
+    <div class="category-tabs">
+      <button class="cat-tab active" data-cat="all">全部</button>
+      <button class="cat-tab" data-cat="selfhost">🔧 自托管服务</button>
+      <button class="cat-tab" data-cat="community">🌐 社区与交流</button>
+      <button class="cat-tab" data-cat="academic">📚 学术与研究工具</button>
+      <button class="cat-tab" data-cat="tools">🛠️ 实用工具</button>
+      <button class="cat-tab" data-cat="fun">🎨 创意/趣味</button>
     </div>
   </header>
 
-  <main class="main" id="main-content">
-    <div class="container">
-      <!-- Page Header -->
-      <section class="page-header" data-aos="fade-in">
-        <h1 class="page-title">常访链接</h1>
-        <p class="page-desc">
-          这里整理了我个人常访的优质网站和工具。涵盖自托管服务、学术工具、实用工具等，希望能对你也有帮助 ✌️
-        </p>
-      </section>
+  <!-- 主内容 -->
+  <main class="main-content">
 
-      <!-- 自托管服务 -->
-      <section class="links-category" data-aos="fade-in">
-        <div class="category-header">
-          <span class="category-emoji">🔧</span>
-          <span class="category-name">自托管服务</span>
-          <span class="category-count">3 个链接</span>
-        </div>
-        <div class="links-grid">
-          <a href="https://dash.idky.tech/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner self-host"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">🏠</div>
-              <div class="link-card-category self-host">SELF-HOST</div>
-              <div class="link-card-name">三省六部 · Edit Dashboard</div>
-              <div class="link-card-url">dash.idky.tech</div>
-              <div class="link-card-desc">我的自托管服务管理面板，统一管理所有自建服务</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">自托管</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://image.idky.tech/admin" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner self-host"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">🖼️</div>
-              <div class="link-card-category self-host">SELF-HOST</div>
-              <div class="link-card-name">Sanyue ImgHub</div>
-              <div class="link-card-url">image.idky.tech</div>
-              <div class="link-card-desc">我的自托管图床管理，快速上传和分享图片</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">图床</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://jiyu-smoky.vercel.app/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner self-host"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">📝</div>
-              <div class="link-card-category self-host">SELF-HOST</div>
-              <div class="link-card-name">Jiyu</div>
-              <div class="link-card-url">jiyu-smoky.vercel.app</div>
-              <div class="link-card-desc">基于 Notion 的笔记分享工具，优雅地展示笔记</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">Notion</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- 社区与交流 -->
-      <section class="links-category" data-aos="fade-in">
-        <div class="category-header">
-          <span class="category-emoji">🌐</span>
-          <span class="category-name">社区与交流</span>
-          <span class="category-count">3 个链接</span>
-        </div>
-        <div class="links-grid">
-          <a href="https://linux.do/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner community"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">🐧</div>
-              <div class="link-card-category community">COMMUNITY</div>
-              <div class="link-card-name">LINUX DO</div>
-              <div class="link-card-url">linux.do</div>
-              <div class="link-card-desc">新的理想型社区，技术交流圣地，氛围友好且专业</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">论坛</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://duzhege.cn/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner community"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">📖</div>
-              <div class="link-card-category community">COMMUNITY</div>
-              <div class="link-card-name">读者阁</div>
-              <div class="link-card-url">duzhege.cn</div>
-              <div class="link-card-desc">吃茶读闲书，一个安静的个人博客空间</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">博客</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://www.sanliudata.com/about" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner community"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">👤</div>
-              <div class="link-card-category community">COMMUNITY</div>
-              <div class="link-card-name">何雨果</div>
-              <div class="link-card-url">sanliudata.com</div>
-              <div class="link-card-desc">数据科学 / 自托管爱好者，技术博客值得一读</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">博客</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- 学术与研究工具 -->
-      <section class="links-category" data-aos="fade-in">
-        <div class="category-header">
-          <span class="category-emoji">📚</span>
-          <span class="category-name">学术与研究工具</span>
-          <span class="category-count">3 个链接</span>
-        </div>
-        <div class="links-grid">
-          <a href="https://paperburner.viwoplus.site/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner academic"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">🔥</div>
-              <div class="link-card-category academic">ACADEMIC</div>
-              <div class="link-card-name">Paper Burner X</div>
-              <div class="link-card-url">paperburner.viwoplus.site</div>
-              <div class="link-card-desc">AI 辅助文献阅读和总结，快速抓住论文核心</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">AI</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://www.paperdigest.org/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner academic"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">📄</div>
-              <div class="link-card-category academic">ACADEMIC</div>
-              <div class="link-card-name">Paper Digest</div>
-              <div class="link-card-url">paperdigest.org</div>
-              <div class="link-card-desc">论文摘要和关键点提取，高效追踪学术动态</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">论文</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://x.cnki.net/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner academic"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">🇨🇳</div>
-              <div class="link-card-category academic">ACADEMIC</div>
-              <div class="link-card-name">知网研学 · 好文观止</div>
-              <div class="link-card-url">x.cnki.net</div>
-              <div class="link-card-desc">知网学术资源推荐，发现高质量中文学术内容</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">知网</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- 实用工具 -->
-      <section class="links-category" data-aos="fade-in">
-        <div class="category-header">
-          <span class="category-emoji">🛠️</span>
-          <span class="category-name">实用工具</span>
-          <span class="category-count">2 个链接</span>
-        </div>
-        <div class="links-grid">
-          <a href="https://www.nepenthes.top/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner tools"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">🖼️</div>
-              <div class="link-card-category tools">TOOLS</div>
-              <div class="link-card-name">Telegraph-Image 免费图床</div>
-              <div class="link-card-url">nepenthes.top</div>
-              <div class="link-card-desc">基于 Telegraph 的免费图床，无需注册，上传即分享</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">图床</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://aimarkdown2doc.com/zh/doc" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner tools"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">📝</div>
-              <div class="link-card-category tools">TOOLS</div>
-              <div class="link-card-name">AI Markdown 转换工具</div>
-              <div class="link-card-url">aimarkdown2doc.com</div>
-              <div class="link-card-desc">Markdown 转文档格式，支持多种导出格式</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">转换</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- 创意/趣味 -->
-      <section class="links-category" data-aos="fade-in">
-        <div class="category-header">
-          <span class="category-emoji">🎨</span>
-          <span class="category-name">创意 / 趣味</span>
-          <span class="category-count">2 个链接</span>
-        </div>
-        <div class="links-grid">
-          <a href="https://www.textcard.net/zh/answers-book" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner fun"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">📖</div>
-              <div class="link-card-category fun">FUN</div>
-              <div class="link-card-name">答案之书</div>
-              <div class="link-card-url">textcard.net</div>
-              <div class="link-card-desc">随机选择答案，闲暇时的趣味小工具</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">趣味</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://comparingheight.com/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-card-banner fun"></div>
-            <div class="link-card-body">
-              <div class="link-card-icon">📏</div>
-              <div class="link-card-category fun">FUN</div>
-              <div class="link-card-name">比较身高</div>
-              <div class="link-card-url">comparingheight.com</div>
-              <div class="link-card-desc">可视化比较名人身高，直观又有趣</div>
-              <div class="link-card-footer">
-                <span class="link-card-visit">
-                  访问站点
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-                <span class="link-card-tag">趣味</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- Back to Home -->
-      <div class="back-home" data-aos="fade-in">
-        <a href="/" class="back-link">← 返回首页</a>
+    <!-- ===== 自托管服务 ===== -->
+    <section id="selfhost" data-category="selfhost">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="section-icon banner-selfhost">🔧</span>
+          自托管服务
+        </h2>
+        <span class="section-count">3 个站点</span>
       </div>
-    </div>
+      <div class="cards-grid">
+
+        <a href="https://dash.idkyj.tech" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-selfhost">
+            <span class="card-emoji">⚙️</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-selfhost">SELF-HOSTED</span>
+            <h3 class="card-name">三省六部 · Edit Dashboard</h3>
+            <p class="card-url">dash.idkyj.tech</p>
+            <p class="card-desc">我自己部署和使用的服务管理面板，一站式自托管入口。</p>
+            <div class="card-footer">
+              <span class="card-meta">⏱️ 常用</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://image.idkyj.tech" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-selfhost">
+            <span class="card-emoji">🖼️</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-selfhost">SELF-HOSTED</span>
+            <h3 class="card-name">Sanyue ImgHub</h3>
+            <p class="card-url">image.idkyj.tech</p>
+            <p class="card-desc">我的自托管图床管理，支持多格式图片上传与管理。</p>
+            <div class="card-footer">
+              <span class="card-meta">🖼️ 图床</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://jiyu-smoky.vercel.app" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-selfhost">
+            <span class="card-emoji">📝</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-selfhost">SELF-HOSTED</span>
+            <h3 class="card-name">Jiyu</h3>
+            <p class="card-url">jiyu-smoky.vercel.app</p>
+            <p class="card-desc">基于 Notion 的笔记分享工具，支持 Markdown 格式转换。</p>
+            <div class="card-footer">
+              <span class="card-meta">📝 笔记</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ===== 社区与交流 ===== -->
+    <section id="community" data-category="community">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="section-icon banner-community">🌐</span>
+          社区与交流
+        </h2>
+        <span class="section-count">3 个站点</span>
+      </div>
+      <div class="cards-grid">
+
+        <a href="https://linux.do" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-community">
+            <span class="card-emoji">🐧</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-community">COMMUNITY</span>
+            <h3 class="card-name">LINUX DO</h3>
+            <p class="card-url">linux.do</p>
+            <p class="card-desc">新的理想型社区，技术交流圣地，开源爱好者的聚集地。</p>
+            <div class="card-footer">
+              <span class="card-meta">💬 社区</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://duzhege.cn" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-community">
+            <span class="card-emoji">📖</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-community">COMMUNITY</span>
+            <h3 class="card-name">读者阁</h3>
+            <p class="card-url">duzhege.cn</p>
+            <p class="card-desc">吃茶读闲书，个人博客，记录生活与思考。</p>
+            <div class="card-footer">
+              <span class="card-meta">📖 博客</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://sanliudata.com" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-community">
+            <span class="card-emoji">👤</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-community">COMMUNITY</span>
+            <h3 class="card-name">何雨果</h3>
+            <p class="card-url">sanliudata.com</p>
+            <p class="card-desc">数据科学 / 自托管爱好者，技术博客。</p>
+            <div class="card-footer">
+              <span class="card-meta">👤 博主</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ===== 学术与研究工具 ===== -->
+    <section id="academic" data-category="academic">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="section-icon banner-academic">📚</span>
+          学术与研究工具
+        </h2>
+        <span class="section-count">3 个站点</span>
+      </div>
+      <div class="cards-grid">
+
+        <a href="https://paperburner.viwoplus.site" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-academic">
+            <span class="card-emoji">🔥</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-academic">ACADEMIC</span>
+            <h3 class="card-name">Paper Burner X</h3>
+            <p class="card-url">paperburner.viwoplus.site</p>
+            <p class="card-desc">AI 辅助文献阅读和总结工具，快速提取论文要点。</p>
+            <div class="card-footer">
+              <span class="card-meta">📄 论文</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://paperdigest.org" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-academic">
+            <span class="card-emoji">📋</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-academic">ACADEMIC</span>
+            <h3 class="card-name">Paper Digest</h3>
+            <p class="card-url">paperdigest.org</p>
+            <p class="card-desc">论文摘要和关键点提取，学术研究利器。</p>
+            <div class="card-footer">
+              <span class="card-meta">📋 摘要</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://x.cnki.net" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-academic">
+            <span class="card-emoji">📕</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-academic">ACADEMIC</span>
+            <h3 class="card-name">知网研学 · 好文观止</h3>
+            <p class="card-url">x.cnki.net</p>
+            <p class="card-desc">知网学术资源推荐平台，发现高质量学术论文。</p>
+            <div class="card-footer">
+              <span class="card-meta">📕 知网</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ===== 实用工具 ===== -->
+    <section id="tools" data-category="tools">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="section-icon banner-tools">🛠️</span>
+          实用工具
+        </h2>
+        <span class="section-count">2 个站点</span>
+      </div>
+      <div class="cards-grid">
+
+        <a href="https://nepenthes.top" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-tools">
+            <span class="card-emoji">📸</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-tools">TOOL</span>
+            <h3 class="card-name">Telegraph-Image 免费图床</h3>
+            <p class="card-url">nepenthes.top</p>
+            <p class="card-desc">基于 Telegraph 的免费图床，支持多种图片格式。</p>
+            <div class="card-footer">
+              <span class="card-meta">🖼️ 图床</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://aimarkdown2doc.com" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-tools">
+            <span class="card-emoji">✨</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-tools">TOOL</span>
+            <h3 class="card-name">AI Markdown 转换工具</h3>
+            <p class="card-url">aimarkdown2doc.com</p>
+            <p class="card-desc">Markdown 转文档格式，支持导出为 PDF / DOCX 等。</p>
+            <div class="card-footer">
+              <span class="card-meta">🔄 转换</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ===== 创意/趣味 ===== -->
+    <section id="fun" data-category="fun">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="section-icon banner-fun">🎨</span>
+          创意/趣味
+        </h2>
+        <span class="section-count">2 个站点</span>
+      </div>
+      <div class="cards-grid">
+
+        <a href="#" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-fun">
+            <span class="card-emoji">🔮</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-fun">FUN</span>
+            <h3 class="card-name">答案之书</h3>
+            <p class="card-url">#</p>
+            <p class="card-desc">有趣的小工具，帮你做出选择困难的决定。</p>
+            <div class="card-footer">
+              <span class="card-meta">🎯 趣味</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" target="_blank" rel="noopener noreferrer" class="product-card">
+          <div class="card-banner banner-fun">
+            <span class="card-emoji">📏</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag tag-fun">FUN</span>
+            <h3 class="card-name">比较身高</h3>
+            <p class="card-url">#</p>
+            <p class="card-desc">有趣的小工具，对比不同物体或人物的身高。</p>
+            <div class="card-footer">
+              <span class="card-meta">📏 对比</span>
+              <span class="visit-btn">访问站点<span class="visit-btn-arrow">→</span></span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-left">
-        <span>© 2026 你有绿豆糕嘛</span>
-        <span class="footer-sep">·</span>
-        <span>Powered by Gridea</span>
-      </div>
-      <div class="footer-right">
-        <a href="https://github.com/683280yj" target="_blank" rel="noreferrer" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-          </svg>
-        </a>
-      </div>
-    </div>
+  <!-- 页脚 -->
+  <footer class="page-footer">
+    <p>© 2026 <a href="/" class="footer-link">idkyjun.me</a> · 用 ❤️ 整理的常访链接</p>
   </footer>
 
-  <script src="/scripts/theme.js"></script>
+  <!-- 分类切换脚本 -->
+  <script>
+    document.querySelectorAll('.cat-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // 切换激活状态
+        document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        const cat = tab.dataset.cat;
+        
+        // 显示/隐藏对应分类
+        document.querySelectorAll('section').forEach(section => {
+          if (cat === 'all' || section.dataset.category === cat) {
+            section.style.display = 'block';
+          } else {
+            section.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>
