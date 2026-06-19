@@ -1,3 +1,9 @@
+/* ============================================
+   idkyjun.me — home.css (optimized structure)
+   2026-06-19 restructure
+   ============================================ */
+
+/* --- Design Tokens (CSS Custom Properties) --- */
 :root {
   --bg: #fbfbfa;
   --surface: #ffffff;
@@ -32,7 +38,9 @@
   --shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
 }
 
-* {
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
@@ -71,6 +79,25 @@ img {
   max-width: 100%;
 }
 
+/* --- Accessibility: skip link --- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 12px;
+  z-index: 100;
+  padding: 8px 14px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 0 0 4px 4px;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+
+/* --- Layout Shell --- */
 .topbar {
   position: sticky;
   top: 0;
@@ -91,6 +118,8 @@ img {
   width: min(1040px, calc(100% - 32px));
 }
 
+
+/* --- Navigation --- */
 .nav {
   min-height: 58px;
   display: grid;
@@ -153,9 +182,9 @@ img {
   background: var(--accent);
 }
 
-h1,
-h2,
-h3 {
+
+/* --- Typography --- */
+h1, h2, h3 {
   margin-top: 0;
   color: var(--ink);
   font-family: var(--serif);
@@ -172,6 +201,8 @@ h3 {
   text-transform: uppercase;
 }
 
+
+/* --- Buttons --- */
 .button {
   min-height: 42px;
   display: inline-flex;
@@ -182,6 +213,7 @@ h3 {
   padding: 8px 18px;
   color: var(--accent);
   font-weight: 700;
+  cursor: pointer;
 }
 
 .button:hover {
@@ -194,11 +226,15 @@ h3 {
 }
 
 .button-solid:hover {
-  background: var(--accent);
   filter: brightness(1.08);
 }
 
-/* Chinese homepage: editorial blog layout */
+
+/* ================================================
+   SECTION: Chinese Homepage (Editorial Blog)
+   ================================================ */
+
+/* Hero */
 .zh-hero {
   min-height: 560px;
   display: grid;
@@ -237,6 +273,8 @@ h3 {
   font-weight: 700;
 }
 
+
+/* Profile Card (sidebar) */
 .zh-profile-card {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -280,6 +318,8 @@ h3 {
   font-weight: 700;
 }
 
+
+/* Generic section */
 .zh-section {
   padding: 58px 0 72px;
   border-bottom: 1px solid var(--line);
@@ -300,6 +340,8 @@ h3 {
   font-size: 2.35rem;
 }
 
+
+/* Note grid */
 .zh-note-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -348,6 +390,8 @@ h3 {
   border-bottom: 2px solid color-mix(in srgb, var(--accent) 25%, transparent);
 }
 
+
+/* Tool list (summary cards) */
 .zh-tool-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -375,6 +419,8 @@ h3 {
   color: var(--muted);
 }
 
+
+/* Contact section */
 .zh-contact {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -395,7 +441,10 @@ h3 {
   flex-wrap: wrap;
 }
 
-/* English homepage: academic profile layout */
+
+/* ================================================
+   SECTION: English Homepage (Academic Profile)
+   ================================================ */
 .profile {
   min-height: 560px;
   padding: 78px 0 76px;
@@ -474,6 +523,8 @@ h3 {
   margin-top: 32px;
 }
 
+
+/* Compact section (quick grid) */
 .compact-section {
   padding-bottom: 58px;
 }
@@ -507,6 +558,8 @@ h3 {
   font-size: 1.12rem;
 }
 
+
+/* Generic section (English) */
 .section {
   padding: 52px 0 76px;
   border-bottom: 1px solid var(--line);
@@ -524,6 +577,8 @@ h3 {
   background: var(--gold);
 }
 
+
+/* Paper / note list */
 .paper-list {
   display: grid;
   gap: 34px;
@@ -575,6 +630,8 @@ h3 {
   font-style: italic;
 }
 
+
+/* Misc grid */
 .misc-grid {
   align-items: stretch;
   gap: 18px;
@@ -599,7 +656,10 @@ h3 {
   font-size: 1.14rem;
 }
 
-/* Chinese share page */
+
+/* ================================================
+   SECTION: Share Page
+   ================================================ */
 .share-hero {
   padding: 72px 0 54px;
   border-bottom: 1px solid var(--line);
@@ -671,6 +731,10 @@ h3 {
   font-weight: 800;
 }
 
+
+/* ================================================
+   SECTION: Doc Page (generic article)
+   ================================================ */
 .doc-page {
   padding-bottom: 48px;
 }
@@ -731,6 +795,8 @@ h3 {
   color: var(--text);
 }
 
+
+/* --- Footer --- */
 .footer {
   padding: 28px 0 42px;
   display: flex;
@@ -745,6 +811,10 @@ h3 {
   font-weight: 700;
 }
 
+
+/* ================================================
+   Responsive Breakpoints
+   ================================================ */
 @media (max-width: 820px) {
   .nav {
     min-height: auto;
@@ -809,7 +879,7 @@ h3 {
   .page,
   .zh-home .page,
   .footer {
-    width: min(100% - 24px, 1040px);
+    width: min(calc(100% - 24px), 1040px);
   }
 
   .nav-name {
