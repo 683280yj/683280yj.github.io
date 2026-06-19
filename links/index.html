@@ -7,11 +7,264 @@
   <meta name="description" content="我个人常访的优质网站和工具链接，涵盖自托管服务、学术工具、实用工具等。" />
   <link rel="canonical" href="https://idkyjun.me/links/" />
   <link rel="stylesheet" href="/styles/home.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
   <link rel="icon" type="image/svg+xml" href="/images/avatar.svg" />
+  <style>
+    /* ===== 电商风格覆盖 ===== */
+    body {
+      background: #f5f5f7;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 48px 0 32px;
+    }
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .page-desc {
+      font-size: 15px;
+      color: #6b7280;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* 分类标签 */
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 0 40px;
+      flex-wrap: wrap;
+    }
+    .category-tab {
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #6b7280;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .category-tab:hover,
+    .category-tab.active {
+      background: #1a1a2e;
+      color: #fff;
+      border-color: #1a1a2e;
+    }
+
+    /* 链接网格 — 电商卡片风格 */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding-bottom: 60px;
+    }
+
+    .link-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      position: relative;
+    }
+    .link-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* 卡片顶部色条 */
+    .link-card-banner {
+      height: 6px;
+      background: linear-gradient(90deg, #6366f1, #8b5cf6, #a78bfa);
+    }
+    .link-card-banner.self-host { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .link-card-banner.community { background: linear-gradient(90deg, #10b981, #34d399); }
+    .link-card-banner.academic { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+    .link-card-banner.tools { background: linear-gradient(90deg, #ef4444, #f87171); }
+    .link-card-banner.fun { background: linear-gradient(90deg, #ec4899, #f472b6); }
+
+    .link-card-body {
+      padding: 24px;
+    }
+
+    .link-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+      background: #f8f9fa;
+    }
+
+    .link-card-category {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #6366f1;
+      margin-bottom: 8px;
+    }
+    .link-card-category.self-host { color: #d97706; }
+    .link-card-category.community { color: #059669; }
+    .link-card-category.academic { color: #2563eb; }
+    .link-card-category.tools { color: #dc2626; }
+    .link-card-category.fun { color: #db2777; }
+
+    .link-card-name {
+      font-size: 16px;
+      font-weight: 650;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .link-card-url {
+      font-size: 12px;
+      color: #9ca3af;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      margin-bottom: 10px;
+    }
+
+    .link-card-desc {
+      font-size: 13.5px;
+      color: #6b7280;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    /* 卡片底部"访问"按钮 */
+    .link-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid #f3f4f6;
+    }
+    .link-card-visit {
+      font-size: 13px;
+      font-weight: 500;
+      color: #6366f1;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s ease;
+    }
+    .link-card:hover .link-card-visit {
+      gap: 8px;
+    }
+    .link-card-visit svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s ease;
+    }
+    .link-card:hover .link-card-visit svg {
+      transform: translate(2px, -2px);
+    }
+
+    .link-card-tag {
+      font-size: 11px;
+      color: #9ca3af;
+      background: #f3f4f6;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    /* 分类标题 */
+    .links-category {
+      margin-bottom: 48px;
+    }
+    .links-category:last-child {
+      margin-bottom: 0;
+    }
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    .category-emoji {
+      font-size: 24px;
+    }
+    .category-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+    .category-count {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-left: auto;
+    }
+
+    /* 返回首页 */
+    .back-home {
+      text-align: center;
+      padding: 40px 0 60px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #6366f1;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: gap 0.2s ease;
+    }
+    .back-link:hover {
+      gap: 10px;
+    }
+
+    /* 深色模式 */
+    html[data-theme="dark"] body {
+      background: #111827;
+    }
+    html[data-theme="dark"] .link-card {
+      background: #1f2937;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    html[data-theme="dark"] .link-card:hover {
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    html[data-theme="dark"] .link-card-name { color: #f9fafb; }
+    html[data-theme="dark"] .link-card-desc { color: #9ca3af; }
+    html[data-theme="dark"] .link-card-body { background: #1f2937; }
+    html[data-theme="dark"] .link-card-icon { background: #374151; }
+    html[data-theme="dark"] .link-card-footer { border-color: #374151; }
+    html[data-theme="dark"] .link-card-tag { background: #374151; color: #9ca3af; }
+    html[data-theme="dark"] .page-title { color: #f9fafb; }
+    html[data-theme="dark"] .category-name { color: #f9fafb; }
+    html[data-theme="dark"] .category-header { border-color: #374151; }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      .links-grid {
+        grid-template-columns: 1fr;
+      }
+      .page-title {
+        font-size: 28px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Skip Link -->
   <a href="#main-content" class="skip-link">跳过导航</a>
 
   <!-- Header -->
@@ -47,13 +300,11 @@
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
             </svg>
           </button>
-          <button class="lang-toggle" id="lang-toggle" aria-label="切换语言">EN</button>
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- Main Content -->
   <main class="main" id="main-content">
     <div class="container">
       <!-- Page Header -->
@@ -64,200 +315,286 @@
         </p>
       </section>
 
-      <!-- Links Sections -->
-      
       <!-- 自托管服务 -->
-      <section class="links-section" data-aos="fade-in">
-        <h2 class="section-title">🔧 自托管服务</h2>
-        <p class="section-desc">我自己部署和使用的服务</p>
+      <section class="links-category" data-aos="fade-in">
+        <div class="category-header">
+          <span class="category-emoji">🔧</span>
+          <span class="category-name">自托管服务</span>
+          <span class="category-count">3 个链接</span>
+        </div>
         <div class="links-grid">
           <a href="https://dash.idky.tech/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">🏠</div>
-            <div class="link-content">
-              <h3 class="link-name">三省六部 · Edit Dashboard</h3>
-              <p class="link-url">dash.idky.tech</p>
-              <p class="link-desc">我的自托管服务管理面板</p>
+            <div class="link-card-banner self-host"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">🏠</div>
+              <div class="link-card-category self-host">SELF-HOST</div>
+              <div class="link-card-name">三省六部 · Edit Dashboard</div>
+              <div class="link-card-url">dash.idky.tech</div>
+              <div class="link-card-desc">我的自托管服务管理面板，统一管理所有自建服务</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">自托管</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
+
           <a href="https://image.idky.tech/admin" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">🖼️</div>
-            <div class="link-content">
-              <h3 class="link-name">Sanyue ImgHub</h3>
-              <p class="link-url">image.idky.tech</p>
-              <p class="link-desc">我的自托管图床管理</p>
+            <div class="link-card-banner self-host"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">🖼️</div>
+              <div class="link-card-category self-host">SELF-HOST</div>
+              <div class="link-card-name">Sanyue ImgHub</div>
+              <div class="link-card-url">image.idky.tech</div>
+              <div class="link-card-desc">我的自托管图床管理，快速上传和分享图片</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">图床</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
+
           <a href="https://jiyu-smoky.vercel.app/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">📝</div>
-            <div class="link-content">
-              <h3 class="link-name">Jiyu</h3>
-              <p class="link-url">jiyu-smoky.vercel.app</p>
-              <p class="link-desc">基于 Notion 的笔记分享工具</p>
+            <div class="link-card-banner self-host"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">📝</div>
+              <div class="link-card-category self-host">SELF-HOST</div>
+              <div class="link-card-name">Jiyu</div>
+              <div class="link-card-url">jiyu-smoky.vercel.app</div>
+              <div class="link-card-desc">基于 Notion 的笔记分享工具，优雅地展示笔记</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">Notion</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
         </div>
       </section>
 
       <!-- 社区与交流 -->
-      <section class="links-section" data-aos="fade-in">
-        <h2 class="section-title">🌐 社区与交流</h2>
-        <p class="section-desc">常逛的社区和个人博客</p>
+      <section class="links-category" data-aos="fade-in">
+        <div class="category-header">
+          <span class="category-emoji">🌐</span>
+          <span class="category-name">社区与交流</span>
+          <span class="category-count">3 个链接</span>
+        </div>
         <div class="links-grid">
           <a href="https://linux.do/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">🐧</div>
-            <div class="link-content">
-              <h3 class="link-name">LINUX DO</h3>
-              <p class="link-url">linux.do</p>
-              <p class="link-desc">新的理想型社区，技术交流圣地</p>
+            <div class="link-card-banner community"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">🐧</div>
+              <div class="link-card-category community">COMMUNITY</div>
+              <div class="link-card-name">LINUX DO</div>
+              <div class="link-card-url">linux.do</div>
+              <div class="link-card-desc">新的理想型社区，技术交流圣地，氛围友好且专业</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">论坛</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
+
           <a href="https://duzhege.cn/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">📖</div>
-            <div class="link-content">
-              <h3 class="link-name">读者阁</h3>
-              <p class="link-url">duzhege.cn</p>
-              <p class="link-desc">吃茶读闲书，个人博客</p>
+            <div class="link-card-banner community"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">📖</div>
+              <div class="link-card-category community">COMMUNITY</div>
+              <div class="link-card-name">读者阁</div>
+              <div class="link-card-url">duzhege.cn</div>
+              <div class="link-card-desc">吃茶读闲书，一个安静的个人博客空间</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">博客</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
+
           <a href="https://www.sanliudata.com/about" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">👤</div>
-            <div class="link-content">
-              <h3 class="link-name">何雨果</h3>
-              <p class="link-url">sanliudata.com</p>
-              <p class="link-desc">数据科学 / 自托管爱好者</p>
+            <div class="link-card-banner community"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">👤</div>
+              <div class="link-card-category community">COMMUNITY</div>
+              <div class="link-card-name">何雨果</div>
+              <div class="link-card-url">sanliudata.com</div>
+              <div class="link-card-desc">数据科学 / 自托管爱好者，技术博客值得一读</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">博客</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
         </div>
       </section>
 
       <!-- 学术与研究工具 -->
-      <section class="links-section" data-aos="fade-in">
-        <h2 class="section-title">📚 学术与研究工具</h2>
-        <p class="section-desc">科研和学习常用的工具</p>
+      <section class="links-category" data-aos="fade-in">
+        <div class="category-header">
+          <span class="category-emoji">📚</span>
+          <span class="category-name">学术与研究工具</span>
+          <span class="category-count">3 个链接</span>
+        </div>
         <div class="links-grid">
           <a href="https://paperburner.viwoplus.site/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">🔥</div>
-            <div class="link-content">
-              <h3 class="link-name">Paper Burner X</h3>
-              <p class="link-url">paperburner.viwoplus.site</p>
-              <p class="link-desc">AI 辅助文献阅读和总结</p>
+            <div class="link-card-banner academic"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">🔥</div>
+              <div class="link-card-category academic">ACADEMIC</div>
+              <div class="link-card-name">Paper Burner X</div>
+              <div class="link-card-url">paperburner.viwoplus.site</div>
+              <div class="link-card-desc">AI 辅助文献阅读和总结，快速抓住论文核心</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">AI</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
+
           <a href="https://www.paperdigest.org/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">📄</div>
-            <div class="link-content">
-              <h3 class="link-name">Paper Digest</h3>
-              <p class="link-url">paperdigest.org</p>
-              <p class="link-desc">论文摘要和关键点提取</p>
+            <div class="link-card-banner academic"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">📄</div>
+              <div class="link-card-category academic">ACADEMIC</div>
+              <div class="link-card-name">Paper Digest</div>
+              <div class="link-card-url">paperdigest.org</div>
+              <div class="link-card-desc">论文摘要和关键点提取，高效追踪学术动态</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">论文</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
+
           <a href="https://x.cnki.net/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">🇨🇳</div>
-            <div class="link-content">
-              <h3 class="link-name">知网研学 · 好文观止</h3>
-              <p class="link-url">x.cnki.net</p>
-              <p class="link-desc">知网学术资源推荐</p>
+            <div class="link-card-banner academic"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">🇨🇳</div>
+              <div class="link-card-category academic">ACADEMIC</div>
+              <div class="link-card-name">知网研学 · 好文观止</div>
+              <div class="link-card-url">x.cnki.net</div>
+              <div class="link-card-desc">知网学术资源推荐，发现高质量中文学术内容</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">知网</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
         </div>
       </section>
 
       <!-- 实用工具 -->
-      <section class="links-section" data-aos="fade-in">
-        <h2 class="section-title">🛠️ 实用工具</h2>
-        <p class="section-desc">日常使用的在线工具</p>
+      <section class="links-category" data-aos="fade-in">
+        <div class="category-header">
+          <span class="category-emoji">🛠️</span>
+          <span class="category-name">实用工具</span>
+          <span class="category-count">2 个链接</span>
+        </div>
         <div class="links-grid">
           <a href="https://www.nepenthes.top/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">🖼️</div>
-            <div class="link-content">
-              <h3 class="link-name">Telegraph-Image 免费图床</h3>
-              <p class="link-url">nepenthes.top</p>
-              <p class="link-desc">基于 Telegraph 的免费图床</p>
+            <div class="link-card-banner tools"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">🖼️</div>
+              <div class="link-card-category tools">TOOLS</div>
+              <div class="link-card-name">Telegraph-Image 免费图床</div>
+              <div class="link-card-url">nepenthes.top</div>
+              <div class="link-card-desc">基于 Telegraph 的免费图床，无需注册，上传即分享</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">图床</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
+
           <a href="https://aimarkdown2doc.com/zh/doc" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">📝</div>
-            <div class="link-content">
-              <h3 class="link-name">AI Markdown 转换工具</h3>
-              <p class="link-url">aimarkdown2doc.com</p>
-              <p class="link-desc">Markdown 转文档格式</p>
+            <div class="link-card-banner tools"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">📝</div>
+              <div class="link-card-category tools">TOOLS</div>
+              <div class="link-card-name">AI Markdown 转换工具</div>
+              <div class="link-card-url">aimarkdown2doc.com</div>
+              <div class="link-card-desc">Markdown 转文档格式，支持多种导出格式</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">转换</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
         </div>
       </section>
 
       <!-- 创意/趣味 -->
-      <section class="links-section" data-aos="fade-in">
-        <h2 class="section-title">🎨 创意 / 趣味</h2>
-        <p class="section-desc">有趣的小工具</p>
+      <section class="links-category" data-aos="fade-in">
+        <div class="category-header">
+          <span class="category-emoji">🎨</span>
+          <span class="category-name">创意 / 趣味</span>
+          <span class="category-count">2 个链接</span>
+        </div>
         <div class="links-grid">
           <a href="https://www.textcard.net/zh/answers-book" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">📖</div>
-            <div class="link-content">
-              <h3 class="link-name">答案之书</h3>
-              <p class="link-url">textcard.net</p>
-              <p class="link-desc">随机选择答案，趣味小工具</p>
+            <div class="link-card-banner fun"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">📖</div>
+              <div class="link-card-category fun">FUN</div>
+              <div class="link-card-name">答案之书</div>
+              <div class="link-card-url">textcard.net</div>
+              <div class="link-card-desc">随机选择答案，闲暇时的趣味小工具</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">趣味</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
+
           <a href="https://comparingheight.com/" target="_blank" rel="noreferrer" class="link-card">
-            <div class="link-icon">📏</div>
-            <div class="link-content">
-              <h3 class="link-name">比较身高</h3>
-              <p class="link-url">comparingheight.com</p>
-              <p class="link-desc">可视化比较名人身高</p>
+            <div class="link-card-banner fun"></div>
+            <div class="link-card-body">
+              <div class="link-card-icon">📏</div>
+              <div class="link-card-category fun">FUN</div>
+              <div class="link-card-name">比较身高</div>
+              <div class="link-card-url">comparingheight.com</div>
+              <div class="link-card-desc">可视化比较名人身高，直观又有趣</div>
+              <div class="link-card-footer">
+                <span class="link-card-visit">
+                  访问站点
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </span>
+                <span class="link-card-tag">趣味</span>
+              </div>
             </div>
-            <svg class="link-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
           </a>
         </div>
       </section>
@@ -287,8 +624,6 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="/scripts/theme.js"></script>
-  <script src="/scripts/main.js"></script>
 </body>
 </html>
