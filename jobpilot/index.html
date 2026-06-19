@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>JobPilot：从投简历到造工具，我用 Electron 写了一个求职自动化助手 | 你有绿豆糕嘛</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="/favicon.ico?v=1722085639685">
+<link rel="stylesheet" href="/styles/main.css">
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<meta name="description" content="秋招不是体力活，应该是智力活。JobPilot 是一个基于 Electron + React + Playwright 的桌面端求职自动化工具，能从微信消息中解析招聘信息、看板管理投递状态、自动填写在线申请表单。" />
+<meta name="keywords" content="项目, 求职, 开发, Electron, Playwright" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="/">
+        <img src="/images/avatar.png?v=1722085639685" class="site-logo">
+        <h1 class="site-title">你有绿豆糕嘛</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+
+          <a href="/" class="site-nav">
+            首页
+          </a>
+
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+
+          <a href="/about/" class="site-nav">
+            关于
+          </a>
+
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+          <a class="social-link" href="https://github.com/683280yj" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+    </div>
+    <div class="site-description">
+      欢迎关注我
+    </div>
+    <div class="site-footer">
+       | <a class="rss" href="/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">JobPilot：从投简历到造工具，我用 Electron 写了一个求职自动化助手</h2>
+            <div class="post-date">2026-06-19</div>
+
+            <div class="post-content" v-pre>
+<blockquote>
+<p>秋招不是体力活，应该是智力活。与其在几十个标签页之间反复横跳，不如让工具替你跑腿。</p>
+</blockquote>
+
+<h2>背景：秋招季的焦虑与信息洪流</h2>
+<p>我是姚军，数字经济专业2027届硕士。和大多数同学一样，秋招和实习季是我压力最大的阶段。</p>
+<p>招聘信息散布在微信群、公众号、各公司官网、BOSS直聘、牛客网……每天光是刷消息、筛岗位、复制链接、打开官网、注册账号、填一遍又一遍重复的个人信息，就能耗掉大半天。投一份简历本身不难，但当你要同时投递二三十家公司时，"填表"这件事就变成了纯粹的时间黑洞。</p>
+<p>我开始想：<strong>这个过程能不能自动化？</strong></p>
+
+<h2>灵感时刻：一次成功的投递</h2>
+<p>转折点出现在一次实习申请。某金融数据公司的实习岗位需要在官网填写一系列表单。我尝试用浏览器自动化工具（Playwright）写了一个脚本，自动填完了姓名、学校、专业、实习时间等字段——然后成功提交了。</p>
+<p>那一刻我意识到：如果我能把这个"自动填表"的能力封装成一个产品，让它不仅能填一家公司，而是能解析各种渠道的招聘信息、管理投递状态、自动完成表单，那将极大缩短求职的时间成本。</p>
+<p>于是 JobPilot 诞生了。</p>
+
+<h2>JobPilot 能做什么</h2>
+<p>JobPilot 的核心功能可以概括为三个阶段：</p>
+
+<h3>1. 信息采集：从杂乱消息中提取结构化数据</h3>
+<p>微信群里的一条消息可能是这样的：</p>
+<blockquote>
+<p>"【实习招聘】XX科技-电商部门招前端实习生，base北京，要求2026届及以上，有意者发简历到 xxx@example.com，内推码：ABC123"</p>
+</blockquote>
+<p>JobPilot 能从中智能解析出：</p>
+<ul>
+<li><strong>公司</strong>：XX科技</li>
+<li><strong>部门</strong>：电商</li>
+<li><strong>岗位</strong>：前端实习生</li>
+<li><strong>工作地点</strong>：北京</li>
+<li><strong>联系方式</strong>：xxx@example.com</li>
+<li><strong>内推码</strong>：ABC123</li>
+</ul>
+
+<h3>2. 投递管理：看板式的状态追踪</h3>
+<p>每一条投递都有一个状态，从 <code>待处理</code> → <code>填写中</code> → <code>已投递</code> → <code>面试</code> → <code>Offer</code> → <code>已拒绝</code>，一目了然。再也不用打开 Excel 或者靠记忆去追踪"这家我投了没有"。</p>
+
+<h3>3. 自动填表：Playwright 驱动浏览器</h3>
+<p>选一个职位，点击"自动投递"，JobPilot 会打开浏览器、导航到招聘页面、自动填写表单字段并提交。整个过程模拟真人操作，带有随机延迟，不会被识别为机器人。</p>
+
+<h2>技术选型：为什么是这些技术</h2>
+<table>
+<thead>
+<tr><th>技术</th><th>选择理由</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Electron</strong></td><td>求职工具需要运行在桌面端，用户需要在本地浏览器上操作。Electron 提供跨平台支持，一套代码多端运行</td></tr>
+<tr><td><strong>React</strong></td><td>现代前端框架，组件化开发，状态管理清晰，适合构建复杂的看板 UI</td></tr>
+<tr><td><strong>Playwright</strong></td><td>微软出品，支持 Chromium/Firefox/WebKit，自动化能力强大且稳定</td></tr>
+<tr><td><strong>SQLite</strong></td><td>本地数据库，数据完全存储在用户电脑上。求职信息涉及个人隐私，不能上传云端</td></tr>
+<tr><td><strong>TypeScript</strong></td><td>类型安全，减少运行时错误，提升开发体验</td></tr>
+</tbody>
+</table>
+
+<h2>和其他"自动投简历"工具有什么不同</h2>
+<p>市面上确实存在一些自动投简历的脚本或插件，但它们有几个明显的局限：</p>
+<ul>
+<li><strong>只能在单一平台运行</strong>——某个招聘网站的自动化工具管不了公司官网、牛客、实习僧</li>
+<li><strong>只解决"投递"这一个环节</strong>——不处理信息采集、不管理投递状态</li>
+<li><strong>容易被封号</strong>——大量无差别投递很容易被平台识别</li>
+</ul>
+<p>JobPilot 的思路不同：</p>
+<ol>
+<li><strong>全流程覆盖</strong>：从信息源 → 信息解析 → 投递管理 → 自动填表，一站式解决</li>
+<li><strong>跨平台</strong>：不限定在某一个招聘网站，任何有投递表单的页面都可以尝试自动填写</li>
+<li><strong>用户主动选择</strong>：不是无脑刷量，而是用户筛选后主动触发</li>
+<li><strong>隐私优先</strong>：所有数据本地存储，不经过任何第三方服务器</li>
+</ol>
+
+<h2>项目链接</h2>
+<ul>
+<li><strong>GitHub 仓库</strong>：<a href="https://github.com/683280yj/jobpilot">github.com/683280yj/jobpilot</a></li>
+<li><strong>技术栈</strong>：Electron / React / TypeScript / Playwright / SQLite</li>
+</ul>
+<p>欢迎 Star、Fork、提 Issue 或贡献代码。如果你有好的想法，也欢迎一起讨论。</p>
+
+<h2>写在最后：不是技术多厉害，而是思维方式的转变</h2>
+<p>回头看这个项目，技术上并没有什么高深的东西——Electron、React、Playwright，都是成熟的开源工具。但我觉得它的价值在于<strong>用产品思维解决了一个真实的痛点</strong>。</p>
+<p>求职本身就是一场信息战。谁能更快地获取信息、更高效地处理信息，谁就占据先机。JobPilot 帮我省下的不只是填表的时间，更是"不用在琐碎事务上消耗意志力"的心力。</p>
+<p>而且，这种发现问题、拆解问题、用工具解决问题的能力，恰恰也是企业在招聘时希望看到的素质。所以某种意义上，做这个项目的过程，本身就是一次很好的求职准备。</p>
+<p>如果你也在为秋招头疼，不妨试试 JobPilot。或者，你也可以从自己的痛点出发，造一个属于你自己的工具。</p>
+<p>毕竟，<strong>最好的简历项目，就是解决你自己真正遇到的问题。</strong></p>
+
+            </div>
+
+              <div class="tag-container">
+                  <a href="/tags/" class="tag">项目</a>
+                  <a href="/tags/" class="tag">求职</a>
+                  <a href="/tags/" class="tag">开发</a>
+              </div>
+
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="/sleep-up-late/">
+                  <h3 class="post-title">
+                    7.23
+                  </h3>
+                </a>
+              </div>
+
+              <div id="disqus_thread" data-aos="fade-in"></div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+    var options = {
+      shortname: 'yggcmm',
+      apikey: 'o6FD7nF1ChrKerW4LbjZ0fyVsqCjlOauk3awXJcU4Rm8tvt3JN0feu6bWMXIP6Vt',
+    }
+    if ('') {
+      options.api = ''
+    }
+    var dsqjs = new DisqusJS(options)
+    </script>
+
+  </body>
+</html>
