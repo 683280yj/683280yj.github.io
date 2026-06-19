@@ -80,26 +80,38 @@ img {
   max-width: 100%;
 }
 
-.topbar,
-.zh-profile-card,
+/* Smooth theme transitions */
+body {
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* Card hover effects */
 .zh-note-card,
 .zh-tool-list a,
 .quick-card,
 .misc-card,
 .share-item,
-.tool-button,
-.button,
-.zh-card-links a,
-.footer {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+.zh-project-card,
+.zh-profile-card,
+.link-card {
+  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.35s ease;
 }
 
 .zh-note-card:hover,
 .zh-tool-list a:hover,
-.misc-card:hover,
 .quick-card:hover,
+.misc-card:hover,
 .share-item:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+}
+
+.tool-button,
+.button {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.15s ease;
+}
+
+.topbar {
+  transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
 /* --- Accessibility: skip link --- */
@@ -249,7 +261,12 @@ h1, h2, h3 {
 }
 
 .button-solid:hover {
-  filter: brightness(1.08);
+  background: color-mix(in srgb, var(--accent) 85%, #fff);
+}
+
+.button:active,
+.tool-button:active {
+  transform: scale(0.97);
 }
 
 
@@ -266,6 +283,7 @@ h1, h2, h3 {
   align-items: center;
   padding: 70px 0;
   border-bottom: 1px solid var(--line);
+  background: linear-gradient(170deg, color-mix(in srgb, var(--bg) 95%, var(--accent-soft)) 0%, var(--bg) 50%, var(--bg) 100%);
 }
 
 .zh-hero h1 {
@@ -300,8 +318,8 @@ h1, h2, h3 {
 /* Profile Card (sidebar) */
 .zh-profile-card {
   border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 24px;
+  border-radius: 12px;
+  padding: 28px;
   background: var(--surface);
   box-shadow: var(--shadow);
 }
@@ -342,10 +360,15 @@ h1, h2, h3 {
 }
 
 
-/* Generic section */
+/* Generic section with alternating backgrounds for rhythm */
 .zh-section {
   padding: 58px 0 72px;
   border-bottom: 1px solid var(--line);
+}
+
+/* Subtle alternating background for visual rhythm (targets even-positioned section siblings) */
+.zh-section:nth-of-type(even) {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 97%, var(--line)) 0%, var(--bg) 100%);
 }
 
 .zh-section-head {
@@ -388,7 +411,8 @@ h1, h2, h3 {
 
 .featured-note {
   grid-column: span 2;
-  background: linear-gradient(135deg, var(--green-soft), var(--surface));
+  background: linear-gradient(145deg, color-mix(in srgb, var(--green-soft) 60%, var(--surface)), var(--surface));
+  border-left: 3px solid var(--green);
 }
 
 .zh-note-card time {
@@ -997,7 +1021,7 @@ h1, h2, h3 {
 .zh-project-image {
   width: 100%;
   height: 200px;
-  background: linear-gradient(135deg, var(--accent-soft), var(--green-soft));
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent-soft) 80%, transparent), color-mix(in srgb, var(--accent) 8%, transparent));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1005,13 +1029,22 @@ h1, h2, h3 {
   overflow: hidden;
 }
 
+.zh-project-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--green) 6%, transparent) 0%, transparent 60%);
+}
+
 .zh-project-placeholder {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: var(--accent);
-  opacity: 0.35;
+  opacity: 0.25;
   font-family: var(--serif);
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
+  position: relative;
+  z-index: 1;
 }
 
 .zh-project-content {
