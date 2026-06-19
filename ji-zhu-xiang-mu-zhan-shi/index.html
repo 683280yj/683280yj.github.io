@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>技术项目展示 | 你有绿豆糕嘛</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/favicon.ico?v=1722085639685">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <meta name="description" content="技术项目展示：包含 Web 开发、数据分析、工具配置等方向的个人项目记录，持续更新中。" />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+        <div class="top-container" data-aos="fade-right">
+          <div class="top-header-container">
+            <a class="site-title-container" href="/">
+              <img src="/images/avatar.png?v=1722085639685" class="site-logo">
+              <h1 class="site-title">你有绿豆糕嘛</h1>
+            </a>
+            <div class="menu-btn" @click="menuVisible = !menuVisible">
+              <div class="line"></div>
+            </div>
+          </div>
+          <div>
+            <a href="/" class="site-nav">首页</a>
+            <a href="/archives" class="site-nav">归档</a>
+            <a href="/tags" class="site-nav">标签</a>
+            <a href="/about/" class="site-nav">关于</a>
+          </div>
+        </div>
+        <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+          <div class="social-container">
+            <a class="social-link" href="https://github.com/683280yj" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <div class="site-description">欢迎关注我</div>
+          <div class="site-footer">
+             | <a class="rss" href="/atom.xml" target="_blank">RSS</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">技术项目展示</h2>
+            <div class="post-date">2026-06-17</div>
+
+            <div class="post-content" v-pre>
+              <p>这里记录我做过的技术项目，涵盖 Web 开发、数据分析、工具配置等方向。内容会持续更新。</p>
+
+              <h2 id="web-kai-fa">Web 开发</h2>
+              <h3 id="ge-ren-wang-zhan">个人网站</h3>
+              <p>使用 <strong>GitHub Pages + Cloudflare</strong> 搭建的个人网站，支持自定义域名、HTTPS、中英文切换和深色模式。</p>
+              <ul>
+                <li>技术栈：Gridea + GitHub Pages + Cloudflare</li>
+                <li>功能：中英双语、深色模式、响应式布局</li>
+                <li>域名：<a href="https://idkyjun.me">idkyjun.me</a></li>
+              </ul>
+
+              <h3 id="qi-ta-xiang-mu">其他项目</h3>
+              <p>更多 Web 项目持续整理中，包括前端组件库使用、静态网站优化等方向。</p>
+
+              <h2 id="shu-ju-fen-xi">数据分析</h2>
+              <h3 id="bi-sai-xiang-guan">比赛相关</h3>
+              <p>参与数据分析类比赛，使用 Python 进行数据清洗、可视化和建模。涉及工具包括 Pandas、Matplotlib、Scikit-learn 等。</p>
+
+              <h3 id="ri-chang-lian-xi">日常练习</h3>
+              <p>不定期整理学习过程中遇到的小项目，以笔记形式记录在网站分享页。</p>
+
+              <h2 id="gong-ju-yu-pei-zhi">工具与配置</h2>
+              <h3 id="git-yu-docker">Git 与 Docker</h3>
+              <p>整理版本管理（Git）和容器化（Docker）的基础概念和实用命令，方便快速查阅。</p>
+              <ul>
+                <li>Git 基础：分支管理、远程仓库、冲突解决</li>
+                <li>Docker 基础：镜像、容器、Dockerfile、docker-compose</li>
+              </ul>
+
+              <h3 id="notion-shi-yong">Notion 使用</h3>
+              <p>使用 Notion 进行知识管理，整理了数据库新功能的使用笔记，记录在分享页。</p>
+
+              <h2 id="ji-xu-fang-xiang">后续方向</h2>
+              <ul>
+                <li>深入学习前端框架（Vue / React）</li>
+                <li>探索更多后端技术（Node.js / Python Web）</li>
+                <li>持续优化个人网站，增加更多互动功能</li>
+                <li>参与开源项目，积累协作经验</li>
+              </ul>
+
+              <p>如果你对以上任何方向感兴趣，欢迎通过 <a href="https://github.com/683280yj">GitHub</a> 联系我！</p>
+            </div>
+
+            <div class="next-post">
+              <div class="next">下一篇</div>
+              <a href="/ge-ren-zuo-pin-ji/">
+                <h3 class="post-title">个人作品集</h3>
+              </a>
+            </div>
+
+            <div id="disqus_thread" data-aos="fade-in"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script type="application/javascript">
+      AOS.init();
+      var app = new Vue({
+        el: '#app',
+        data: {
+          menuVisible: false,
+        },
+      })
+    </script>
+
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+      var options = {
+        shortname: 'yggcmm',
+        apikey: 'o6FD7nF1ChrKerW4LbjZ0fyVsqCjlOauk3awXJcU4Rm8tvt3JN0feu6bWMXIP6Vt',
+      }
+      if ('') {
+        options.api = ''
+      }
+      var dsqjs = new DisqusJS(options)
+    </script>
+  </body>
+</html>
