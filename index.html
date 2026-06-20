@@ -285,21 +285,21 @@
     }
     .cap-card:first-child::after { top: 1.5rem; }
     .cap-card:hover::after { height: 52px; opacity: 1; }
-    /* Number indicator */
+    /* Number indicator (oracle bone SVG) */
     .cap-num {
-      font-family: var(--font-display); font-size: 2.8rem; font-weight: 300;
-      color: var(--accent); line-height: 1; padding-top: 0.1rem;
-      opacity: 0.25; transition: opacity 0.4s; user-select: none;
+      width: 36px; height: 42px; color: var(--accent);
+      opacity: 0.2; transition: opacity 0.4s; user-select: none;
+      flex-shrink: 0; margin-top: 0.15rem;
     }
-    .cap-card:hover .cap-num { opacity: 0.7; }
+    .cap-card:hover .cap-num { opacity: 0.6; }
     /* Content */
     .cap-card h3 { margin-bottom: 0.6rem; color: var(--fg); font-size: 1.05rem; }
     .cap-card p { font-size: 0.875rem; line-height: 1.7; color: var(--fg2); }
     /* Dark theme overrides */
     body.dark-theme .cap-card { border-bottom-color: var(--border); }
     body.dark-theme .cap-card:nth-child(even) { padding-left: 3rem; }
-    body.dark-theme .cap-num { font-family: var(--font-body); font-weight: 200; font-size: 2.4rem; }
-    body.dark-theme .cap-card:hover .cap-num { opacity: 0.6; }
+    body.dark-theme .cap-num { width: 32px; height: 38px; }
+    body.dark-theme .cap-card:hover .cap-num { opacity: 0.5; }
     body.dark-theme .cap-card h3 { font-size: 0.875rem; }
 
     /* ================================================
@@ -430,6 +430,33 @@
     body.dark-theme footer p { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.22em; }
 
     /* ================================================
+       ORACLE BONE — decorative elements
+       ================================================ */
+    .ob-divider {
+      display: flex; justify-content: center; align-items: center;
+      padding: 1.5rem 0; opacity: 0.15;
+    }
+    .ob-divider svg { width: 140px; height: 16px; color: var(--accent); }
+    body.dark-theme .ob-divider { opacity: 0.12; }
+
+    .project-card { position: relative; overflow: hidden; }
+    .project-card .ob-deco {
+      position: absolute; top: -6px; right: -6px;
+      width: 52px; height: 52px; color: var(--accent); opacity: 0.06;
+      transition: opacity 0.4s; pointer-events: none;
+    }
+    .project-card:hover .ob-deco { opacity: 0.14; }
+
+    .hero-bg-name { display: none; }
+    .hero-bg-ob {
+      position: absolute; bottom: 2%; left: 50%; transform: translateX(-50%);
+      width: clamp(320px, 50vw, 680px); height: auto;
+      color: var(--bg-name-color); pointer-events: none; user-select: none; z-index: 0;
+      opacity: 1;
+    }
+    body.dark-theme .hero-bg-ob { opacity: 1; }
+
+    /* ================================================
        SCROLL REVEAL
        ================================================ */
     .reveal { opacity: 0; transform: translateY(24px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
@@ -453,7 +480,7 @@
       .hero-bg-name { font-size: clamp(4rem, 30vw, 8rem); bottom: 5%; }
       header .container { height: 56px; }
       .cap-card { grid-template-columns: 40px 1fr; gap: 1rem; padding: 1.75rem 0 2rem; }
-      .cap-num { font-size: 2rem; }
+      .cap-num { width: 28px; height: 34px; }
       .featured-visual { min-height: 160px; }
     }
     @media (max-width: 480px) {
@@ -464,13 +491,97 @@
   </style>
 </head>
 <body>
-  <!-- YJ Logo SVG (reusable) -->
+  <!-- YJ Logo + Oracle Bone SVG (reusable) -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
     <symbol id="yj-logo" viewBox="0 0 52 38">
       <path d="M4 3L17 21V35" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M30 3L17 21" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
       <path d="M30 3V25C30 32.5 35 36 42 36" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
       <line x1="1" y1="37" x2="51" y2="37" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Oracle bone brush-stroke section divider -->
+    <symbol id="ob-divider" viewBox="0 0 140 16">
+      <path d="M2 8C18 5 38 11 58 8S98 4 118 8S134 9 138 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="70" cy="8" r="1.8" fill="currentColor" opacity="0.5"/>
+      <path d="M60 4L62 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
+      <path d="M78 4L80 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
+    </symbol>
+
+    <!-- Oracle bone: network/gateway icon (for AI Relay) -->
+    <symbol id="ob-gateway" viewBox="0 0 48 48">
+      <circle cx="24" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="10" cy="36" r="4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="38" cy="36" r="4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <path d="M24 14L10 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M24 14L38 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M14 36H34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+    </symbol>
+
+    <!-- Oracle bone: map/compass icon (for Logistics) -->
+    <symbol id="ob-compass" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M24 8V16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M24 32V40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M8 24H16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M32 24H40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M18 18L24 24L30 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </symbol>
+
+    <!-- Oracle bone: trophy/award icon (for BUC Competition) -->
+    <symbol id="ob-trophy" viewBox="0 0 48 48">
+      <path d="M14 6H34V20C34 28 30 32 24 32C18 32 14 28 14 20Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M14 12H8C8 18 10 20 14 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M34 12H40C40 18 38 20 34 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M24 32V38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M16 42H32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M20 42V38H28V42" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+    </symbol>
+
+    <!-- Oracle bone: scroll/writing icon (for Blog) -->
+    <symbol id="ob-scroll" viewBox="0 0 48 48">
+      <path d="M10 8C10 8 14 6 20 6C26 6 30 8 30 8V36C30 36 26 34 20 34C14 34 10 36 10 36Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M30 12H38V40C38 40 34 38 30 38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+      <path d="M16 14H24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+      <path d="M16 20H24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+      <path d="M16 26H22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+    </symbol>
+
+    <!-- Oracle bone number: 01 -->
+    <symbol id="ob-num-01" viewBox="0 0 48 56">
+      <path d="M10 14C10 8 14 4 18 4C22 4 26 8 26 14V42C26 48 22 52 18 52C14 52 10 48 10 42Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M36 8V48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <path d="M32 12L36 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+    </symbol>
+
+    <!-- Oracle bone number: 02 -->
+    <symbol id="ob-num-02" viewBox="0 0 48 56">
+      <path d="M10 16C10 8 16 4 22 4C28 4 32 8 32 14C32 22 24 30 10 48H34" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Oracle bone number: 03 -->
+    <symbol id="ob-num-03" viewBox="0 0 48 56">
+      <path d="M8 12H30C36 12 38 16 38 20C38 24 34 26 30 26H20" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M20 26H30C36 26 40 30 40 36C40 42 36 48 28 48C20 48 14 44 10 40" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Oracle bone: YAOJUN characters in brush-stroke style (hero bg) -->
+    <symbol id="ob-yaojun" viewBox="0 0 400 80">
+      <!-- Y -->
+      <path d="M8 8L22 32V68" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M36 8L22 32" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+      <!-- A -->
+      <path d="M52 68L68 8L84 68" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M58 48H78" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <!-- O -->
+      <path d="M100 38C100 18 112 8 122 8C132 8 144 18 144 38C144 58 132 68 122 68C112 68 100 58 100 38Z" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+      <!-- J -->
+      <path d="M176 8V52C176 64 168 68 160 68" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M166 8H186" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+      <!-- U -->
+      <path d="M204 8V52C204 64 212 68 222 68C232 68 240 64 240 52V8" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- N -->
+      <path d="M264 68V8L296 68V8" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
   </svg>
 
@@ -518,6 +629,7 @@
     <!-- Hero -->
     <section class="hero" data-od-id="hero" data-component="Hero Section">
       <div class="hero-bg-name">YAOJUN</div>
+      <svg class="hero-bg-ob"><use href="#ob-yaojun"/></svg>
       <div class="container">
         <div class="hero-content">
           <svg class="hero-logo"><use href="#yj-logo"/></svg>
@@ -532,6 +644,8 @@
       </div>
     </section>
 
+    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+
     <!-- What I Do -->
     <section id="capabilities" data-od-id="capabilities" data-component="Capabilities Section">
       <div class="container">
@@ -541,21 +655,21 @@
         </div>
         <div class="capabilities-grid">
           <div class="cap-card reveal" data-component="Capability Card">
-            <span class="cap-num">01</span>
+            <svg class="cap-num"><use href="#ob-num-01"/></svg>
             <div class="cap-content">
               <h3 data-i18n="cap.c1.title">产品设计</h3>
               <p data-i18n="cap.c1.desc">从用户调研到原型设计，关注真实需求与体验细节。擅长 PRD 撰写与需求优先级管理。</p>
             </div>
           </div>
           <div class="cap-card reveal" data-component="Capability Card">
-            <span class="cap-num">02</span>
+            <svg class="cap-num"><use href="#ob-num-02"/></svg>
             <div class="cap-content">
               <h3 data-i18n="cap.c2.title">技术开发</h3>
               <p data-i18n="cap.c2.desc">全栈探索者，熟悉 JavaScript、Python 与 Next.js。独立开发多个开源项目并持续维护。</p>
             </div>
           </div>
           <div class="cap-card reveal" data-component="Capability Card">
-            <span class="cap-num">03</span>
+            <svg class="cap-num"><use href="#ob-num-03"/></svg>
             <div class="cap-content">
               <h3 data-i18n="cap.c3.title">数据分析</h3>
               <p data-i18n="cap.c3.desc">预测建模、空间分析与可视化。用数据讲故事，让决策有依据。</p>
@@ -564,6 +678,8 @@
         </div>
       </div>
     </section>
+
+    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
 
     <!-- Featured Project -->
     <section id="featured" data-od-id="featured" data-component="Featured Project">
@@ -609,6 +725,8 @@
       </div>
     </section>
 
+    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+
     <!-- Projects -->
     <section id="projects" data-od-id="projects" data-component="Projects Section">
       <div class="container">
@@ -618,21 +736,25 @@
         </div>
         <div class="projects-grid">
           <a href="https://github.com/683280yj/ai-relay" target="_blank" rel="noopener noreferrer" class="project-card reveal" data-component="Project Card">
+            <svg class="ob-deco"><use href="#ob-gateway"/></svg>
             <h3>AI Relay</h3>
             <p data-i18n="proj.p1.desc">Serverless AI 网关。多路由、故障转移、兼容 OpenAI，一键部署。</p>
             <div class="project-tags"><span class="tag">Serverless</span><span class="tag">Vercel</span><span class="tag">API Gateway</span></div>
           </a>
           <div class="project-card reveal" data-component="Project Card">
+            <svg class="ob-deco"><use href="#ob-compass"/></svg>
             <h3>Logistics Center Research</h3>
             <p data-i18n="proj.p2.desc">农村物流中心选址研究。季节预测模型，22 组最优方案，运营成本降低 30%。</p>
             <div class="project-tags"><span class="tag">Data Analysis</span><span class="tag">GIS</span><span class="tag">Holt-Winters</span><span class="tag">Python</span></div>
           </div>
           <div class="project-card reveal" data-component="Project Card">
+            <svg class="ob-deco"><use href="#ob-trophy"/></svg>
             <h3>BUC Innovation Competition</h3>
             <p data-i18n="proj.p3.desc">产品负责人。校园服务平台，全国竞赛一等奖，用户满意度 &gt;90%。</p>
             <div class="project-tags"><span class="tag">Product Design</span><span class="tag">User Research</span><span class="tag">PRD</span><span class="tag">Leadership</span></div>
           </div>
           <div class="project-card reveal" data-component="Project Card">
+            <svg class="ob-deco"><use href="#ob-scroll"/></svg>
             <h3>vpsblog.idky.tech</h3>
             <p data-i18n="proj.p4.desc">个人技术博客。记录学习笔记、技术探索与项目复盘。</p>
             <div class="project-tags"><span class="tag">WordPress</span><span class="tag">VPS</span><span class="tag">Technical Writing</span></div>
@@ -640,6 +762,8 @@
         </div>
       </div>
     </section>
+
+    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
 
     <!-- About -->
     <section id="about" data-od-id="about" data-component="About Section">
@@ -681,6 +805,8 @@
       </div>
     </section>
 
+    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+
     <!-- Skills -->
     <section id="skills" data-od-id="skills" data-component="Skills Section">
       <div class="container">
@@ -696,6 +822,8 @@
         </div>
       </div>
     </section>
+
+    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
 
     <!-- Tinkering & Exploration -->
     <section id="tinkering" data-od-id="tinkering" data-component="Tinkering Section">
@@ -726,6 +854,8 @@
         </div>
       </div>
     </section>
+
+    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
 
     <!-- Contact -->
     <section id="contact" data-od-id="contact" data-component="Contact Section">
