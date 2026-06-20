@@ -3,8 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="姚军 JUNYAO — Product, Technology, Data Portfolio" />
-  <title>JUNYAO</title>
+  <meta name="description" content="姚军 JUNYAO — 产品设计与技术探索的个人作品集。Product, Technology, Data Portfolio." />
+  <meta name="author" content="姚军 JUNYAO" />
+  <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0e0d0b" media="(prefers-color-scheme: dark)" />
+  <title>姚军 JUNYAO — Portfolio</title>
+  <link rel="canonical" href="https://idkyjun.me/" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="姚军 JUNYAO — Portfolio" />
+  <meta property="og:description" content="产品设计与技术探索的个人作品集" />
+  <meta property="og:url" content="https://idkyjun.me/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="JUNYAO" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="姚军 JUNYAO — Portfolio" />
+  <meta name="twitter:description" content="产品设计与技术探索的个人作品集" />
+  <!-- Favicon: Oracle bone YJ logo -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 38'%3E%3Cpath d='M4 3L17 21V35' fill='none' stroke='%23c15e3d' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M30 3L17 21' fill='none' stroke='%23c15e3d' stroke-width='4.5' stroke-linecap='round'/%3E%3Cpath d='M30 3V25C30 32.5 35 36 42 36' fill='none' stroke='%23c15e3d' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='1' y1='37' x2='51' y2='37' stroke='%23c15e3d' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23faf8f5'/%3E%3Cg transform='translate(52,52) scale(1.5)'%3E%3Cpath d='M4 3L17 21V35' fill='none' stroke='%23c15e3d' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M30 3L17 21' fill='none' stroke='%23c15e3d' stroke-width='4.5' stroke-linecap='round'/%3E%3Cpath d='M30 3V25C30 32.5 35 36 42 36' fill='none' stroke='%23c15e3d' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='1' y1='37' x2='51' y2='37' stroke='%23c15e3d' stroke-width='2.5' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -457,6 +474,53 @@
     body.dark-theme .hero-bg-ob { opacity: 1; }
 
     /* ================================================
+       TYPEWRITER
+       ================================================ */
+    .hero-typewriter {
+      font-family: 'Barlow', var(--font-body); font-size: 0.875rem; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
+      margin-top: 0.5rem; min-height: 1.4em;
+    }
+    .tw-prefix { opacity: 0.5; font-weight: 400; }
+    #typewriter { display: inline; }
+    .tw-cursor {
+      display: inline-block; animation: blink 1s step-end infinite; font-weight: 300;
+      opacity: 0.6; margin-left: 1px;
+    }
+    @keyframes blink { 0%, 100% { opacity: 0.6; } 50% { opacity: 0; } }
+    body.dark-theme .hero-typewriter { font-size: 0.75rem; letter-spacing: 0.15em; }
+
+    /* ================================================
+       BACK TO TOP
+       ================================================ */
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 90;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--fg2); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: all 0.35s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .back-to-top svg { width: 18px; height: 18px; }
+    .back-to-top.visible { opacity: 1; pointer-events: auto; }
+    .back-to-top:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    body.dark-theme .back-to-top { background: var(--ctrl-hover); border-color: var(--border); }
+    body.dark-theme .back-to-top:hover { background: var(--interactive); border-color: var(--interactive); color: var(--bg); }
+
+    /* ================================================
+       GUESTBOOK / 留言板
+       ================================================ */
+    #guestbook { padding: 5rem 0 3rem; }
+    .guestbook-wrap {
+      max-width: 720px; margin: 0 auto;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+      padding: 2rem; box-shadow: var(--card-shadow);
+    }
+    body.dark-theme .guestbook-wrap { background: var(--ctrl-hover); }
+    .giscus, .giscus-frame { width: 100%; min-height: 300px; }
+
+    /* ================================================
        SCROLL REVEAL
        ================================================ */
     .reveal { opacity: 0; transform: translateY(24px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
@@ -487,6 +551,8 @@
       .hero-cta { flex-direction: column; }
       .btn { width: 100%; text-align: center; }
       .featured-metrics { flex-direction: column; gap: 1rem; }
+      .back-to-top { bottom: 1.25rem; right: 1.25rem; width: 38px; height: 38px; }
+      .guestbook-wrap { padding: 1.25rem; }
     }
   </style>
 </head>
@@ -594,10 +660,11 @@
         </span>
       </a>
       <nav data-component="Navigation">
-        <a href="#capabilities" data-i18n="nav.do">What I Do</a>
-        <a href="#projects" data-i18n="nav.projects">Projects</a>
-        <a href="#about" data-i18n="nav.about">About</a>
-        <a href="#contact" data-i18n="nav.contact">Contact</a>
+        <a href="#capabilities" data-i18n="nav.do">我能做什么</a>
+        <a href="#projects" data-i18n="nav.projects">项目</a>
+        <a href="#about" data-i18n="nav.about">关于</a>
+        <a href="#guestbook" data-i18n="nav.guestbook">留言板</a>
+        <a href="#contact" data-i18n="nav.contact">联系</a>
       </nav>
       <div class="header-controls">
         <div class="lang-switcher" data-component="Language Switcher">
@@ -634,6 +701,7 @@
         <div class="hero-content">
           <svg class="hero-logo"><use href="#yj-logo"/></svg>
           <div class="hero-eyebrow" data-i18n="hero.eyebrow">产品 · 技术 · 数据</div>
+          <div class="hero-typewriter"><span class="tw-prefix">&gt; </span><span id="typewriter"></span><span id="tw-cursor" class="tw-cursor">|</span></div>
           <h1><span class="name-cn">姚军</span><span class="name-en">JUNYAO</span><span>.</span></h1>
           <p data-i18n="hero.subtitle">你好，我是姚军。欢迎来到我的作品集。这里收录了我在产品、技术与数据方面的一些实践与探索。</p>
           <div class="hero-cta">
@@ -650,8 +718,8 @@
     <section id="capabilities" data-od-id="capabilities" data-component="Capabilities Section">
       <div class="container">
         <div class="section-header reveal">
-          <h2 data-i18n="cap.title">What I Do</h2>
-          <p data-i18n="cap.subtitle">Core capabilities</p>
+          <h2 data-i18n="cap.title">我能做什么</h2>
+          <p data-i18n="cap.subtitle">核心能力</p>
         </div>
         <div class="capabilities-grid">
           <div class="cap-card reveal" data-component="Capability Card">
@@ -685,12 +753,12 @@
     <section id="featured" data-od-id="featured" data-component="Featured Project">
       <div class="container">
         <div class="section-header reveal">
-          <h2 data-i18n="feat.title">Featured Project</h2>
-          <p data-i18n="feat.subtitle">Deep dive</p>
+          <h2 data-i18n="feat.title">精选项目</h2>
+          <p data-i18n="feat.subtitle">深度展示</p>
         </div>
         <div class="featured reveal">
           <div class="featured-info">
-            <div class="featured-label" data-i18n="feat.label">Featured</div>
+            <div class="featured-label" data-i18n="feat.label">精选</div>
             <h3>JobPilot</h3>
             <p data-i18n="feat.desc">求职自动化工具。从聊天消息中提取岗位信息，Kanban 看板管理进度，Playwright 自动填写招聘平台表单。全离线 SQLite 存储，隐私优先。</p>
             <div class="featured-metrics">
@@ -731,8 +799,8 @@
     <section id="projects" data-od-id="projects" data-component="Projects Section">
       <div class="container">
         <div class="section-header reveal">
-          <h2 data-i18n="proj.title">Projects</h2>
-          <p data-i18n="proj.subtitle">More works & explorations</p>
+          <h2 data-i18n="proj.title">项目作品</h2>
+          <p data-i18n="proj.subtitle">更多作品与探索</p>
         </div>
         <div class="projects-grid">
           <a href="https://github.com/683280yj/ai-relay" target="_blank" rel="noopener noreferrer" class="project-card reveal" data-component="Project Card">
@@ -769,8 +837,8 @@
     <section id="about" data-od-id="about" data-component="About Section">
       <div class="container">
         <div class="section-header reveal">
-          <h2 data-i18n="about.title">About</h2>
-          <p data-i18n="about.subtitle">Education & experience</p>
+          <h2 data-i18n="about.title">关于我</h2>
+          <p data-i18n="about.subtitle">教育与经历</p>
         </div>
         <div class="about-content">
           <div class="about-text reveal">
@@ -811,8 +879,8 @@
     <section id="skills" data-od-id="skills" data-component="Skills Section">
       <div class="container">
         <div class="section-header reveal">
-          <h2 data-i18n="skills.title">Skills</h2>
-          <p data-i18n="skills.subtitle">Tools & capabilities</p>
+          <h2 data-i18n="skills.title">技能</h2>
+          <p data-i18n="skills.subtitle">工具与能力</p>
         </div>
         <div class="skills-grid reveal">
           <div class="skill-category"><h3 data-i18n="skills.cat1">产品</h3><div class="skills"><span class="skill">User Research</span><span class="skill">Product Design</span><span class="skill">PRD</span><span class="skill">Data Analysis</span><span class="skill">MIS / ERP</span></div></div>
@@ -829,8 +897,8 @@
     <section id="tinkering" data-od-id="tinkering" data-component="Tinkering Section">
       <div class="container">
         <div class="section-header reveal">
-          <h2 data-i18n="tink.title">Tinkering</h2>
-          <p data-i18n="tink.subtitle">Beyond work</p>
+          <h2 data-i18n="tink.title">折腾 & 探索</h2>
+          <p data-i18n="tink.subtitle">工作之外</p>
         </div>
         <div class="tink-grid">
           <div class="tink-item reveal" data-component="Tinkering Item">
@@ -861,9 +929,10 @@
     <section id="contact" data-od-id="contact" data-component="Contact Section">
       <div class="container">
         <div class="contact-content reveal">
-          <h2 data-i18n="contact.title">Get in Touch</h2>
+          <h2 data-i18n="contact.title">联系我</h2>
           <p data-i18n="contact.desc">聊聊合作，或者只是打个招呼。</p>
           <div class="social-links">
+            <a href="mailto:yggcmm@outlook.com" data-i18n="contact.email">邮箱</a>
             <a href="https://github.com/683280yj" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://idkyjun.me/links/" target="_blank" rel="noopener noreferrer" data-i18n="contact.links">友链 & 工具</a>
             <a href="https://idky.tech" target="_blank" rel="noopener noreferrer" data-i18n="contact.blog">博客</a>
@@ -872,6 +941,45 @@
       </div>
     </section>
   </main>
+
+  <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+
+  <!-- Guestbook / 留言板 -->
+  <section id="guestbook" data-od-id="guestbook" data-component="Guestbook">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 data-i18n="guestbook.title">留言板</h2>
+        <p data-i18n="guestbook.subtitle">踩踩我的空间</p>
+      </div>
+      <div class="guestbook-wrap reveal">
+        <script src="https://giscus.app/client.js"
+          data-repo="683280yj/683280yj.github.io"
+          data-repo-id="R_kgDOQfYXhQ"
+          data-category="General"
+          data-category-id="DIC_kwDOQfYXhc4CgGnT"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="preferred_color_scheme"
+          data-lang="zh-CN"
+          crossorigin="anonymous"
+          async>
+        </script>
+        <noscript>
+          <p style="text-align:center;color:var(--muted);padding:2rem 0">
+            <span data-i18n="guestbook.noscript">请启用 JavaScript 来查看评论和留言。</span>
+          </p>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to top -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
 
   <footer data-component="Site Footer">
     <div class="container">
@@ -882,7 +990,7 @@
   <script>
     const i18n = {
       'zh-cn': {
-        'nav.do': '我能做什么', 'nav.projects': '项目', 'nav.about': '关于', 'nav.contact': '联系',
+        'nav.do': '我能做什么', 'nav.projects': '项目', 'nav.about': '关于', 'nav.guestbook': '留言板', 'nav.contact': '联系',
         'hero.eyebrow': '产品 · 技术 · 数据',
         'hero.subtitle': '你好，我是姚军。欢迎来到我的作品集。这里收录了我在产品、技术与数据方面的一些实践与探索。',
         'hero.cta1': '浏览作品',
@@ -912,10 +1020,11 @@
         'tink.t3.title': '开源收集癖', 'tink.t3.desc': 'GitHub 上 98+ 个仓库，从 AI 网关到 Docker 教程、从经济学人电子书到 VS Code 插件。看到好项目就想 fork 下来研究。',
         'tink.t4.title': '英语学习者', 'tink.t4.desc': '经济学人、纽约客、连线杂志的长期读者。相信语言是打开更大世界的钥匙，也在持续精进法语、韩语和日语。',
         'tink.explore': '查看全部 →',
-        'contact.title': '联系我', 'contact.desc': '聊聊合作，或者只是打个招呼。', 'contact.links': '友链 & 工具', 'contact.blog': '博客'
+        'contact.title': '联系我', 'contact.desc': '聊聊合作，或者只是打个招呼。', 'contact.email': '邮箱', 'contact.links': '友链 & 工具', 'contact.blog': '博客',
+        'guestbook.title': '留言板', 'guestbook.subtitle': '踩踩我的空间', 'guestbook.noscript': '请启用 JavaScript 来查看评论和留言。'
       },
       'zh-tw': {
-        'nav.do': '我能做什麼', 'nav.projects': '項目', 'nav.about': '關於', 'nav.contact': '聯繫',
+        'nav.do': '我能做什麼', 'nav.projects': '項目', 'nav.about': '關於', 'nav.guestbook': '留言板', 'nav.contact': '聯繫',
         'hero.eyebrow': '產品 · 技術 · 數據',
         'hero.subtitle': '你好，我是姚軍。歡迎來到我的作品集。這裡收錄了我在產品、技術與數據方面的一些實踐與探索。',
         'hero.cta1': '瀏覽作品',
@@ -945,10 +1054,11 @@
         'tink.t3.title': '開源收集癖', 'tink.t3.desc': 'GitHub 上 98+ 個倉庫，從 AI 網關到 Docker 教程、從經濟學人電子書到 VS Code 插件。看到好項目就想 fork 下來研究。',
         'tink.t4.title': '英語學習者', 'tink.t4.desc': '經濟學人、紐約客、連線雜誌的長期讀者。相信語言是打開更大世界的鑰匙，也在持續精進法語、韓語和日語。',
         'tink.explore': '查看全部 →',
-        'contact.title': '聯繫我', 'contact.desc': '聊聊合作，或者只是打個招呼。', 'contact.links': '友鏈 & 工具', 'contact.blog': '部落格'
+        'contact.title': '聯繫我', 'contact.desc': '聊聊合作，或者只是打個招呼。', 'contact.email': '郵箱', 'contact.links': '友鏈 & 工具', 'contact.blog': '部落格',
+        'guestbook.title': '留言板', 'guestbook.subtitle': '踩踩我的空間', 'guestbook.noscript': '請啟用 JavaScript 來查看評論和留言。'
       },
       'en': {
-        'nav.do': 'What I Do', 'nav.projects': 'Projects', 'nav.about': 'About', 'nav.contact': 'Contact',
+        'nav.do': 'What I Do', 'nav.projects': 'Projects', 'nav.about': 'About', 'nav.guestbook': 'Guestbook', 'nav.contact': 'Contact',
         'hero.eyebrow': 'Product · Technology · Data',
         'hero.subtitle': "Hi, I'm JUNYAO. Welcome to my portfolio — a collection of my work and explorations in product, technology, and data.",
         'hero.cta1': 'View Projects',
@@ -978,10 +1088,11 @@
         'tink.t3.title': 'Open-Source Collector', 'tink.t3.desc': '98+ repos on GitHub — from AI gateways to Docker tutorials, from Economist ebooks to VS Code extensions. If it looks interesting, it gets forked.',
         'tink.t4.title': 'Language Learner', 'tink.t4.desc': 'Avid reader of The Economist, The New Yorker, and WIRED. Believes language is the key to a bigger world. Also refining French, Korean, and Japanese.',
         'tink.explore': 'View All →',
-        'contact.title': 'Get in Touch', 'contact.desc': 'Open to collaboration, or just a friendly hello.', 'contact.links': 'Links & Tools', 'contact.blog': 'Blog'
+        'contact.title': 'Get in Touch', 'contact.desc': 'Open to collaboration, or just a friendly hello.', 'contact.email': 'Email', 'contact.links': 'Links & Tools', 'contact.blog': 'Blog',
+        'guestbook.title': 'Guestbook', 'guestbook.subtitle': 'Leave a mark', 'guestbook.noscript': 'Please enable JavaScript to view comments.'
       },
       'ko': {
-        'nav.do': '무엇을 하나요', 'nav.projects': '프로젝트', 'nav.about': '소개', 'nav.contact': '연락',
+        'nav.do': '무엇을 하나요', 'nav.projects': '프로젝트', 'nav.about': '소개', 'nav.guestbook': '방명록', 'nav.contact': '연락',
         'hero.eyebrow': '제품 · 기술 · 데이터',
         'hero.subtitle': '안녕하세요, JUNYAO입니다. 제 포트폴리오에 오신 것을 환영합니다. 제품, 기술, 데이터 분야의 작업과 탐구를 모아놓았습니다.',
         'hero.cta1': '프로젝트 보기',
@@ -1011,10 +1122,11 @@
         'tink.t3.title': '오픈소스 수집가', 'tink.t3.desc': 'GitHub에 98개 이상의 저장소 — AI 게이트웨이부터 Docker 튜토리얼, 이코노미스트 전자책, VS Code 확장까지. 흥미로운 프로젝트는 바로 포크합니다.',
         'tink.t4.title': '언어 학습자', 'tink.t4.desc': '이코노미스트, 뉴요커, WIRED의 열성 독자. 언어가 더 넓은 세계로의 열쇠라고 믿으며, 프랑스어, 한국어, 일본어도 꾸준히 공부하고 있습니다.',
         'tink.explore': '전체 보기 →',
-        'contact.title': '연락하기', 'contact.desc': '협업이나 가벼운 인사를 환영합니다.', 'contact.links': '링크 & 도구', 'contact.blog': '블로그'
+        'contact.title': '연락하기', 'contact.desc': '협업이나 가벼운 인사를 환영합니다.', 'contact.email': '이메일', 'contact.links': '링크 & 도구', 'contact.blog': '블로그',
+        'guestbook.title': '방명록', 'guestbook.subtitle': '방문 감사합니다', 'guestbook.noscript': '댓글을 보시려면 JavaScript를 활성화하세요.'
       },
       'ja': {
-        'nav.do': 'できること', 'nav.projects': 'プロジェクト', 'nav.about': 'プロフィール', 'nav.contact': 'お問い合わせ',
+        'nav.do': 'できること', 'nav.projects': 'プロジェクト', 'nav.about': 'プロフィール', 'nav.guestbook': 'ゲストブック', 'nav.contact': 'お問い合わせ',
         'hero.eyebrow': 'プロダクト · テクノロジー · データ',
         'hero.subtitle': 'こんにちは、JUNYAOです。ポートフォリオへようこそ。プロダクト、テクノロジー、データに関する制作と探求をまとめています。',
         'hero.cta1': '作品を見る',
@@ -1044,7 +1156,8 @@
         'tink.t3.title': 'OSSコレクター', 'tink.t3.desc': 'GitHubに98以上のリポジトリ — AIゲートウェイからDockerチュートリアル、エコノミスト電子書籍、VS Code拡張まで。気になるプロジェクトはすぐにフォーク。',
         'tink.t4.title': '言語学習者', 'tink.t4.desc': 'エコノミスト、ニューヨーカー、WIREDの愛読者。言語はより広い世界への鍵だと信じており、フランス語、韓国語、日本語も継続的に勉強中。',
         'tink.explore': 'すべて見る →',
-        'contact.title': 'お問い合わせ', 'contact.desc': 'コラボレーションやご挨拶、お気軽にどうぞ。', 'contact.links': 'リンク & ツール', 'contact.blog': 'ブログ'
+        'contact.title': 'お問い合わせ', 'contact.desc': 'コラボレーションやご挨拶、お気軽にどうぞ。', 'contact.email': 'メール', 'contact.links': 'リンク & ツール', 'contact.blog': 'ブログ',
+        'guestbook.title': 'ゲストブック', 'guestbook.subtitle': '足跡を残す', 'guestbook.noscript': 'コメントを表示するにはJavaScriptを有効にしてください。'
       }
     };
 
@@ -1110,6 +1223,61 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* Initialize language on load — ensure all i18n elements are translated */
+    setLanguage(currentLang);
+
+    /* Typewriter effect for hero eyebrow */
+    const typewriterPhrases = {
+      'zh-cn': ['产品设计', '技术开发', '数据分析', '自托管', 'Mac 效率', '开源探索'],
+      'zh-tw': ['產品設計', '技術開發', '數據分析', '自託管', 'Mac 效率', '開源探索'],
+      'en': ['Product Design', 'Tech Dev', 'Data Analysis', 'Self-Hosting', 'macOS', 'Open Source'],
+      'ko': ['제품 디자인', '기술 개발', '데이터 분석', '셀프 호스팅', 'macOS', '오픈소스'],
+      'ja': ['プロダクトデザイン', '技術開発', 'データ分析', 'セルフホスティング', 'macOS', 'オープンソース']
+    };
+    const twEl = document.getElementById('typewriter');
+    const twCursor = document.getElementById('tw-cursor');
+    let twPhraseIdx = 0, twCharIdx = 0, twDeleting = false;
+    function typewriterTick() {
+      if (!twEl) return;
+      const phrases = typewriterPhrases[currentLang] || typewriterPhrases['en'];
+      const phrase = phrases[twPhraseIdx];
+      if (!twDeleting) {
+        twEl.textContent = phrase.substring(0, twCharIdx + 1);
+        twCharIdx++;
+        if (twCharIdx === phrase.length) {
+          twDeleting = true;
+          setTimeout(typewriterTick, 2000);
+          return;
+        }
+        setTimeout(typewriterTick, 100 + Math.random() * 60);
+      } else {
+        twEl.textContent = phrase.substring(0, twCharIdx - 1);
+        twCharIdx--;
+        if (twCharIdx === 0) {
+          twDeleting = false;
+          twPhraseIdx = (twPhraseIdx + 1) % phrases.length;
+          setTimeout(typewriterTick, 400);
+          return;
+        }
+        setTimeout(typewriterTick, 50);
+      }
+    }
+    setTimeout(typewriterTick, 1200);
+
+    /* Back to top button */
+    const btt = document.getElementById('backToTop');
+    if (btt) {
+      window.addEventListener('scroll', () => {
+        btt.classList.toggle('visible', window.scrollY > 600);
+      });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+
+    /* Console easter egg */
+    console.log('%c姚军 JUNYAO — Portfolio', 'font-size:20px;font-weight:bold;color:#c15e3d;');
+    console.log('%c👋 Hey there, curious developer! Nice to meet you.', 'font-size:14px;color:#666;');
+    console.log('%c📧 yggcmm@outlook.com | 🔗 https://idkyjun.me', 'font-size:12px;color:#888;');
   </script>
 </body>
 </html>
