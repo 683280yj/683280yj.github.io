@@ -1,241 +1,985 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="light">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>你有绿豆糕嘛 | idkyjun.me</title>
-    <meta name="description" content="绿豆糕的中文分享页：整理新的文件、学习总结、工具记录和可复用笔记。">
-    <meta name="author" content="绿豆糕">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="你有绿豆糕嘛">
-    <meta property="og:description" content="新的文件、学习总结和个人分享入口。">
-    <meta property="og:url" content="https://idkyjun.me/">
-    <meta property="og:image" content="https://idkyjun.me/images/avatar.png">
-    <link rel="canonical" href="https://idkyjun.me/">
-    <link rel="alternate" hreflang="en" href="https://idkyjun.me/en/">
-    <link rel="alternate" hreflang="zh-CN" href="https://idkyjun.me/">
-    <link rel="alternate" type="application/atom+xml" title="你有绿豆糕嘛 RSS" href="/atom.xml">
-    <link rel="shortcut icon" href="/favicon.ico?v=1722085639685">
-    <link rel="stylesheet" href="/styles/home.css?v=20260619c">
-    <!-- 内联主题初始化：防止 FOUC（未样式内容闪烁）-->
-    <script>
-      (function() {
-        var t = localStorage.getItem('site-theme');
-        if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.dataset.theme = 'dark';
-        }
-      })();
-    </script>
-  </head>
-  <body class="zh-home">
-    <!-- 无障碍：跳过导航直接到主内容 -->
-    <a href="#main-content" class="skip-link">跳过导航</a>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="姚军 JUNYAO — Product, Technology, Data Portfolio" />
+  <title>JUNYAO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ================================================
+       THEME: LIGHT (default — warm editorial)
+       ================================================ */
+    :root {
+      --seed-bg: #faf8f5;
+      --seed-fg: #2c2419;
+      --seed-primary: #c15e3d;
+      --seed-surface: #ffffff;
+      --seed-muted: #8a7e6e;
+      --seed-border: #ddd5c8;
+      --seed-radius: 4px;
 
-    <header class="topbar">
-      <nav class="nav" aria-label="主导航">
-        <a class="nav-name" href="/">绿豆糕</a>
-        <div class="nav-links">
-          <a href="#about">关于</a>
-          <a href="#files">文件</a>
-          <a href="#summaries">总结</a>
-          <a href="#projects">项目</a>
-          <a href="/share/">分享页</a>
-          <a href="/portfolio/">作品集</a>
-          <a href="/links/">链接</a>
-          <a href="#contact">联系</a>
-        </div>
-        <div class="nav-tools">
-          <button class="tool-button" type="button" data-theme-toggle aria-label="切换亮色/暗色模式">Mode</button>
-          <a class="tool-button is-active" href="/" aria-current="page">中</a>
-          <a class="tool-button" href="/en/">EN</a>
-        </div>
+      --bg: var(--seed-bg);
+      --fg: var(--seed-fg);
+      --fg2: rgba(44, 36, 25, 0.65);
+      --muted: var(--seed-muted);
+      --accent: var(--seed-primary);
+      --border: var(--seed-border);
+      --surface: var(--seed-surface);
+      --card-shadow: 0 1px 4px rgba(44, 36, 25, 0.06);
+      --card-hover-shadow: 0 4px 16px rgba(44, 36, 25, 0.08);
+      --interactive: var(--fg);
+      --header-bg: rgba(250, 248, 245, 0.92);
+      --hero-grad-1: rgba(193, 94, 61, 0.05);
+      --hero-grad-2: rgba(180, 140, 80, 0.03);
+      --bg-name-color: rgba(44, 36, 25, 0.03);
+      --tag-bg: rgba(193, 94, 61, 0.06);
+      --tag-border: rgba(193, 94, 61, 0.18);
+      --ctrl-hover: rgba(128, 128, 128, 0.08);
+      --btn-on-accent: #fff;
+      --cap-line: linear-gradient(180deg, var(--accent), transparent);
+
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --heading-transform: none;
+      --heading-spacing: 0.01em;
+      --card-radius: var(--seed-radius);
+      --type-scale: 1;
+    }
+
+    /* ================================================
+       THEME: DARK (SpaceX cinematic)
+       ================================================ */
+    body.dark-theme {
+      --seed-bg: #0a0a0a;
+      --seed-fg: #f0f0fa;
+      --seed-primary: #e8a87c;
+      --seed-surface: rgba(240, 240, 250, 0.05);
+      --seed-muted: #6e6e7a;
+      --seed-border: rgba(240, 240, 250, 0.18);
+      --seed-radius: 0px;
+
+      --bg: var(--seed-bg);
+      --fg: var(--seed-fg);
+      --fg2: rgba(240, 240, 250, 0.6);
+      --muted: var(--seed-muted);
+      --accent: var(--seed-primary);
+      --border: var(--seed-border);
+      --surface: var(--seed-surface);
+      --card-shadow: none;
+      --card-hover-shadow: none;
+      --interactive: var(--seed-fg);
+      --header-bg: rgba(10, 10, 10, 0.9);
+      --hero-grad-1: rgba(30, 30, 80, 0.15);
+      --hero-grad-2: rgba(50, 25, 60, 0.1);
+      --bg-name-color: rgba(240, 240, 250, 0.025);
+      --tag-bg: transparent;
+      --tag-border: rgba(240, 240, 250, 0.12);
+      --ctrl-hover: rgba(240, 240, 250, 0.06);
+      --btn-on-accent: var(--seed-bg);
+      --cap-line: linear-gradient(180deg, var(--accent), transparent);
+
+      --font-body: 'Barlow', Arial, Verdana, sans-serif;
+      --font-display: 'Barlow', Arial, Verdana, sans-serif;
+      --heading-transform: uppercase;
+      --heading-spacing: 0.12em;
+    }
+
+    /* ================================================
+       RESET & BASE
+       ================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ================================================
+       TYPOGRAPHY
+       ================================================ */
+    h1, h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: var(--heading-transform);
+      letter-spacing: var(--heading-spacing);
+    }
+    h3 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      text-transform: var(--heading-transform);
+      letter-spacing: var(--heading-spacing);
+    }
+    h1 { font-size: clamp(calc(2.6rem * var(--type-scale)), 5.5vw, calc(4.2rem * var(--type-scale))); line-height: 1.05; }
+    h2 { font-size: clamp(calc(1.5rem * var(--type-scale)), 3vw, calc(2.4rem * var(--type-scale))); line-height: 1.15; }
+    h3 { font-size: 1rem; line-height: 1.4; }
+    body.dark-theme h3 { font-size: 0.875rem; letter-spacing: 0.14em; }
+    p { color: var(--fg2); font-size: 0.9375rem; line-height: 1.75; }
+    a { color: var(--fg); text-decoration: none; transition: color 0.3s; }
+    a:hover { color: var(--accent); }
+    body.dark-theme a:hover { color: var(--interactive); }
+
+    /* ================================================
+       LAYOUT
+       ================================================ */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 2.5rem; }
+    section { padding: 5rem 0; position: relative; }
+
+    /* ================================================
+       HEADER
+       ================================================ */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: transparent;
+      transition: background 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    header.scrolled {
+      background: var(--header-bg);
+      border-bottom-color: var(--border);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    header .container { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+
+    .logo-link { display: flex; align-items: center; gap: 10px; }
+    .logo-svg { width: 38px; height: 28px; color: var(--fg); }
+    .logo-text { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--fg); }
+    body.dark-theme .logo-text { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; }
+
+    nav { display: flex; gap: 1.75rem; }
+    nav a { font-size: 0.8125rem; font-weight: 500; color: var(--fg2); }
+    nav a:hover { color: var(--fg); }
+    body.dark-theme nav a { font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; }
+
+    .header-controls { display: flex; align-items: center; gap: 0.5rem; }
+
+    /* Language switcher */
+    .lang-switcher { position: relative; }
+    .lang-btn {
+      background: transparent; border: 1px solid var(--border); color: var(--fg2);
+      padding: 4px 10px; border-radius: var(--card-radius); font-family: var(--font-body);
+      font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; gap: 4px;
+      transition: all 0.3s;
+    }
+    .lang-btn:hover { border-color: var(--fg2); color: var(--fg); }
+    .lang-btn svg { width: 12px; height: 12px; opacity: 0.6; }
+    .lang-dropdown {
+      position: absolute; top: calc(100% + 6px); right: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--card-radius); min-width: 130px;
+      box-shadow: var(--card-shadow); display: none; z-index: 200; overflow: hidden;
+    }
+    body.dark-theme .lang-dropdown { background: var(--header-bg); backdrop-filter: blur(20px); }
+    .lang-dropdown.open { display: block; }
+    .lang-dropdown button {
+      display: block; width: 100%; background: transparent; border: none;
+      color: var(--fg2); padding: 8px 14px; font-family: var(--font-body);
+      font-size: 0.8125rem; cursor: pointer; text-align: left; transition: all 0.2s;
+    }
+    .lang-dropdown button:hover { background: var(--ctrl-hover); color: var(--fg); }
+    .lang-dropdown button.active { color: var(--accent); font-weight: 600; }
+    body.dark-theme .lang-dropdown button.active { color: var(--interactive); }
+
+    /* Theme toggle */
+    .theme-toggle {
+      background: transparent; border: 1px solid var(--border); color: var(--fg2);
+      width: 30px; height: 30px; border-radius: var(--card-radius);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; flex-shrink: 0;
+    }
+    .theme-toggle:hover { border-color: var(--fg2); color: var(--fg); }
+    .theme-toggle svg { width: 14px; height: 14px; }
+
+    /* ================================================
+       HERO
+       ================================================ */
+    .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse at 25% 55%, var(--hero-grad-1) 0%, transparent 55%),
+                  radial-gradient(ellipse at 75% 25%, var(--hero-grad-2) 0%, transparent 50%);
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0; opacity: 0.35; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+    .hero-bg-name {
+      position: absolute; bottom: -5%; left: 50%; transform: translateX(-50%);
+      font-family: var(--font-display); font-size: clamp(8rem, 22vw, 20rem);
+      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--bg-name-color); white-space: nowrap;
+      pointer-events: none; user-select: none; z-index: 0; line-height: 1;
+    }
+    body.dark-theme .hero-bg-name { font-family: var(--font-body); }
+    .hero-content { position: relative; z-index: 1; max-width: 640px; }
+    .hero-logo { width: 64px; height: 48px; color: var(--fg); margin-bottom: 1.5rem; opacity: 0; animation: fadeInUp 0.9s ease forwards; animation-delay: 0.2s; }
+    .hero-eyebrow {
+      font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500;
+      color: var(--muted); margin-bottom: 1.25rem;
+      opacity: 0; animation: fadeInUp 0.9s ease forwards; animation-delay: 0.3s;
+    }
+    body.dark-theme .hero-eyebrow { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.28em; margin-bottom: 1.5rem; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .hero h1 { margin-bottom: 1.25rem; color: var(--fg); opacity: 0; animation: fadeInUp 0.9s ease forwards; animation-delay: 0.5s; }
+    .hero h1 span { color: var(--muted); }
+    .hero p { font-size: 1.0625rem; line-height: 1.8; max-width: 480px; margin-bottom: 2rem; color: var(--fg2); opacity: 0; animation: fadeInUp 0.9s ease forwards; animation-delay: 0.7s; }
+    .hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; opacity: 0; animation: fadeInUp 0.9s ease forwards; animation-delay: 0.9s; }
+
+    /* Name display — toggle based on language */
+    .name-cn { display: inline; }
+    .name-en { display: none; }
+    body.lang-non-cn .name-cn { display: none; }
+    body.lang-non-cn .name-en { display: inline; }
+
+    /* ================================================
+       BUTTONS
+       ================================================ */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 28px; border-radius: var(--card-radius);
+      font-family: var(--font-body); font-size: 0.8125rem; font-weight: 600;
+      transition: all 0.35s; cursor: pointer; text-decoration: none;
+    }
+    body.dark-theme .btn { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; }
+    .btn-primary { background: var(--accent); color: var(--btn-on-accent); border: 1px solid var(--accent); }
+    .btn-primary:hover { filter: brightness(1.1); }
+    body.dark-theme .btn-primary { background: var(--surface); color: var(--fg); border-color: var(--border); filter: none; }
+    body.dark-theme .btn-primary:hover { background: var(--ctrl-hover); border-color: var(--fg2); }
+    .btn-secondary { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    body.dark-theme .btn-secondary:hover { border-color: var(--fg2); background: var(--surface); color: var(--fg); }
+
+    /* ================================================
+       SECTION HEADERS
+       ================================================ */
+    .section-header { margin-bottom: 2.5rem; }
+    .section-header h2 { margin-bottom: 0.4rem; color: var(--fg); }
+    .section-header p { font-size: 0.8125rem; color: var(--muted); }
+    body.dark-theme .section-header p { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.22em; }
+
+    /* ================================================
+       WHAT I DO — editorial capability layout
+       ================================================ */
+    .capabilities-grid { display: grid; grid-template-columns: 1fr; gap: 0; max-width: 720px; }
+    .cap-card {
+      position: relative; display: grid;
+      grid-template-columns: 56px 1fr; gap: 1.75rem; align-items: start;
+      padding: 2.25rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .cap-card:first-child { padding-top: 1.5rem; }
+    .cap-card:last-child { border-bottom: none; }
+    /* Stagger — even items offset right */
+    .cap-card:nth-child(even) { padding-left: 3rem; }
+    /* Gradient accent line */
+    .cap-card::after {
+      content: ''; position: absolute; left: 0; top: 2.25rem;
+      width: 2px; height: 32px; background: var(--cap-line);
+      border-radius: 1px; opacity: 0.6; transition: height 0.4s, opacity 0.4s;
+    }
+    .cap-card:first-child::after { top: 1.5rem; }
+    .cap-card:hover::after { height: 52px; opacity: 1; }
+    /* Number indicator */
+    .cap-num {
+      font-family: var(--font-display); font-size: 2.8rem; font-weight: 300;
+      color: var(--accent); line-height: 1; padding-top: 0.1rem;
+      opacity: 0.25; transition: opacity 0.4s; user-select: none;
+    }
+    .cap-card:hover .cap-num { opacity: 0.7; }
+    /* Content */
+    .cap-card h3 { margin-bottom: 0.6rem; color: var(--fg); font-size: 1.05rem; }
+    .cap-card p { font-size: 0.875rem; line-height: 1.7; color: var(--fg2); }
+    /* Dark theme overrides */
+    body.dark-theme .cap-card { border-bottom-color: var(--border); }
+    body.dark-theme .cap-card:nth-child(even) { padding-left: 3rem; }
+    body.dark-theme .cap-num { font-family: var(--font-body); font-weight: 200; font-size: 2.4rem; }
+    body.dark-theme .cap-card:hover .cap-num { opacity: 0.6; }
+    body.dark-theme .cap-card h3 { font-size: 0.875rem; }
+
+    /* ================================================
+       FEATURED PROJECT
+       ================================================ */
+    .featured {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+      padding: 3rem; box-shadow: var(--card-shadow); transition: all 0.4s;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    body.dark-theme .featured { background: var(--ctrl-hover); }
+    .featured-label {
+      font-size: 0.6875rem; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem;
+    }
+    .featured-info h3 { font-size: 1.5rem; font-family: var(--font-display); margin-bottom: 1rem; color: var(--fg); text-transform: none; letter-spacing: 0; }
+    body.dark-theme .featured-info h3 { font-size: 1.25rem; }
+    .featured-info p { font-size: 0.9375rem; line-height: 1.75; margin-bottom: 1.25rem; color: var(--fg2); }
+    .featured-metrics { display: flex; gap: 2rem; margin-bottom: 1.5rem; }
+    .metric { text-align: center; }
+    .metric-value { font-size: 1.5rem; font-weight: 700; color: var(--accent); display: block; font-family: var(--font-display); }
+    .metric-label { font-size: 0.6875rem; color: var(--muted); }
+    body.dark-theme .metric-label { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.625rem; }
+    .featured-visual {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--card-radius);
+      min-height: 240px; display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; color: var(--muted);
+    }
+
+    /* ================================================
+       PROJECTS GRID
+       ================================================ */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+      padding: 1.75rem; transition: all 0.4s; text-decoration: none; color: var(--fg);
+      display: block; box-shadow: var(--card-shadow);
+    }
+    body.dark-theme .project-card { background: transparent; border-color: var(--border); box-shadow: none; }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--card-hover-shadow); }
+    body.dark-theme .project-card:hover { transform: none; box-shadow: none; background: var(--ctrl-hover); }
+    .project-card h3 { margin-bottom: 0.5rem; color: var(--fg); }
+    .project-card p { font-size: 0.875rem; line-height: 1.65; margin-bottom: 1.25rem; }
+    .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .tag {
+      font-family: var(--font-body); font-size: 0.6875rem; font-weight: 500;
+      padding: 3px 10px; background: var(--tag-bg); border: 1px solid var(--tag-border);
+      border-radius: var(--card-radius); color: var(--accent); transition: all 0.3s;
+    }
+    body.dark-theme .tag { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .tag:hover { border-color: var(--accent); }
+
+    /* ================================================
+       ABOUT
+       ================================================ */
+    .about-content { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+    .about-text p { margin-bottom: 1.25rem; max-width: 560px; font-size: 0.9375rem; line-height: 1.85; }
+    .experience-timeline { display: grid; gap: 2rem; }
+    .exp-item { padding-left: 1.75rem; border-left: 2px solid var(--border); transition: border-color 0.35s; }
+    body.dark-theme .exp-item { border-left-width: 1px; }
+    .exp-item:hover { border-left-color: var(--accent); }
+    .exp-period { font-size: 0.75rem; font-weight: 500; color: var(--muted); margin-bottom: 0.25rem; }
+    body.dark-theme .exp-period { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.2em; }
+    .exp-role { font-size: 1rem; font-weight: 600; color: var(--fg); margin-bottom: 0.15rem; }
+    body.dark-theme .exp-role { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .exp-company { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.4rem; }
+    body.dark-theme .exp-company { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8125rem; }
+    .exp-highlights { font-size: 0.8125rem; line-height: 1.65; color: var(--fg2); }
+
+    /* ================================================
+       SKILLS
+       ================================================ */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2.5rem; }
+    .skill-category h3 {
+      font-size: 0.8125rem; font-weight: 600; color: var(--muted);
+      margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
+    }
+    body.dark-theme .skill-category h3 { font-size: 0.625rem; letter-spacing: 0.22em; }
+    .skills { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .skill {
+      font-family: var(--font-body); font-size: 0.8125rem; font-weight: 400;
+      padding: 6px 14px; border: 1px solid var(--border); border-radius: var(--card-radius);
+      color: var(--fg2); transition: all 0.3s; cursor: default; background: transparent;
+    }
+    body.dark-theme .skill { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .skill:hover { border-color: var(--accent); color: var(--accent); }
+    body.dark-theme .skill:hover { border-color: var(--fg2); color: var(--interactive); background: var(--ctrl-hover); }
+
+    /* ================================================
+       TINKERING — interests & explorations
+       ================================================ */
+    .tink-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem 3rem; }
+    .tink-item { transition: all 0.4s; }
+    .tink-label {
+      font-family: var(--font-display); font-size: 1.2rem; font-weight: 600;
+      color: var(--accent); margin-bottom: 0.6rem; letter-spacing: 0; text-transform: none;
+    }
+    body.dark-theme .tink-label { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+    .tink-item p { font-size: 0.875rem; line-height: 1.7; color: var(--fg2); margin-bottom: 0.5rem; }
+    .tink-link {
+      display: inline-block; font-size: 0.8125rem; font-weight: 500;
+      color: var(--muted); transition: color 0.3s; text-decoration: none;
+    }
+    .tink-link:hover { color: var(--accent); }
+    body.dark-theme .tink-link:hover { color: var(--interactive); }
+
+    /* ================================================
+       CONTACT
+       ================================================ */
+    .contact-content { max-width: 520px; }
+    .contact-content h2 { margin-bottom: 1.25rem; }
+    .contact-content p { margin-bottom: 2rem; font-size: 0.9375rem; line-height: 1.7; }
+    .social-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .social-links a {
+      font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500;
+      color: var(--fg2); padding: 10px 22px; border: 1px solid var(--border);
+      border-radius: var(--card-radius); transition: all 0.35s; background: transparent;
+    }
+    body.dark-theme .social-links a { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.15em; }
+    .social-links a:hover { color: var(--accent); border-color: var(--accent); }
+    body.dark-theme .social-links a:hover { color: var(--interactive); border-color: var(--fg2); background: var(--ctrl-hover); }
+
+    /* ================================================
+       FOOTER
+       ================================================ */
+    footer { padding: 2.5rem 0; text-align: center; border-top: 1px solid var(--border); }
+    footer p { font-size: 0.75rem; color: var(--muted); }
+    body.dark-theme footer p { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.22em; }
+
+    /* ================================================
+       SCROLL REVEAL
+       ================================================ */
+    .reveal { opacity: 0; transform: translateY(24px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ================================================
+       RESPONSIVE
+       ================================================ */
+    @media (max-width: 900px) {
+      .cap-card:nth-child(even) { padding-left: 0; }
+      .featured { grid-template-columns: 1fr; padding: 2rem; }
+      .tink-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+    }
+    @media (max-width: 768px) {
+      .container { padding: 0 1.5rem; }
+      nav { display: none; }
+      section { padding: 4rem 0; }
+      .hero { min-height: 100vh; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-bg-name { font-size: clamp(4rem, 30vw, 8rem); bottom: 5%; }
+      header .container { height: 56px; }
+      .cap-card { grid-template-columns: 40px 1fr; gap: 1rem; padding: 1.75rem 0 2rem; }
+      .cap-num { font-size: 2rem; }
+      .featured-visual { min-height: 160px; }
+    }
+    @media (max-width: 480px) {
+      .hero-cta { flex-direction: column; }
+      .btn { width: 100%; text-align: center; }
+      .featured-metrics { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- YJ Logo SVG (reusable) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="yj-logo" viewBox="0 0 52 38">
+      <path d="M4 3L17 21V35" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M30 3L17 21" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M30 3V25C30 32.5 35 36 42 36" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="1" y1="37" x2="51" y2="37" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <header id="header" data-component="Site Header">
+    <div class="container">
+      <a href="/" class="logo-link">
+        <svg class="logo-svg"><use href="#yj-logo"/></svg>
+        <span class="logo-text">
+          <span class="name-cn">姚军</span><span class="name-en">JUNYAO</span>
+        </span>
+      </a>
+      <nav data-component="Navigation">
+        <a href="#capabilities" data-i18n="nav.do">What I Do</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
-    </header>
-
-    <main class="page page-zh" id="main-content">
-      <!-- Hero：左侧文案 + 右侧资料卡 -->
-      <section class="zh-hero" id="about">
-        <div class="zh-hero-copy">
-          <p class="kicker">Files / Summaries / Sharing</p>
-          <h1>你有绿豆糕嘛</h1>
-          <p class="zh-lead">这里整理我最近写过、修过、学过的文件和总结。中文页主要承担"分享入口"的角色：把分散的笔记、工具记录和复盘材料收拢起来，方便之后回看，也方便发给别人。</p>
-          <div class="zh-tags" aria-label="网站关键词">
-            <span>新文件</span>
-            <span>总结</span>
-            <span>分享</span>
-            <span>复盘</span>
+      <div class="header-controls">
+        <div class="lang-switcher" data-component="Language Switcher">
+          <button class="lang-btn" id="langBtn" aria-label="Switch language">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-label-zh-cn">简体</span>
+            <span class="lang-label-zh-tw" style="display:none">繁體</span>
+            <span class="lang-label-en" style="display:none">EN</span>
+            <span class="lang-label-ko" style="display:none">한국어</span>
+            <span class="lang-label-ja" style="display:none">日本語</span>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <button data-lang="zh-cn" class="active">简体中文</button>
+            <button data-lang="zh-tw">繁體中文</button>
+            <button data-lang="en">English</button>
+            <button data-lang="ko">한국어</button>
+            <button data-lang="ja">日本語</button>
           </div>
         </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-        <aside class="zh-profile-card">
-          <img src="/images/avatar.png" alt="绿豆糕的头像">
-          <div>
-            <strong>绿豆糕</strong>
-            <p>新的文件和总结会先放在这里，再慢慢整理成可分享的材料。</p>
+  <main>
+    <!-- Hero -->
+    <section class="hero" data-od-id="hero" data-component="Hero Section">
+      <div class="hero-bg-name">YAOJUN</div>
+      <div class="container">
+        <div class="hero-content">
+          <svg class="hero-logo"><use href="#yj-logo"/></svg>
+          <div class="hero-eyebrow" data-i18n="hero.eyebrow">产品 · 技术 · 数据</div>
+          <h1><span class="name-cn">姚军</span><span class="name-en">JUNYAO</span><span>.</span></h1>
+          <p data-i18n="hero.subtitle">你好，我是姚军。欢迎来到我的作品集。这里收录了我在产品、技术与数据方面的一些实践与探索。</p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">浏览作品</a>
+            <a href="https://github.com/683280yj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
           </div>
-          <nav class="zh-card-links" aria-label="快捷链接">
-            <a href="/share/">分享页</a>
-            <a href="/portfolio/">作品集</a>
-            <a href="/links/">链接</a>
-            <a href="/archives/">归档</a>
-            <a href="https://github.com/683280yj" target="_blank" rel="noreferrer noopener">GitHub</a>
-          </nav>
-        </aside>
-      </section>
+        </div>
+      </div>
+    </section>
 
-      <!-- 新文件列表 -->
-      <section class="zh-section" id="files">
-        <div class="zh-section-head">
-          <p class="kicker">New Files</p>
-          <h2>新的文件与分享入口</h2>
-          <p>先把能直接复用或转发的内容放在前面：工具配置、学习笔记、比赛复盘、英语辨析。之后有新的 PDF、文档、模板，也可以继续接到这里。</p>
+    <!-- What I Do -->
+    <section id="capabilities" data-od-id="capabilities" data-component="Capabilities Section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="cap.title">What I Do</h2>
+          <p data-i18n="cap.subtitle">Core capabilities</p>
         </div>
-        <div class="zh-note-grid">
-          <article class="zh-note-card featured-note">
-            <time datetime="2026-06-19">2026-06-19</time>
-            <h3><a href="/jobpilot/">JobPilot：求职自动化助手</a></h3>
-            <p>用 Electron + Playwright 造了个求职自动化工具，从微信消息解析招聘信息、看板管理投递状态、自动填写在线申请表单。</p>
-          </article>
-          <article class="zh-note-card">
-            <time datetime="2024-07-27">2024-07-27</time>
-            <h3><a href="/sleep-up-late/">7.23</a></h3>
-            <p>博客、图床、健身和生活观察的混合记录。适合当作"个人博客开始阶段"的原始样本。</p>
-          </article>
-          <article class="zh-note-card">
-            <time datetime="2024-07-23">2024-07-23</time>
-            <h3><a href="/san-chuang-bi-sai-xiao-ji/">三创比赛小计</a></h3>
-            <p>比赛之后的小结，留给之后复盘。</p>
-          </article>
-          <article class="zh-note-card">
-            <time datetime="2024-07-23">2024-07-23</time>
-            <h3><a href="/xue-xi-git-he-docker/">学习 git 和 docker</a></h3>
-            <p>工具链基础整理：版本管理、容器、部署意识。</p>
-          </article>
-          <article class="zh-note-card">
-            <time datetime="2024-07-23">2024-07-23</time>
-            <h3><a href="/guan-yu-wei-zhi/">关于位置</a></h3>
-            <p>从 locate on / locate in 开始的一点英语辨析。</p>
-          </article>
+        <div class="capabilities-grid">
+          <div class="cap-card reveal" data-component="Capability Card">
+            <span class="cap-num">01</span>
+            <div class="cap-content">
+              <h3 data-i18n="cap.c1.title">产品设计</h3>
+              <p data-i18n="cap.c1.desc">从用户调研到原型设计，关注真实需求与体验细节。擅长 PRD 撰写与需求优先级管理。</p>
+            </div>
+          </div>
+          <div class="cap-card reveal" data-component="Capability Card">
+            <span class="cap-num">02</span>
+            <div class="cap-content">
+              <h3 data-i18n="cap.c2.title">技术开发</h3>
+              <p data-i18n="cap.c2.desc">全栈探索者，熟悉 JavaScript、Python 与 Next.js。独立开发多个开源项目并持续维护。</p>
+            </div>
+          </div>
+          <div class="cap-card reveal" data-component="Capability Card">
+            <span class="cap-num">03</span>
+            <div class="cap-content">
+              <h3 data-i18n="cap.c3.title">数据分析</h3>
+              <p data-i18n="cap.c3.desc">预测建模、空间分析与可视化。用数据讲故事，让决策有依据。</p>
+            </div>
+          </div>
         </div>
-        <a class="text-link" href="/share/">进入完整分享页 →</a>
-      </section>
+      </div>
+    </section>
 
-      <!-- 总结分类 -->
-      <section class="zh-section zh-tools" id="summaries">
-        <div class="zh-section-head">
-          <p class="kicker">Summaries</p>
-          <h2>个人总结分类</h2>
+    <!-- Featured Project -->
+    <section id="featured" data-od-id="featured" data-component="Featured Project">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="feat.title">Featured Project</h2>
+          <p data-i18n="feat.subtitle">Deep dive</p>
         </div>
-        <div class="zh-tool-list">
-          <a href="/share/#infra">
-            <strong>网站与基础设施</strong>
-            <span>域名、GitHub Pages、DNS、HTTPS、Cloudflare</span>
+        <div class="featured reveal">
+          <div class="featured-info">
+            <div class="featured-label" data-i18n="feat.label">Featured</div>
+            <h3>JobPilot</h3>
+            <p data-i18n="feat.desc">求职自动化工具。从聊天消息中提取岗位信息，Kanban 看板管理进度，Playwright 自动填写招聘平台表单。全离线 SQLite 存储，隐私优先。</p>
+            <div class="featured-metrics">
+              <div class="metric"><span class="metric-value">5</span><span class="metric-label" data-i18n="feat.m1">技术栈</span></div>
+              <div class="metric"><span class="metric-value">∞</span><span class="metric-label" data-i18n="feat.m2">并发投递</span></div>
+              <div class="metric"><span class="metric-value">0</span><span class="metric-label" data-i18n="feat.m3">数据上传</span></div>
+            </div>
+            <div class="featured-tags" style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.25rem">
+              <span class="tag">Electron</span><span class="tag">React</span><span class="tag">Playwright</span><span class="tag">SQLite</span><span class="tag">TypeScript</span>
+            </div>
+            <div class="hero-cta">
+              <a href="https://idkyjun.me/jobpilot/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-i18n="feat.view">查看详情</a>
+              <a href="https://github.com/683280yj/JobPilot" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
+            </div>
+          </div>
+          <div class="featured-visual" aria-hidden="true">
+            <svg width="100" height="80" viewBox="0 0 100 80" fill="none">
+              <rect x="4" y="4" width="92" height="58" rx="4" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="4" y1="16" x2="96" y2="16" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+              <circle cx="12" cy="10" r="2" fill="currentColor" opacity="0.2"/><circle cx="19" cy="10" r="2" fill="currentColor" opacity="0.2"/><circle cx="26" cy="10" r="2" fill="currentColor" opacity="0.2"/>
+              <rect x="10" y="22" width="22" height="34" rx="2" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+              <rect x="38" y="22" width="22" height="34" rx="2" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+              <rect x="66" y="22" width="22" height="34" rx="2" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+              <rect x="13" y="26" width="16" height="6" rx="1" fill="currentColor" opacity="0.12"/>
+              <rect x="13" y="35" width="16" height="6" rx="1" fill="currentColor" opacity="0.08"/>
+              <rect x="41" y="26" width="16" height="6" rx="1" fill="currentColor" opacity="0.12"/>
+              <rect x="69" y="26" width="16" height="6" rx="1" fill="currentColor" opacity="0.12"/>
+              <path d="M30 70L50 64L70 70" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" data-od-id="projects" data-component="Projects Section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="proj.title">Projects</h2>
+          <p data-i18n="proj.subtitle">More works & explorations</p>
+        </div>
+        <div class="projects-grid">
+          <a href="https://github.com/683280yj/ai-relay" target="_blank" rel="noopener noreferrer" class="project-card reveal" data-component="Project Card">
+            <h3>AI Relay</h3>
+            <p data-i18n="proj.p1.desc">Serverless AI 网关。多路由、故障转移、兼容 OpenAI，一键部署。</p>
+            <div class="project-tags"><span class="tag">Serverless</span><span class="tag">Vercel</span><span class="tag">API Gateway</span></div>
           </a>
-          <a href="/share/#learning">
-            <strong>学习与工具</strong>
-            <span>Git、Docker、Notion、英语表达</span>
-          </a>
-          <a href="/share/#reflection">
-            <strong>比赛与生活复盘</strong>
-            <span>三创、日记、健身、图床与记录习惯</span>
-          </a>
+          <div class="project-card reveal" data-component="Project Card">
+            <h3>Logistics Center Research</h3>
+            <p data-i18n="proj.p2.desc">农村物流中心选址研究。季节预测模型，22 组最优方案，运营成本降低 30%。</p>
+            <div class="project-tags"><span class="tag">Data Analysis</span><span class="tag">GIS</span><span class="tag">Holt-Winters</span><span class="tag">Python</span></div>
+          </div>
+          <div class="project-card reveal" data-component="Project Card">
+            <h3>BUC Innovation Competition</h3>
+            <p data-i18n="proj.p3.desc">产品负责人。校园服务平台，全国竞赛一等奖，用户满意度 &gt;90%。</p>
+            <div class="project-tags"><span class="tag">Product Design</span><span class="tag">User Research</span><span class="tag">PRD</span><span class="tag">Leadership</span></div>
+          </div>
+          <div class="project-card reveal" data-component="Project Card">
+            <h3>vpsblog.idky.tech</h3>
+            <p data-i18n="proj.p4.desc">个人技术博客。记录学习笔记、技术探索与项目复盘。</p>
+            <div class="project-tags"><span class="tag">WordPress</span><span class="tag">VPS</span><span class="tag">Technical Writing</span></div>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- 项目展示 -->
-      <section class="zh-section zh-projects" id="projects">
-        <div class="zh-section-head">
-          <p class="kicker">Featured Projects</p>
-          <h2>项目展示</h2>
-          <p>我做过的一些实践项目，从网站搭建到自动化工具。</p>
+    <!-- About -->
+    <section id="about" data-od-id="about" data-component="About Section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="about.title">About</h2>
+          <p data-i18n="about.subtitle">Education & experience</p>
         </div>
-        <div class="zh-project-grid">
-          <article class="zh-project-card">
-            <div class="zh-project-image">
-              <div class="zh-project-placeholder">idkyjun.me</div>
+        <div class="about-content">
+          <div class="about-text reveal">
+            <p data-i18n="about.p1">数字经济硕士在读。对产品设计与技术探索抱有热情，喜欢用数据说话，也喜欢从 0 到 1 的过程。</p>
+            <p data-i18n="about.p2">Mac 重度用户，日常折腾各种效率工具和工作流。做过品牌策划，运营过社群，在 GitHub 上 fork 了上百个项目。相信好的设计不只是视觉，更是思维方式。</p>
+          </div>
+          <div class="experience-timeline reveal" data-component="Experience Timeline">
+            <div class="exp-item">
+              <div class="exp-period">2025 – 2027</div>
+              <div class="exp-role" data-i18n="about.exp1.role">数字经济 硕士</div>
+              <div class="exp-company">In Progress</div>
             </div>
-            <div class="zh-project-content">
-              <time datetime="2024">2024 — 至今</time>
-              <h3><a href="https://idkyjun.me">个人网站搭建</a></h3>
-              <p>基于 Gridea + 手写 HTML/CSS 搭建的个人站点，部署在 GitHub Pages，通过 Cloudflare 管理 DNS 和 CDN。包含中英双语首页、分享页、链接页等多个独立页面。</p>
-              <div class="zh-project-tags">
-                <span>GitHub Pages</span>
-                <span>Cloudflare</span>
-                <span>HTML/CSS</span>
-                <span>全栈</span>
-              </div>
+            <div class="exp-item">
+              <div class="exp-period">2025</div>
+              <div class="exp-role" data-i18n="about.exp2.role">品牌助理</div>
+              <div class="exp-company">Chery Auto</div>
+              <p class="exp-highlights" data-i18n="about.exp2.hl">品牌策划、用户调研、项目评审</p>
             </div>
-          </article>
-
-          <article class="zh-project-card">
-            <div class="zh-project-image">
-              <div class="zh-project-placeholder">JobPilot</div>
+            <div class="exp-item">
+              <div class="exp-period">2024</div>
+              <div class="exp-role" data-i18n="about.exp3.role">运营实习生</div>
+              <div class="exp-company">Hangzhou Runyu</div>
+              <p class="exp-highlights" data-i18n="about.exp3.hl">社群运营、用户增长、数据分析</p>
             </div>
-            <div class="zh-project-content">
-              <time datetime="2026">2026</time>
-              <h3><a href="/jobpilot/">JobPilot 求职自动化助手</a></h3>
-              <p>基于 Electron + React + TypeScript + Playwright + SQLite 的桌面端求职工具。从微信消息解析招聘信息、看板管理投递状态、自动填写在线申请表单。</p>
-              <div class="zh-project-tags">
-                <span>Electron</span>
-                <span>React</span>
-                <span>Playwright</span>
-                <span>SQLite</span>
-              </div>
+            <div class="exp-item">
+              <div class="exp-period">2021 – 2025</div>
+              <div class="exp-role" data-i18n="about.exp4.role">电子商务 本科</div>
+              <div class="exp-company">Graduated</div>
             </div>
-          </article>
+          </div>
         </div>
-        <a class="text-link" href="/portfolio/">查看更多 →</a>
-      </section>
+      </div>
+    </section>
 
-      <!-- 联系 -->
-      <section class="zh-section zh-contact" id="contact">
-        <div>
-          <p class="kicker">Contact</p>
-          <h2>保持联系</h2>
-          <p>如果你也在折腾博客、工具、英语或任何新鲜事，欢迎来 GitHub 找我。</p>
+    <!-- Skills -->
+    <section id="skills" data-od-id="skills" data-component="Skills Section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="skills.title">Skills</h2>
+          <p data-i18n="skills.subtitle">Tools & capabilities</p>
         </div>
-        <div class="contact-actions">
-          <a class="button button-solid" href="mailto:yggcmm@outlook.com">Email</a>
-          <a class="button" href="https://github.com/683280yj" target="_blank" rel="noreferrer noopener">GitHub</a>
-          <a class="button" href="/atom.xml">RSS</a>
+        <div class="skills-grid reveal">
+          <div class="skill-category"><h3 data-i18n="skills.cat1">产品</h3><div class="skills"><span class="skill">User Research</span><span class="skill">Product Design</span><span class="skill">PRD</span><span class="skill">Data Analysis</span><span class="skill">MIS / ERP</span></div></div>
+          <div class="skill-category"><h3 data-i18n="skills.cat2">技术</h3><div class="skills"><span class="skill">HTML / CSS</span><span class="skill">JavaScript</span><span class="skill">Python</span><span class="skill">Next.js</span><span class="skill">GitHub</span><span class="skill">Notion API</span></div></div>
+          <div class="skill-category"><h3 data-i18n="skills.cat3">设计</h3><div class="skills"><span class="skill">UI / UX</span><span class="skill">Photoshop</span><span class="skill">Premiere</span></div></div>
+          <div class="skill-category"><h3 data-i18n="skills.cat4">语言</h3><div class="skills"><span class="skill">English</span><span class="skill">한국어</span><span class="skill">Français</span><span class="skill">日本語</span></div></div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <footer class="footer">
-      <span>© 2026 idkyjun.me</span>
-      <a href="#about">回到顶部</a>
-    </footer>
+    <!-- Tinkering & Exploration -->
+    <section id="tinkering" data-od-id="tinkering" data-component="Tinkering Section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="tink.title">Tinkering</h2>
+          <p data-i18n="tink.subtitle">Beyond work</p>
+        </div>
+        <div class="tink-grid">
+          <div class="tink-item reveal" data-component="Tinkering Item">
+            <div class="tink-label" data-i18n="tink.t1.title">自托管</div>
+            <p data-i18n="tink.t1.desc">CloudFlare 图床、临时邮箱、文件管理面板、服务管理仪表盘——自己的数据自己管。在 idkyjun.me 上搭了一整套基础设施。</p>
+            <a href="https://idkyjun.me/links/" target="_blank" rel="noopener noreferrer" class="tink-link" data-i18n="tink.explore">查看全部 →</a>
+          </div>
+          <div class="tink-item reveal" data-component="Tinkering Item">
+            <div class="tink-label" data-i18n="tink.t2.title">Mac & 效率控</div>
+            <p data-i18n="tink.t2.desc">喜欢折腾 macOS 上的各种工具和工作流。Obsidian 笔记、Alfred 自动化、终端美化——追求效率，也享受折腾本身。</p>
+          </div>
+          <div class="tink-item reveal" data-component="Tinkering Item">
+            <div class="tink-label" data-i18n="tink.t3.title">开源收集癖</div>
+            <p data-i18n="tink.t3.desc">GitHub 上 98+ 个仓库，从 AI 网关到 Docker 教程、从经济学人电子书到 VS Code 插件。看到好项目就想 fork 下来研究。</p>
+            <a href="https://github.com/683280yj" target="_blank" rel="noopener noreferrer" class="tink-link">GitHub →</a>
+          </div>
+          <div class="tink-item reveal" data-component="Tinkering Item">
+            <div class="tink-label" data-i18n="tink.t4.title">英语学习者</div>
+            <p data-i18n="tink.t4.desc">经济学人、纽约客、连线杂志的长期读者。相信语言是打开更大世界的钥匙，也在持续精进法语、韩语和日语。</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-      (function () {
-        var root = document.documentElement;
-        var themeButton = document.querySelector('[data-theme-toggle]');
+    <!-- Contact -->
+    <section id="contact" data-od-id="contact" data-component="Contact Section">
+      <div class="container">
+        <div class="contact-content reveal">
+          <h2 data-i18n="contact.title">Get in Touch</h2>
+          <p data-i18n="contact.desc">聊聊合作，或者只是打个招呼。</p>
+          <div class="social-links">
+            <a href="https://github.com/683280yj" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://idkyjun.me/links/" target="_blank" rel="noopener noreferrer" data-i18n="contact.links">友链 & 工具</a>
+            <a href="https://idky.tech" target="_blank" rel="noopener noreferrer" data-i18n="contact.blog">博客</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        function applyTheme(theme) {
-          root.dataset.theme = theme;
-          localStorage.setItem('site-theme', theme);
-          if (themeButton) {
-            themeButton.textContent = theme === 'dark' ? 'Light' : 'Mode';
-            themeButton.setAttribute('aria-label',
-              theme === 'dark' ? '切换到亮色模式' : '切换到暗色模式');
-          }
-        }
+  <footer data-component="Site Footer">
+    <div class="container">
+      <p>&copy; 2026 <span class="name-cn">姚军</span><span class="name-en">JUNYAO</span></p>
+    </div>
+  </footer>
 
-        // 初始化：与 head 里的内联脚本保持一致
-        var saved = localStorage.getItem('site-theme');
-        if (saved) {
-          applyTheme(saved);
-        } else if (matchMedia('(prefers-color-scheme: dark)').matches) {
-          applyTheme('dark');
-        }
+  <script>
+    const i18n = {
+      'zh-cn': {
+        'nav.do': '我能做什么', 'nav.projects': '项目', 'nav.about': '关于', 'nav.contact': '联系',
+        'hero.eyebrow': '产品 · 技术 · 数据',
+        'hero.subtitle': '你好，我是姚军。欢迎来到我的作品集。这里收录了我在产品、技术与数据方面的一些实践与探索。',
+        'hero.cta1': '浏览作品',
+        'cap.title': '我能做什么', 'cap.subtitle': '核心能力',
+        'cap.c1.title': '产品设计', 'cap.c1.desc': '从用户调研到原型设计，关注真实需求与体验细节。擅长 PRD 撰写与需求优先级管理。',
+        'cap.c2.title': '技术开发', 'cap.c2.desc': '全栈探索者，熟悉 JavaScript、Python 与 Next.js。独立开发多个开源项目并持续维护。',
+        'cap.c3.title': '数据分析', 'cap.c3.desc': '预测建模、空间分析与可视化。用数据讲故事，让决策有依据。',
+        'feat.title': '精选项目', 'feat.subtitle': '深度展示', 'feat.label': '精选',
+        'feat.desc': '求职自动化工具。从聊天消息中提取岗位信息，Kanban 看板管理进度，Playwright 自动填写招聘平台表单。全离线 SQLite 存储，隐私优先。',
+        'feat.m1': '技术栈', 'feat.m2': '并发投递', 'feat.m3': '数据上传', 'feat.view': '查看详情',
+        'proj.title': '项目作品', 'proj.subtitle': '更多作品与探索',
+        'proj.p1.desc': 'Serverless AI 网关。多路由、故障转移、兼容 OpenAI，一键部署。',
+        'proj.p2.desc': '农村物流中心选址研究。季节预测模型，22 组最优方案，运营成本降低 30%。',
+        'proj.p3.desc': '产品负责人。校园服务平台，全国竞赛一等奖，用户满意度 >90%。',
+        'proj.p4.desc': '个人技术博客。记录学习笔记、技术探索与项目复盘。',
+        'about.title': '关于我', 'about.subtitle': '教育与经历',
+        'about.p1': '数字经济硕士在读。对产品设计与技术探索抱有热情，喜欢用数据说话，也喜欢从 0 到 1 的过程。',
+        'about.p2': 'Mac 重度用户，日常折腾各种效率工具和工作流。做过品牌策划，运营过社群，在 GitHub 上 fork 了上百个项目。相信好的设计不只是视觉，更是思维方式。',
+        'about.exp1.role': '数字经济 硕士', 'about.exp2.role': '品牌助理',
+        'about.exp2.hl': '品牌策划、用户调研、项目评审', 'about.exp3.role': '运营实习生',
+        'about.exp3.hl': '社群运营、用户增长、数据分析', 'about.exp4.role': '电子商务 本科',
+        'skills.title': '技能', 'skills.subtitle': '工具与能力',
+        'skills.cat1': '产品', 'skills.cat2': '技术', 'skills.cat3': '设计', 'skills.cat4': '语言',
+        'tink.title': '折腾 & 探索', 'tink.subtitle': '工作之外',
+        'tink.t1.title': '自托管', 'tink.t1.desc': 'CloudFlare 图床、临时邮箱、文件管理面板、服务管理仪表盘——自己的数据自己管。在 idkyjun.me 上搭了一整套基础设施。',
+        'tink.t2.title': 'Mac & 效率控', 'tink.t2.desc': '喜欢折腾 macOS 上的各种工具和工作流。Obsidian 笔记、Alfred 自动化、终端美化——追求效率，也享受折腾本身。',
+        'tink.t3.title': '开源收集癖', 'tink.t3.desc': 'GitHub 上 98+ 个仓库，从 AI 网关到 Docker 教程、从经济学人电子书到 VS Code 插件。看到好项目就想 fork 下来研究。',
+        'tink.t4.title': '英语学习者', 'tink.t4.desc': '经济学人、纽约客、连线杂志的长期读者。相信语言是打开更大世界的钥匙，也在持续精进法语、韩语和日语。',
+        'tink.explore': '查看全部 →',
+        'contact.title': '联系我', 'contact.desc': '聊聊合作，或者只是打个招呼。', 'contact.links': '友链 & 工具', 'contact.blog': '博客'
+      },
+      'zh-tw': {
+        'nav.do': '我能做什麼', 'nav.projects': '項目', 'nav.about': '關於', 'nav.contact': '聯繫',
+        'hero.eyebrow': '產品 · 技術 · 數據',
+        'hero.subtitle': '你好，我是姚軍。歡迎來到我的作品集。這裡收錄了我在產品、技術與數據方面的一些實踐與探索。',
+        'hero.cta1': '瀏覽作品',
+        'cap.title': '我能做什麼', 'cap.subtitle': '核心能力',
+        'cap.c1.title': '產品設計', 'cap.c1.desc': '從用戶調研到原型設計，關注真實需求與體驗細節。擅長 PRD 撰寫與需求優先級管理。',
+        'cap.c2.title': '技術開發', 'cap.c2.desc': '全棧探索者，熟悉 JavaScript、Python 與 Next.js。獨立開發多個開源項目並持續維護。',
+        'cap.c3.title': '數據分析', 'cap.c3.desc': '預測建模、空間分析與可視化。用數據講故事，讓決策有依據。',
+        'feat.title': '精選項目', 'feat.subtitle': '深度展示', 'feat.label': '精選',
+        'feat.desc': '求職自動化工具。從聊天訊息中提取崗位資訊，Kanban 看板管理進度，Playwright 自動填寫招聘平台表單。全離線 SQLite 儲存，隱私優先。',
+        'feat.m1': '技術棧', 'feat.m2': '並發投遞', 'feat.m3': '數據上傳', 'feat.view': '查看詳情',
+        'proj.title': '項目作品', 'proj.subtitle': '更多作品與探索',
+        'proj.p1.desc': 'Serverless AI 網關。多路由、故障轉移、兼容 OpenAI，一鍵部署。',
+        'proj.p2.desc': '農村物流中心選址研究。季節預測模型，22 組最優方案，運營成本降低 30%。',
+        'proj.p3.desc': '產品負責人。校園服務平台，全國競賽一等獎，用戶滿意度 >90%。',
+        'proj.p4.desc': '個人技術部落格。記錄學習筆記、技術探索與項目復盤。',
+        'about.title': '關於我', 'about.subtitle': '教育與經歷',
+        'about.p1': '數字經濟碩士在讀。對產品設計與技術探索抱有熱情，喜歡用數據說話，也喜歡從 0 到 1 的過程。',
+        'about.p2': 'Mac 重度用戶，日常折騰各種效率工具和工作流。做過品牌策劃，運營過社群，在 GitHub 上 fork 了上百個項目。相信好的設計不只是視覺，更是思維方式。',
+        'about.exp1.role': '數字經濟 碩士', 'about.exp2.role': '品牌助理',
+        'about.exp2.hl': '品牌策劃、用戶調研、項目評審', 'about.exp3.role': '運營實習生',
+        'about.exp3.hl': '社群運營、用戶增長、數據分析', 'about.exp4.role': '電子商務 學士',
+        'skills.title': '技能', 'skills.subtitle': '工具與能力',
+        'skills.cat1': '產品', 'skills.cat2': '技術', 'skills.cat3': '設計', 'skills.cat4': '語言',
+        'tink.title': '折騰 & 探索', 'tink.subtitle': '工作之外',
+        'tink.t1.title': '自託管', 'tink.t1.desc': 'CloudFlare 圖床、臨時郵箱、文件管理面板、服務管理儀表盤——自己的數據自己管。在 idkyjun.me 上搭了一整套基礎設施。',
+        'tink.t2.title': 'Mac & 效率控', 'tink.t2.desc': '喜歡折騰 macOS 上的各種工具和工作流。Obsidian 筆記、Alfred 自動化、終端美化——追求效率，也享受折騰本身。',
+        'tink.t3.title': '開源收集癖', 'tink.t3.desc': 'GitHub 上 98+ 個倉庫，從 AI 網關到 Docker 教程、從經濟學人電子書到 VS Code 插件。看到好項目就想 fork 下來研究。',
+        'tink.t4.title': '英語學習者', 'tink.t4.desc': '經濟學人、紐約客、連線雜誌的長期讀者。相信語言是打開更大世界的鑰匙，也在持續精進法語、韓語和日語。',
+        'tink.explore': '查看全部 →',
+        'contact.title': '聯繫我', 'contact.desc': '聊聊合作，或者只是打個招呼。', 'contact.links': '友鏈 & 工具', 'contact.blog': '部落格'
+      },
+      'en': {
+        'nav.do': 'What I Do', 'nav.projects': 'Projects', 'nav.about': 'About', 'nav.contact': 'Contact',
+        'hero.eyebrow': 'Product · Technology · Data',
+        'hero.subtitle': "Hi, I'm JUNYAO. Welcome to my portfolio — a collection of my work and explorations in product, technology, and data.",
+        'hero.cta1': 'View Projects',
+        'cap.title': 'What I Do', 'cap.subtitle': 'Core capabilities',
+        'cap.c1.title': 'Product Design', 'cap.c1.desc': 'From user research to prototyping, focused on real needs and UX details. Skilled in PRD writing and requirement prioritization.',
+        'cap.c2.title': 'Tech Development', 'cap.c2.desc': 'Full-stack explorer proficient in JavaScript, Python and Next.js. Built and maintained multiple open-source projects.',
+        'cap.c3.title': 'Data Analysis', 'cap.c3.desc': 'Predictive modeling, spatial analysis and visualization. Let data tell stories and inform decisions.',
+        'feat.title': 'Featured Project', 'feat.subtitle': 'Deep dive', 'feat.label': 'Featured',
+        'feat.desc': 'Job hunting automation tool. Extracts job info from chat messages, tracks applications via Kanban board, auto-fills recruitment forms with Playwright. Fully offline SQLite storage — privacy first.',
+        'feat.m1': 'Tech Stack', 'feat.m2': 'Parallel Apps', 'feat.m3': 'Data Uploads', 'feat.view': 'Learn More',
+        'proj.title': 'Projects', 'proj.subtitle': 'More works & explorations',
+        'proj.p1.desc': 'Serverless AI gateway with multi-routing, failover, and OpenAI compatibility. One-click deployment.',
+        'proj.p2.desc': 'Rural logistics center site selection. Seasonal forecasting model, 22 optimal solutions, 30% cost reduction.',
+        'proj.p3.desc': 'Product lead. Campus service platform, national competition first prize, user satisfaction >90%.',
+        'proj.p4.desc': 'Personal tech blog. Learning notes, tech explorations, and project retrospectives.',
+        'about.title': 'About', 'about.subtitle': 'Education & experience',
+        'about.p1': "Master's student in Digital Economy. Passionate about product design and technology. I like to let data speak.",
+        'about.p2': 'Power user of macOS, always tinkering with productivity tools and workflows. Brand planning, community ops, and hundreds of forked repos on GitHub. Good design is a way of thinking, not just visuals.',
+        'about.exp1.role': 'M.S. Digital Economy', 'about.exp2.role': 'Brand Assistant',
+        'about.exp2.hl': 'Brand planning, user research, project reviews', 'about.exp3.role': 'Operations Intern',
+        'about.exp3.hl': 'Community ops, user growth, data analysis', 'about.exp4.role': 'B.S. E-Commerce',
+        'skills.title': 'Skills', 'skills.subtitle': 'Tools & capabilities',
+        'skills.cat1': 'Product', 'skills.cat2': 'Tech', 'skills.cat3': 'Design', 'skills.cat4': 'Languages',
+        'tink.title': 'Tinkering', 'tink.subtitle': 'Beyond work',
+        'tink.t1.title': 'Self-Hosting', 'tink.t1.desc': 'CloudFlare image host, temp email, file manager, service dashboard — own your data. A full self-hosted infrastructure on idkyjun.me.',
+        'tink.t2.title': 'Mac & Productivity', 'tink.t2.desc': 'Love tinkering with macOS tools and workflows. Obsidian notes, Alfred automation, terminal theming — chasing efficiency and enjoying the process.',
+        'tink.t3.title': 'Open-Source Collector', 'tink.t3.desc': '98+ repos on GitHub — from AI gateways to Docker tutorials, from Economist ebooks to VS Code extensions. If it looks interesting, it gets forked.',
+        'tink.t4.title': 'Language Learner', 'tink.t4.desc': 'Avid reader of The Economist, The New Yorker, and WIRED. Believes language is the key to a bigger world. Also refining French, Korean, and Japanese.',
+        'tink.explore': 'View All →',
+        'contact.title': 'Get in Touch', 'contact.desc': 'Open to collaboration, or just a friendly hello.', 'contact.links': 'Links & Tools', 'contact.blog': 'Blog'
+      },
+      'ko': {
+        'nav.do': '무엇을 하나요', 'nav.projects': '프로젝트', 'nav.about': '소개', 'nav.contact': '연락',
+        'hero.eyebrow': '제품 · 기술 · 데이터',
+        'hero.subtitle': '안녕하세요, JUNYAO입니다. 제 포트폴리오에 오신 것을 환영합니다. 제품, 기술, 데이터 분야의 작업과 탐구를 모아놓았습니다.',
+        'hero.cta1': '프로젝트 보기',
+        'cap.title': '무엇을 하나요', 'cap.subtitle': '핵심 역량',
+        'cap.c1.title': '제품 디자인', 'cap.c1.desc': '사용자 리서치부터 프로토타이핑까지. 실제 니즈와 UX 디테일에 집중합니다.',
+        'cap.c2.title': '기술 개발', 'cap.c2.desc': 'JavaScript, Python, Next.js에 능숙한 풀스택 개발자. 여러 오픈소스 프로젝트를 개발하고 유지보수합니다.',
+        'cap.c3.title': '데이터 분석', 'cap.c3.desc': '예측 모델링, 공간 분석, 시각화. 데이터로 스토리를 전달하고 의사결정을 지원합니다.',
+        'feat.title': '주요 프로젝트', 'feat.subtitle': '심층 소개', 'feat.label': '주요',
+        'feat.desc': '취업 자동화 도구. 채팅 메시지에서 채용 정보를 추출하고, Kanban 보드로 진행 상황을 추적하며, Playwright로 채용 플랫폼 양식을 자동 작성합니다. 완전 오프라인 SQLite 저장소로 프라이버시 우선.',
+        'feat.m1': '기술 스택', 'feat.m2': '병렬 지원', 'feat.m3': '데이터 업로드', 'feat.view': '자세히 보기',
+        'proj.title': '프로젝트', 'proj.subtitle': '더 많은 작업과 탐구',
+        'proj.p1.desc': '서버리스 AI 게이트웨이. 다중 라우팅, 장애 전환, OpenAI 호환.',
+        'proj.p2.desc': '농촌 물류센터 입지 선정. 계절 예측 모델, 22개 최적 안, 비용 30% 절감.',
+        'proj.p3.desc': '제품 책임자. 캠퍼스 서비스 플랫폼, 전국 대회 1등, 만족도 >90%.',
+        'proj.p4.desc': '개인 기술 블로그. 학습 노트, 기술 탐구, 프로젝트 회고.',
+        'about.title': '소개', 'about.subtitle': '학력 및 경력',
+        'about.p1': '디지털경제 석사 과정 재학 중. 제품 디자인과 기술 탐구에 열정을 가지고 있습니다.',
+        'about.p2': 'macOS 파워 유저로 다양한 생산성 도구와 워크플로우를 탐구합니다. 브랜드 기획, 커뮤니티 운영 경험이 있으며 GitHub에서 수백 개의 프로젝트를 포크했습니다.',
+        'about.exp1.role': '디지털경제 석사', 'about.exp2.role': '브랜드 어시스턴트',
+        'about.exp2.hl': '브랜드 기획, 사용자 리서치, 프로젝트 리뷰', 'about.exp3.role': '운영 인턴',
+        'about.exp3.hl': '커뮤니티 운영, 사용자 성장, 데이터 분석', 'about.exp4.role': '전자상거래 학사',
+        'skills.title': '스킬', 'skills.subtitle': '도구 및 역량',
+        'skills.cat1': '제품', 'skills.cat2': '기술', 'skills.cat3': '디자인', 'skills.cat4': '언어',
+        'tink.title': '탐구 & 실험', 'tink.subtitle': '일 외',
+        'tink.t1.title': '셀프 호스팅', 'tink.t1.desc': 'CloudFlare 이미지 호스트, 임시 이메일, 파일 관리자, 서비스 대시보드 — 내 데이터는 내가 관리. idkyjun.me에 완전한 셀프 호스팅 인프라를 구축했습니다.',
+        'tink.t2.title': 'Mac & 생산성', 'tink.t2.desc': 'macOS의 다양한 도구와 워크플로우를 탐구합니다. Obsidian 노트, Alfred 자동화, 터미널 커스터마이징 — 효율을 추구하면서도 탐구 자체를 즐깁니다.',
+        'tink.t3.title': '오픈소스 수집가', 'tink.t3.desc': 'GitHub에 98개 이상의 저장소 — AI 게이트웨이부터 Docker 튜토리얼, 이코노미스트 전자책, VS Code 확장까지. 흥미로운 프로젝트는 바로 포크합니다.',
+        'tink.t4.title': '언어 학습자', 'tink.t4.desc': '이코노미스트, 뉴요커, WIRED의 열성 독자. 언어가 더 넓은 세계로의 열쇠라고 믿으며, 프랑스어, 한국어, 일본어도 꾸준히 공부하고 있습니다.',
+        'tink.explore': '전체 보기 →',
+        'contact.title': '연락하기', 'contact.desc': '협업이나 가벼운 인사를 환영합니다.', 'contact.links': '링크 & 도구', 'contact.blog': '블로그'
+      },
+      'ja': {
+        'nav.do': 'できること', 'nav.projects': 'プロジェクト', 'nav.about': 'プロフィール', 'nav.contact': 'お問い合わせ',
+        'hero.eyebrow': 'プロダクト · テクノロジー · データ',
+        'hero.subtitle': 'こんにちは、JUNYAOです。ポートフォリオへようこそ。プロダクト、テクノロジー、データに関する制作と探求をまとめています。',
+        'hero.cta1': '作品を見る',
+        'cap.title': 'できること', 'cap.subtitle': 'コア能力',
+        'cap.c1.title': 'プロダクトデザイン', 'cap.c1.desc': 'ユーザーリサーチからプロトタイプまで。リアルなニーズとUXの細部に注目します。',
+        'cap.c2.title': '技術開発', 'cap.c2.desc': 'JavaScript、Python、Next.jsに精通したフルスタック開発者。複数のOSSプロジェクトを開発・保守。',
+        'cap.c3.title': 'データ分析', 'cap.c3.desc': '予測モデリング、空間分析、可視化。データでストーリーを伝え、意思決定を支えます。',
+        'feat.title': '注目のプロジェクト', 'feat.subtitle': '詳細紹介', 'feat.label': '注目',
+        'feat.desc': '就職活動自動化ツール。チャットメッセージから求人情報を抽出し、Kanbanボードで進捗を管理、Playwrightで採用プラットフォームのフォームを自動記入。完全オフラインSQLite保存でプライバシー優先。',
+        'feat.m1': '技術スタック', 'feat.m2': '並列応募', 'feat.m3': 'データアップロード', 'feat.view': '詳細を見る',
+        'proj.title': 'プロジェクト', 'proj.subtitle': 'その他の制作と探求',
+        'proj.p1.desc': 'サーバーレスAIゲートウェイ。マルチルーティング、フェイルオーバー、OpenAI互換。',
+        'proj.p2.desc': '農村物流センター立地選定。季節予測モデル、22件の最適案、コスト30%削減。',
+        'proj.p3.desc': 'プロダクトリード。キャンパスサービスプラットフォーム、全国大会1位、満足度>90%。',
+        'proj.p4.desc': '個人技術ブログ。学習ノート、技術探求、プロジェクト振り返り。',
+        'about.title': 'プロフィール', 'about.subtitle': '学歴と経歴',
+        'about.p1': 'デジタル経済の修士課程に在籍中。プロダクトデザインと技術探求に情熱を持っています。',
+        'about.p2': 'macOSのパワーユーザーで、様々な生産性ツールやワークフローを探求しています。ブランド企画やコミュニティ運営の経験があり、GitHubでは数百のプロジェクトをフォークしています。',
+        'about.exp1.role': 'デジタル経済 修士', 'about.exp2.role': 'ブランドアシスタント',
+        'about.exp2.hl': 'ブランド企画、ユーザーリサーチ、プロジェクトレビュー', 'about.exp3.role': '運営インターン',
+        'about.exp3.hl': 'コミュニティ運営、ユーザー成長、データ分析', 'about.exp4.role': '電子商取引 学士',
+        'skills.title': 'スキル', 'skills.subtitle': 'ツールと能力',
+        'skills.cat1': 'プロダクト', 'skills.cat2': 'テクノロジー', 'skills.cat3': 'デザイン', 'skills.cat4': '言語',
+        'tink.title': '探求 & 実験', 'tink.subtitle': '仕事以外',
+        'tink.t1.title': 'セルフホスティング', 'tink.t1.desc': 'CloudFlare画像ホスト、一時メール、ファイル管理、サービスダッシュボード — 自分のデータは自分で管理。idkyjun.meに完全なセルフホスティング環境を構築。',
+        'tink.t2.title': 'Mac & 生産性', 'tink.t2.desc': 'macOSの様々なツールとワークフローを探求。Obsidianノート、Alfred自動化、ターミナルのカスタマイズ — 効率を追求しつつ、探求そのものを楽しみます。',
+        'tink.t3.title': 'OSSコレクター', 'tink.t3.desc': 'GitHubに98以上のリポジトリ — AIゲートウェイからDockerチュートリアル、エコノミスト電子書籍、VS Code拡張まで。気になるプロジェクトはすぐにフォーク。',
+        'tink.t4.title': '言語学習者', 'tink.t4.desc': 'エコノミスト、ニューヨーカー、WIREDの愛読者。言語はより広い世界への鍵だと信じており、フランス語、韓国語、日本語も継続的に勉強中。',
+        'tink.explore': 'すべて見る →',
+        'contact.title': 'お問い合わせ', 'contact.desc': 'コラボレーションやご挨拶、お気軽にどうぞ。', 'contact.links': 'リンク & ツール', 'contact.blog': 'ブログ'
+      }
+    };
 
-        if (themeButton) {
-          themeButton.addEventListener('click', function () {
-            applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
-          });
-        }
-      })();
-    </script>
-  </body>
+    /* State */
+    let currentLang = 'zh-cn';
+    let isDark = false;
+
+    /* Language switching */
+    function setLanguage(lang) {
+      currentLang = lang;
+      const isCN = lang === 'zh-cn' || lang === 'zh-tw';
+      document.documentElement.lang = lang === 'zh-cn' ? 'zh-CN' : lang === 'zh-tw' ? 'zh-TW' : lang;
+      document.body.classList.toggle('lang-non-cn', !isCN);
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang] && i18n[lang][key]) el.textContent = i18n[lang][key];
+      });
+
+      document.querySelectorAll('.lang-btn > span[class^="lang-label-"]').forEach(s => s.style.display = 'none');
+      const lbl = document.querySelector('.lang-label-' + lang);
+      if (lbl) lbl.style.display = 'inline';
+
+      document.querySelectorAll('.lang-dropdown button').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      document.getElementById('langDropdown').classList.remove('open');
+    }
+
+    document.getElementById('langBtn').addEventListener('click', e => {
+      e.stopPropagation();
+      document.getElementById('langDropdown').classList.toggle('open');
+    });
+    document.querySelectorAll('.lang-dropdown button').forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+    document.addEventListener('click', () => document.getElementById('langDropdown').classList.remove('open'));
+
+    /* Theme toggle */
+    function setTheme(dark) {
+      isDark = dark;
+      document.body.classList.toggle('dark-theme', dark);
+      document.querySelector('.icon-sun').style.display = dark ? 'block' : 'none';
+      document.querySelector('.icon-moon').style.display = dark ? 'none' : 'block';
+    }
+    document.getElementById('themeToggle').addEventListener('click', () => setTheme(!isDark));
+
+    /* Header scroll */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+
+    /* Smooth scroll */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    /* Scroll reveal */
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+  </script>
+</body>
 </html>
