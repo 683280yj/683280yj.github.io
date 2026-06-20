@@ -954,9 +954,9 @@
       <div class="guestbook-wrap reveal">
         <script src="https://giscus.app/client.js"
           data-repo="683280yj/683280yj.github.io"
-          data-repo-id="R_kgDOQfYXhQ"
+          data-repo-id="R_kgDOMZenVQ"
           data-category="General"
-          data-category-id="DIC_kwDOQfYXhc4CgGnT"
+          data-category-id="DIC_kwDOMZenVc4C_hUz"
           data-mapping="pathname"
           data-strict="0"
           data-reactions-enabled="1"
@@ -1202,6 +1202,11 @@
       document.body.classList.toggle('dark-theme', dark);
       document.querySelector('.icon-sun').style.display = dark ? 'block' : 'none';
       document.querySelector('.icon-moon').style.display = dark ? 'none' : 'block';
+      /* Sync Giscus theme */
+      const giscusFrame = document.querySelector('.giscus-frame');
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage({ giscus: { setConfig: { theme: dark ? 'dark' : 'light' } } }, 'https://giscus.app');
+      }
     }
     document.getElementById('themeToggle').addEventListener('click', () => setTheme(!isDark));
 
