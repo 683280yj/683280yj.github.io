@@ -128,7 +128,19 @@
 
 // ==================== Mood Rotator ====================
 (function () {
-    const moods = [
+    const isEn = document.documentElement.lang.startsWith('en');
+    const moods = isEn ? [
+        '☕️ Procrastinating on thesis...',
+        '📊 Running Stata regressions — do not disturb',
+        '💻 Polishing the Nth version of my resume',
+        '🎧 Immersed in post-rock',
+        '🌙 Coding late into the night',
+        '📚 Literature progress: 0% today',
+        '🍵 Brewing tea, then back to work',
+        '🐱 Petting the cat, brb',
+        '✨ Feeling incredibly inspired today',
+        '🏃 Just came back from a run'
+    ] : [
         '☕️ 正在摸鱼写论文...',
         '📊 Stata 跑回归中，勿扰',
         '💻 在改第 38 版简历',
@@ -504,9 +516,11 @@ function md5(string) {
     function applyTheme(theme) {
         html.setAttribute('data-theme', theme);
         localStorage.setItem(STORAGE_KEY, theme);
+        var isEn = html.lang.startsWith('en');
         if (toggle) {
             toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-            toggle.setAttribute('title', theme === 'dark' ? '切换亮色模式' : '切换暗色模式');
+            toggle.setAttribute('title', theme === 'dark' ? (isEn ? 'Light mode' : '切换亮色模式') : (isEn ? 'Dark mode' : '切换暗色模式'));
+            toggle.setAttribute('aria-label', toggle.getAttribute('title'));
         }
         // Sync Giscus
         var iframe = document.querySelector('.giscus-frame');
