@@ -654,6 +654,44 @@ a:hover {
     color: #fff !important;
 }
 
+/* Floating lang button */
+.lang-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lang-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(37, 99, 235, 0.5);
+    color: #fff !important;
+}
+
+@media (max-width: 900px) {
+    .lang-float {
+        bottom: 16px;
+        right: 16px;
+        width: 42px;
+        height: 42px;
+        font-size: 12px;
+    }
+}
+
 /* --- Giscus Comments --- */
 .giscus-wrap {
     margin-top: 0.5rem;
