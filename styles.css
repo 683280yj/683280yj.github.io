@@ -635,6 +635,25 @@ a:hover {
     }
 }
 
+/* --- Language Switcher --- */
+.lang-switch {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-accent) !important;
+    background: var(--color-accent-light);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.lang-switch:hover {
+    background: var(--color-accent);
+    color: #fff !important;
+}
+
 /* --- Giscus Comments --- */
 .giscus-wrap {
     margin-top: 0.5rem;
