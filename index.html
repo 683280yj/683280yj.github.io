@@ -171,6 +171,7 @@
                         <span class="skill-tag">WorkBuddy</span>
                         <span class="skill-tag">Codex</span>
                         <span class="skill-tag">AI Relay</span>
+                        <span class="skill-tag">ImageVault</span>
                         <span class="skill-tag">临时邮箱</span>
                         <span class="skill-tag">iTerm</span>
                     </div>
@@ -233,6 +234,17 @@
                     <p class="project-desc">基于 Cloudflare 部署的临时邮箱系统，支持匿名注册、收件、管理后台。适用于注册验证、隐私保护等场景，提供干净简洁的管理界面。</p>
                     <div class="project-links">
                         <a href="https://mail.idky.tech/admin" class="project-link" target="_blank" rel="noopener">管理后台 →</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag">开源项目</span>
+                        <h3>ImageVault — 个人图床</h3>
+                    </div>
+                    <p class="project-desc">自建图床服务，支持图片上传、管理、外链生成。需要密码访问，适用于个人博客配图、Markdown 写作等场景，界面简洁高效。</p>
+                    <div class="project-links">
+                        <a href="https://im.idky.tech/login" class="project-link" target="_blank" rel="noopener">打开图床 →</a>
                     </div>
                 </article>
 
@@ -428,8 +440,13 @@
                 <button class="contact-item" onclick="openResumeModal()" style="cursor:pointer;border:none;background:none;width:100%;text-align:left;">
                     <span class="contact-icon">📄</span>
                     <span class="contact-label">简历下载</span>
-                    <span class="contact-value">点击输入密码获取</span>
+                    <span class="contact-value">联系我获取密码</span>
                 </button>
+                <a href="https://im.idky.tech/login" class="contact-item" target="_blank" rel="noopener">
+                    <span class="contact-icon">🖼️</span>
+                    <span class="contact-label">图床</span>
+                    <span class="contact-value">im.idky.tech（需密码）</span>
+                </a>
                 <a href="https://bonjour.bio/idky" class="contact-item" target="_blank" rel="noopener">
                     <span class="contact-icon">👋</span>
                     <span class="contact-label">Bonjour</span>
@@ -444,7 +461,7 @@
         <div class="modal-box">
             <h3>🔒 简历下载</h3>
             <p>请输入密码以获取简历下载链接</p>
-            <p style="font-size:12px;color:var(--color-text-light);margin-bottom:12px;">提示藏在页面某个角落，用心找找 🔍</p>
+            <p style="font-size:12px;color:var(--color-text-light);margin-bottom:12px;">联系我 <a href="mailto:yggcmm@outlook.com" style="color:var(--color-accent);">yggcmm@outlook.com</a> 获取密码</p>
             <input type="password" id="resume-password" class="modal-input" placeholder="请输入密码" onkeydown="if(event.key==='Enter')checkResumePwd()">
             <div class="modal-actions">
                 <button class="btn btn-primary" onclick="checkResumePwd()">确认</button>
@@ -462,9 +479,6 @@
         <div class="container">
             <div class="footer-quote" id="footer-quote">"Stay hungry, stay foolish." — Steve Jobs</div>
             <p>&copy; 2026 姚军. Built with ❤️ · Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a></p>
-            <p class="footer-hint" style="font-size:11px;color:var(--color-text-light);margin-top:4px;">
-                <!-- 密码提示：你的 GitHub 用户名首字母 + 年份。格式：字母加数字，共8位。提示结束。 -->
-            </p>
         </div>
     </footer>
 

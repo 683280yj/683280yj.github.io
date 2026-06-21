@@ -292,7 +292,7 @@ function checkResumePwd() {
     var input = document.getElementById('resume-password').value;
     var errorEl = document.getElementById('resume-error');
     // password → MD5
-    var correctHash = '55b2015d5b58dddd229aeff2ba1cc60d';
+    var correctHash = 'ac3f5ae36f5a6601d9768855f5472d7d';
     var hash = md5(input);
     if (hash === correctHash) {
         errorEl.style.display = 'none';

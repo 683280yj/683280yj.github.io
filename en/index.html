@@ -167,6 +167,7 @@
                         <span class="skill-tag">WorkBuddy</span>
                         <span class="skill-tag">Codex</span>
                         <span class="skill-tag">AI Relay</span>
+                        <span class="skill-tag">ImageVault</span>
                         <span class="skill-tag">Temp Mail</span>
                         <span class="skill-tag">iTerm</span>
                     </div>
@@ -229,6 +230,17 @@
                     <p class="project-desc">Cloudflare-deployed temporary email system with anonymous signup, inbox, and admin console. Ideal for registration verification and privacy protection, featuring a clean management interface.</p>
                     <div class="project-links">
                         <a href="https://mail.idky.tech/admin" class="project-link" target="_blank" rel="noopener">Admin Console →</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag">Open Source</span>
+                        <h3>ImageVault — Personal Image Hosting</h3>
+                    </div>
+                    <p class="project-desc">Self-hosted image hosting service with upload, management, and external link generation. Password-protected, ideal for blog illustrations and Markdown writing. Clean, efficient interface.</p>
+                    <div class="project-links">
+                        <a href="https://im.idky.tech/login" class="project-link" target="_blank" rel="noopener">Open →</a>
                     </div>
                 </article>
 
@@ -425,6 +437,11 @@
                     <span class="contact-label">Resume</span>
                     <span class="contact-value">Password required</span>
                 </button>
+                <a href="https://im.idky.tech/login" class="contact-item" target="_blank" rel="noopener">
+                    <span class="contact-icon">🖼️</span>
+                    <span class="contact-label">Image Host</span>
+                    <span class="contact-value">im.idky.tech (password)</span>
+                </a>
                 <a href="https://bonjour.bio/idky" class="contact-item" target="_blank" rel="noopener">
                     <span class="contact-icon">👋</span>
                     <span class="contact-label">Bonjour</span>
@@ -438,7 +455,7 @@
         <div class="modal-box">
             <h3>🔒 Resume Download</h3>
             <p>Enter the password to unlock the resume PDF</p>
-            <p style="font-size:12px;color:var(--color-text-light);margin-bottom:12px;">Hint: hidden somewhere on this page 🔍</p>
+            <p style="font-size:12px;color:var(--color-text-light);margin-bottom:12px;">Contact me at <a href="mailto:yggcmm@outlook.com" style="color:var(--color-accent);">yggcmm@outlook.com</a> for the password</p>
             <input type="password" id="resume-password" class="modal-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkResumePwd()">
             <div class="modal-actions">
                 <button class="btn btn-primary" onclick="checkResumePwd()">Confirm</button>
