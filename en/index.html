@@ -11,8 +11,14 @@
     <title>Yao Jun | Personal Homepage</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧑‍💻</text></svg>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
 </head>
 <body>
+    <canvas id="sakura-canvas"></canvas>
+
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
     <nav class="nav">
         <div class="nav-inner">
             <a href="#hero" class="nav-logo">YJ</a>
@@ -22,6 +28,7 @@
                 <a href="#tools">Tools</a>
                 <a href="#projects">Projects</a>
                 <a href="#experience">Experience</a>
+                <a href="#friends">Friends</a>
                 <a href="#comments">Comments</a>
                 <a href="#contact">Contact</a>
                 <a href="/" class="lang-switch" title="切换到中文">中文</a>
@@ -35,19 +42,25 @@
     <a href="/" class="lang-float" title="切换到中文">中文</a>
 
     <div id="pet" class="pet" onclick="petTalk()">
-        <div class="pet-body">🐱</div>
+        <div class="pet-body">🐾</div>
         <div id="pet-bubble" class="pet-bubble" style="display:none;"></div>
     </div>
 
     <section id="hero" class="hero">
         <div class="container">
             <div class="hero-content">
+                <div class="hero-avatar-wrap">
+                    <div class="hero-avatar">👋</div>
+                </div>
                 <p class="hero-greeting">Hi, I'm</p>
                 <h1 class="hero-name">Yao Jun</h1>
                 <p class="hero-title">Digital Economy Researcher · Tech Practitioner</p>
                 <p class="hero-bio">
                     Master's student in Digital Economy at Anhui University of Finance and Economics, researching the impact of digital economy participation on rural household consumption structure. Active in the internet tech product space, driven by data and design.
                 </p>
+                <div class="hero-mood">
+                    <span id="mood-text">☕️ Procrastinating on thesis...</span>
+                </div>
                 <div class="hero-actions">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
                     <a href="#contact" class="btn btn-outline">Get in Touch</a>
@@ -221,17 +234,6 @@
 
                 <article class="project-card">
                     <div class="project-header">
-                        <span class="project-tag">Personal Page</span>
-                        <h3>Bonjour — AI Job-Hunting Profile</h3>
-                    </div>
-                    <p class="project-desc">A minimal personal page for AI-related job hunting — showcases core experience and contact info, making it easy for recruiters to quickly understand the background.</p>
-                    <div class="project-links">
-                        <a href="https://bonjour.bio/idky" class="project-link" target="_blank" rel="noopener">Visit Page →</a>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-header">
                         <span class="project-tag">Thesis</span>
                         <h3>Impact of Rural Digital Economy Participation on Consumption Structure</h3>
                     </div>
@@ -284,6 +286,17 @@
                         <a href="#" class="project-link">Read →</a>
                     </div>
                 </article>
+
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag">Personal Page</span>
+                        <h3>Bonjour — AI Job-Hunting Profile</h3>
+                    </div>
+                    <p class="project-desc">A minimal personal page for AI-related job hunting — showcases core experience and contact info, making it easy for recruiters to quickly understand the background.</p>
+                    <div class="project-links">
+                        <a href="https://bonjour.bio/idky" class="project-link" target="_blank" rel="noopener">Visit Page →</a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -328,56 +341,40 @@
         </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="friends" class="section">
         <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <p class="contact-intro">Open to academic collaborations, tech opportunities, or just a chat.</p>
-            <div class="contact-links">
-                <a href="mailto:yggcmm@outlook.com" class="contact-item">
-                    <span class="contact-icon">✉️</span>
-                    <span class="contact-label">Email</span>
-                    <span class="contact-value">yggcmm@outlook.com</span>
+            <h2 class="section-title">Friends</h2>
+            <p class="contact-intro">Some cool folks I know. Let's link up 👇</p>
+            <div class="friends-grid" id="friends-grid">
+                <a href="https://idky.tech" class="friend-card" target="_blank" rel="noopener">
+                    <span class="friend-avatar">📝</span>
+                    <span class="friend-name">idky.tech</span>
+                    <span class="friend-desc">My Blog</span>
                 </a>
-                <a href="https://github.com/683280yj" class="contact-item" target="_blank" rel="noopener">
-                    <span class="contact-icon">🐙</span>
-                    <span class="contact-label">GitHub</span>
-                    <span class="contact-value">683280yj</span>
+                <a href="https://bonjour.bio/idky" class="friend-card" target="_blank" rel="noopener">
+                    <span class="friend-avatar">👔</span>
+                    <span class="friend-name">Bonjour</span>
+                    <span class="friend-desc">AI Profile</span>
                 </a>
-                <a href="https://idky.tech" class="contact-item" target="_blank" rel="noopener">
-                    <span class="contact-icon">🌐</span>
-                    <span class="contact-label">Blog</span>
-                    <span class="contact-value">idky.tech</span>
+                <a href="https://github.com/MoyuFamily" class="friend-card" target="_blank" rel="noopener">
+                    <span class="friend-avatar">🐙</span>
+                    <span class="friend-name">MoyuFamily</span>
+                    <span class="friend-desc">Open Source</span>
                 </a>
-                <button class="contact-item" onclick="openResumeModal()" style="cursor:pointer;border:none;background:none;width:100%;text-align:left;">
-                    <span class="contact-icon">📄</span>
-                    <span class="contact-label">Resume</span>
-                    <span class="contact-value">Password required</span>
-                </button>
-                <a href="#" class="contact-item">
-                    <span class="contact-icon">💼</span>
-                    <span class="contact-label">LinkedIn</span>
-                    <span class="contact-value">Yao Jun</span>
-                </a>
+            </div>
+            <div class="friend-add" style="margin-top:2rem;text-align:center;">
+                <button class="btn btn-outline" onclick="toggleFriendForm()">➕ Add Your Link</button>
+            </div>
+            <div id="friend-form" class="friend-form" style="display:none;">
+                <p style="margin-bottom:12px;color:var(--color-text-light);">Fill in your info and I'll add you to the wall～</p>
+                <input type="text" id="friend-name" class="friend-input" placeholder="Your name / Site name">
+                <input type="url" id="friend-url" class="friend-input" placeholder="Website URL https://...">
+                <input type="text" id="friend-desc" class="friend-input" placeholder="One-liner (optional)">
+                <button class="btn btn-primary" onclick="submitFriend()">Submit</button>
+                <p id="friend-msg" style="margin-top:8px;font-size:13px;"></p>
             </div>
         </div>
     </section>
-
-    <div id="resume-modal" class="modal-overlay" onclick="closeResumeModal(event)">
-        <div class="modal-box">
-            <h3>🔒 Resume Download</h3>
-            <p>Enter the password to unlock the resume PDF</p>
-            <input type="password" id="resume-password" class="modal-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkResumePwd()">
-            <div class="modal-actions">
-                <button class="btn btn-primary" onclick="checkResumePwd()">Confirm</button>
-                <button class="btn btn-outline" onclick="closeResumeModal()">Cancel</button>
-            </div>
-            <p id="resume-error" class="modal-error"></p>
-            <div id="resume-success" class="modal-success" style="display:none;">
-                <p>✅ Verified!</p>
-                <a href="/files/resume.pdf" download class="btn btn-primary" style="margin-top:8px;display:inline-block;">Download PDF</a>
-            </div>
-        </div>
-    </div>
 
     <section id="comments" class="section section-alt">
         <div class="container">
@@ -403,11 +400,81 @@
         </div>
     </section>
 
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p class="contact-intro">Open to academic collaborations, tech opportunities, or just a chat.</p>
+            <div class="contact-links">
+                <a href="mailto:yggcmm@outlook.com" class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value">yggcmm@outlook.com</span>
+                </a>
+                <a href="https://github.com/683280yj" class="contact-item" target="_blank" rel="noopener">
+                    <span class="contact-icon">🐙</span>
+                    <span class="contact-label">GitHub</span>
+                    <span class="contact-value">683280yj</span>
+                </a>
+                <a href="https://idky.tech" class="contact-item" target="_blank" rel="noopener">
+                    <span class="contact-icon">🌐</span>
+                    <span class="contact-label">Blog</span>
+                    <span class="contact-value">idky.tech</span>
+                </a>
+                <button class="contact-item" onclick="openResumeModal()" style="cursor:pointer;border:none;background:none;width:100%;text-align:left;">
+                    <span class="contact-icon">📄</span>
+                    <span class="contact-label">Resume</span>
+                    <span class="contact-value">Password required</span>
+                </button>
+                <a href="https://bonjour.bio/idky" class="contact-item" target="_blank" rel="noopener">
+                    <span class="contact-icon">👋</span>
+                    <span class="contact-label">Bonjour</span>
+                    <span class="contact-value">bonjour.bio/idky</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div id="resume-modal" class="modal-overlay" onclick="closeResumeModal(event)">
+        <div class="modal-box">
+            <h3>🔒 Resume Download</h3>
+            <p>Enter the password to unlock the resume PDF</p>
+            <p style="font-size:12px;color:var(--color-text-light);margin-bottom:12px;">Hint: hidden somewhere on this page 🔍</p>
+            <input type="password" id="resume-password" class="modal-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkResumePwd()">
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="checkResumePwd()">Confirm</button>
+                <button class="btn btn-outline" onclick="closeResumeModal()">Cancel</button>
+            </div>
+            <p id="resume-error" class="modal-error"></p>
+            <div id="resume-success" class="modal-success" style="display:none;">
+                <p>✅ Verified!</p>
+                <a href="/files/resume.pdf" download class="btn btn-primary" style="margin-top:8px;display:inline-block;">Download PDF</a>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
+            <div class="footer-quote" id="footer-quote">"Stay hungry, stay foolish." — Steve Jobs</div>
             <p>&copy; 2026 Yao Jun. Built with ❤️ · Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a></p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="60198"
+        fixed="true"
+        mini="true"
+        autoplay="false"
+        theme="#6366f1"
+        loop="all"
+        order="random"
+        preload="auto"
+        volume="0.5"
+        lrc-type="0">
+    </meting-js>
 
     <script src="../script.js"></script>
 </body>

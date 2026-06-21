@@ -11,8 +11,17 @@
     <title>姚军 | 个人主页</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧑‍💻</text></svg>">
+    <!-- APlayer + MetingJS 音乐播放器 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
 </head>
 <body>
+    <!-- 樱花画布 -->
+    <canvas id="sakura-canvas"></canvas>
+
+    <!-- 鼠标跟随光点 -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
     <nav class="nav">
         <div class="nav-inner">
             <a href="#hero" class="nav-logo">YJ</a>
@@ -22,6 +31,7 @@
                 <a href="#tools">工具</a>
                 <a href="#projects">项目</a>
                 <a href="#experience">经历</a>
+                <a href="#friends">友链</a>
                 <a href="#comments">留言</a>
                 <a href="#contact">联系</a>
                 <a href="/en/" class="lang-switch" title="Switch to English">EN</a>
@@ -35,13 +45,16 @@
     <a href="/en/" class="lang-float" title="Switch to English">EN</a>
 
     <div id="pet" class="pet" onclick="petTalk()">
-        <div class="pet-body">🐱</div>
+        <div class="pet-body">🐾</div>
         <div id="pet-bubble" class="pet-bubble" style="display:none;"></div>
     </div>
 
     <section id="hero" class="hero">
         <div class="container">
             <div class="hero-content">
+                <div class="hero-avatar-wrap">
+                    <div class="hero-avatar">👋</div>
+                </div>
                 <p class="hero-greeting">Hi，我是</p>
                 <h1 class="hero-name">姚 军</h1>
                 <p class="hero-title">数字经济研究者 · 技术实践者</p>
@@ -49,6 +62,9 @@
                     安徽财经大学数字经济专业硕士在读，研究方向为农村家庭数字经济参与对消费结构升级的影响。
                     同时活跃于互联网技术产品领域，致力于用数据与设计驱动价值创造。
                 </p>
+                <div class="hero-mood">
+                    <span id="mood-text">☕️ 正在摸鱼写论文...</span>
+                </div>
                 <div class="hero-actions">
                     <a href="#projects" class="btn btn-primary">查看项目</a>
                     <a href="#contact" class="btn btn-outline">联系我</a>
@@ -329,56 +345,41 @@
         </div>
     </section>
 
-    <section id="contact" class="section">
+    <!-- ====== 友链墙 ====== -->
+    <section id="friends" class="section">
         <div class="container">
-            <h2 class="section-title">联系方式</h2>
-            <p class="contact-intro">欢迎学术交流、技术合作或职业机会联系。</p>
-            <div class="contact-links">
-                <a href="mailto:yggcmm@outlook.com" class="contact-item">
-                    <span class="contact-icon">✉️</span>
-                    <span class="contact-label">邮箱</span>
-                    <span class="contact-value">yggcmm@outlook.com</span>
+            <h2 class="section-title">朋友们</h2>
+            <p class="contact-intro">一些有趣的灵魂，欢迎互加友链 👇</p>
+            <div class="friends-grid" id="friends-grid">
+                <a href="https://idky.tech" class="friend-card" target="_blank" rel="noopener">
+                    <span class="friend-avatar">📝</span>
+                    <span class="friend-name">idky.tech</span>
+                    <span class="friend-desc">我的博客</span>
                 </a>
-                <a href="https://github.com/683280yj" class="contact-item" target="_blank" rel="noopener">
-                    <span class="contact-icon">🐙</span>
-                    <span class="contact-label">GitHub</span>
-                    <span class="contact-value">683280yj</span>
+                <a href="https://bonjour.bio/idky" class="friend-card" target="_blank" rel="noopener">
+                    <span class="friend-avatar">👔</span>
+                    <span class="friend-name">Bonjour</span>
+                    <span class="friend-desc">AI 求职主页</span>
                 </a>
-                <a href="https://idkyjun.me" class="contact-item" target="_blank" rel="noopener">
-                    <span class="contact-icon">🌐</span>
-                    <span class="contact-label">个人网站</span>
-                    <span class="contact-value">idkyjun.me</span>
+                <a href="https://github.com/MoyuFamily" class="friend-card" target="_blank" rel="noopener">
+                    <span class="friend-avatar">🐙</span>
+                    <span class="friend-name">MoyuFamily</span>
+                    <span class="friend-desc">摸鱼家族</span>
                 </a>
-                <button class="contact-item" onclick="openResumeModal()" style="cursor:pointer;border:none;background:none;width:100%;text-align:left;">
-                    <span class="contact-icon">📄</span>
-                    <span class="contact-label">简历下载</span>
-                    <span class="contact-value">点击输入密码获取</span>
-                </button>
-                <a href="#" class="contact-item">
-                    <span class="contact-icon">💼</span>
-                    <span class="contact-label">LinkedIn</span>
-                    <span class="contact-value">姚军</span>
-                </a>
+            </div>
+            <div class="friend-add" style="margin-top:2rem;text-align:center;">
+                <button class="btn btn-outline" onclick="toggleFriendForm()">➕ 一键添加友链</button>
+            </div>
+            <div id="friend-form" class="friend-form" style="display:none;">
+                <p style="margin-bottom:12px;color:var(--color-text-light);">填写你的网站信息，我会收到通知并添加你的链接～</p>
+                <input type="text" id="friend-name" class="friend-input" placeholder="你的名字 / 网站名">
+                <input type="url" id="friend-url" class="friend-input" placeholder="网站链接 https://...">
+                <input type="text" id="friend-desc" class="friend-input" placeholder="一句话介绍（选填）">
+                <button class="btn btn-primary" onclick="submitFriend()">提交友链</button>
+                <p id="friend-msg" style="margin-top:8px;font-size:13px;"></p>
             </div>
         </div>
     </section>
-
-    <div id="resume-modal" class="modal-overlay" onclick="closeResumeModal(event)">
-        <div class="modal-box">
-            <h3>🔒 简历下载</h3>
-            <p>请输入密码以获取简历下载链接</p>
-            <input type="password" id="resume-password" class="modal-input" placeholder="请输入密码" onkeydown="if(event.key==='Enter')checkResumePwd()">
-            <div class="modal-actions">
-                <button class="btn btn-primary" onclick="checkResumePwd()">确认</button>
-                <button class="btn btn-outline" onclick="closeResumeModal()">取消</button>
-            </div>
-            <p id="resume-error" class="modal-error"></p>
-            <div id="resume-success" class="modal-success" style="display:none;">
-                <p>✅ 验证通过！</p>
-                <a href="/files/resume.pdf" download class="btn btn-primary" style="margin-top:8px;display:inline-block;">下载简历 PDF</a>
-            </div>
-        </div>
-    </div>
 
     <section id="comments" class="section section-alt">
         <div class="container">
@@ -404,11 +405,86 @@
         </div>
     </section>
 
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">联系方式</h2>
+            <p class="contact-intro">欢迎学术交流、技术合作或职业机会联系。</p>
+            <div class="contact-links">
+                <a href="mailto:yggcmm@outlook.com" class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <span class="contact-label">邮箱</span>
+                    <span class="contact-value">yggcmm@outlook.com</span>
+                </a>
+                <a href="https://github.com/683280yj" class="contact-item" target="_blank" rel="noopener">
+                    <span class="contact-icon">🐙</span>
+                    <span class="contact-label">GitHub</span>
+                    <span class="contact-value">683280yj</span>
+                </a>
+                <a href="https://idky.tech" class="contact-item" target="_blank" rel="noopener">
+                    <span class="contact-icon">🌐</span>
+                    <span class="contact-label">博客</span>
+                    <span class="contact-value">idky.tech</span>
+                </a>
+                <button class="contact-item" onclick="openResumeModal()" style="cursor:pointer;border:none;background:none;width:100%;text-align:left;">
+                    <span class="contact-icon">📄</span>
+                    <span class="contact-label">简历下载</span>
+                    <span class="contact-value">点击输入密码获取</span>
+                </button>
+                <a href="https://bonjour.bio/idky" class="contact-item" target="_blank" rel="noopener">
+                    <span class="contact-icon">👋</span>
+                    <span class="contact-label">Bonjour</span>
+                    <span class="contact-value">bonjour.bio/idky</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 简历密码弹窗 -->
+    <div id="resume-modal" class="modal-overlay" onclick="closeResumeModal(event)">
+        <div class="modal-box">
+            <h3>🔒 简历下载</h3>
+            <p>请输入密码以获取简历下载链接</p>
+            <p style="font-size:12px;color:var(--color-text-light);margin-bottom:12px;">提示藏在页面某个角落，用心找找 🔍</p>
+            <input type="password" id="resume-password" class="modal-input" placeholder="请输入密码" onkeydown="if(event.key==='Enter')checkResumePwd()">
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="checkResumePwd()">确认</button>
+                <button class="btn btn-outline" onclick="closeResumeModal()">取消</button>
+            </div>
+            <p id="resume-error" class="modal-error"></p>
+            <div id="resume-success" class="modal-success" style="display:none;">
+                <p>✅ 验证通过！</p>
+                <a href="/files/resume.pdf" download class="btn btn-primary" style="margin-top:8px;display:inline-block;">下载简历 PDF</a>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
+            <div class="footer-quote" id="footer-quote">"Stay hungry, stay foolish." — Steve Jobs</div>
             <p>&copy; 2026 姚军. Built with ❤️ · Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a></p>
+            <p class="footer-hint" style="font-size:11px;color:var(--color-text-light);margin-top:4px;">
+                <!-- 密码提示：你的 GitHub 用户名首字母 + 年份。格式：字母加数字，共8位。提示结束。 -->
+            </p>
         </div>
     </footer>
+
+    <!-- APlayer + MetingJS -->
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="60198"
+        fixed="true"
+        mini="true"
+        autoplay="false"
+        theme="#6366f1"
+        loop="all"
+        order="random"
+        preload="auto"
+        volume="0.5"
+        lrc-type="0">
+    </meting-js>
 
     <script src="script.js"></script>
 </body>
