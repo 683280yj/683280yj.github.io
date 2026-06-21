@@ -308,31 +308,6 @@ function checkResumePwd() {
     }
 }
 
-// ==================== Pet Widget ====================
-var petMessages = [
-    '你好呀！👋',
-    '欢迎来到我的主页～',
-    '有什么想聊的吗？',
-    '代码写累了吗？休息一下吧 ☕',
-    '今天也要加油哦！💪',
-    '这个点了还在工作？注意身体啊',
-    '喜欢我的小窝吗？🏠',
-    '要记得多喝水～💧',
-    '一起努力成为更好的自己吧！',
-    '嘻嘻，你发现我了 🐾',
-    '论文写完了吗？（灵魂拷问）',
-    '别卷了别卷了，听首歌吧 🎵'
-];
-
-function petTalk() {
-    var bubble = document.getElementById('pet-bubble');
-    if (!bubble) return;
-    var msg = petMessages[Math.floor(Math.random() * petMessages.length)];
-    bubble.textContent = msg;
-    bubble.style.display = 'block';
-    setTimeout(function () { bubble.style.display = 'none'; }, 3000);
-}
-
 // ==================== Friend Link Form ====================
 function toggleFriendForm() {
     var form = document.getElementById('friend-form');
@@ -381,10 +356,10 @@ function loadFriends() {
     if (!grid) return;
     var stored = JSON.parse(localStorage.getItem('idky_friends') || '[]');
 
-    // Remove old stored entries (keep first 3 defaults)
-    var cards = grid.querySelectorAll('.friend-card');
-    for (var i = cards.length - 1; i >= 3; i--) {
-        cards[i].remove();
+    // Remove old stored entries (keep default friend-items)
+    var items = grid.querySelectorAll('.friend-item');
+    for (var i = items.length - 1; i >= 6; i--) {
+        items[i].remove();
     }
 
     // Only show last 5 submitted friends
@@ -392,13 +367,12 @@ function loadFriends() {
     recent.forEach(function (f) {
         var a = document.createElement('a');
         a.href = f.url;
-        a.className = 'friend-card';
+        a.className = 'friend-item';
         a.target = '_blank';
         a.rel = 'noopener';
         a.innerHTML =
-            '<span class="friend-avatar">🔗</span>' +
-            '<span><span class="friend-name">' + escapeHTML(f.name) + '</span>' +
-            '<span class="friend-desc">' + (f.desc ? escapeHTML(f.desc) : 'New friend') + '</span></span>';
+            '<span class="friend-title">' + escapeHTML(f.name) + '</span>' +
+            '<span class="friend-sub">' + (f.desc ? escapeHTML(f.desc) : 'New friend') + '</span>';
         grid.appendChild(a);
     });
 }

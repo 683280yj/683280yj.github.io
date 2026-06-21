@@ -34,6 +34,7 @@
                 <a href="#friends">友链</a>
                 <a href="#comments">留言</a>
                 <a href="#contact">联系</a>
+                <a href="/en/" class="lang-switch" title="Switch to English">EN</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="菜单" onclick="toggleNav()">
                 <span></span><span></span><span></span>
@@ -42,11 +43,6 @@
     </nav>
 
     <a href="/en/" class="lang-float" title="Switch to English">EN</a>
-
-    <div id="pet" class="pet" onclick="petTalk()">
-        <div class="pet-body">🐾</div>
-        <div id="pet-bubble" class="pet-bubble" style="display:none;"></div>
-    </div>
 
     <section id="hero" class="hero">
         <div class="container">
@@ -360,37 +356,31 @@
     <section id="friends" class="section">
         <div class="container">
             <h2 class="section-title">朋友们</h2>
-            <p class="contact-intro">一些有趣的灵魂，欢迎互加友链 👇</p>
+            <p class="contact-intro">欢迎交换友链，有趣的灵魂终会相遇 👇</p>
             <div class="friends-grid" id="friends-grid">
-                <a href="https://www.sanliudata.com/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">📊</span>
-                    <span class="friend-name">何雨果 Hugo He</span>
-                    <span class="friend-desc">数据科学与个人知识管理</span>
+                <a href="https://www.sanliudata.com/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">何雨果 Hugo He</span>
+                    <span class="friend-sub">数据科学与个人知识管理</span>
                 </a>
-                <a href="https://www.genggc.org/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">🎓</span>
-                    <span class="friend-name">耿光超</span>
-                    <span class="friend-desc">浙江大学 · 学术主页</span>
+                <a href="https://www.genggc.org/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">耿光超</span>
+                    <span class="friend-sub">浙江大学 · 学术主页</span>
                 </a>
-                <a href="https://www.bmpi.dev/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">💡</span>
-                    <span class="friend-name">BMPI</span>
-                    <span class="friend-desc">全栈开发者 · 投资与成长</span>
+                <a href="https://www.bmpi.dev/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">BMPI</span>
+                    <span class="friend-sub">全栈开发者 · 投资与成长</span>
                 </a>
-                <a href="https://blog.noah0932.top/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">🌿</span>
-                    <span class="friend-name">NoahのBlog</span>
-                    <span class="friend-desc">万物有灵且美，愿你我皆有光</span>
+                <a href="https://blog.noah0932.top/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">NoahのBlog</span>
+                    <span class="friend-sub">万物有灵且美，愿你我皆有光</span>
                 </a>
-                <a href="https://garden.oldwinter.top/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">🏡</span>
-                    <span class="friend-name">AboutTheGarden</span>
-                    <span class="friend-desc">数字花园 · 个人知识库</span>
+                <a href="https://garden.oldwinter.top/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">AboutTheGarden</span>
+                    <span class="friend-sub">数字花园 · 个人知识库</span>
                 </a>
-                <a href="https://xnzcode.top/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">🐶</span>
-                    <span class="friend-name">菜狗的博客</span>
-                    <span class="friend-desc">龙岩技术总监的小站</span>
+                <a href="https://xnzcode.top/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">菜狗的博客</span>
+                    <span class="friend-sub">龙岩技术总监的小站</span>
                 </a>
             </div>
             <div class="friend-add" style="margin-top:2rem;text-align:center;">

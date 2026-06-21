@@ -31,6 +31,7 @@
                 <a href="#friends">Friends</a>
                 <a href="#comments">Comments</a>
                 <a href="#contact">Contact</a>
+                <a href="/" class="lang-switch" title="切换到中文">中文</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Menu" onclick="toggleNav()">
                 <span></span><span></span><span></span>
@@ -39,11 +40,6 @@
     </nav>
 
     <a href="/" class="lang-float" title="切换到中文">中文</a>
-
-    <div id="pet" class="pet" onclick="petTalk()">
-        <div class="pet-body">🐾</div>
-        <div id="pet-bubble" class="pet-bubble" style="display:none;"></div>
-    </div>
 
     <section id="hero" class="hero">
         <div class="container">
@@ -355,37 +351,31 @@
     <section id="friends" class="section">
         <div class="container">
             <h2 class="section-title">Friends</h2>
-            <p class="contact-intro">Some cool folks I know. Let's link up 👇</p>
+            <p class="contact-intro">Let's trade links — good sites deserve to be found 👇</p>
             <div class="friends-grid" id="friends-grid">
-                <a href="https://www.sanliudata.com/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">📊</span>
-                    <span class="friend-name">Hugo He</span>
-                    <span class="friend-desc">Data science & personal knowledge</span>
+                <a href="https://www.sanliudata.com/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">Hugo He</span>
+                    <span class="friend-sub">Data science & personal knowledge</span>
                 </a>
-                <a href="https://www.genggc.org/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">🎓</span>
-                    <span class="friend-name">Guangchao Geng</span>
-                    <span class="friend-desc">Zhejiang University · Academic</span>
+                <a href="https://www.genggc.org/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">Guangchao Geng</span>
+                    <span class="friend-sub">Zhejiang University · Academic</span>
                 </a>
-                <a href="https://www.bmpi.dev/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">💡</span>
-                    <span class="friend-name">BMPI</span>
-                    <span class="friend-desc">Full-stack dev · Investing & growth</span>
+                <a href="https://www.bmpi.dev/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">BMPI</span>
+                    <span class="friend-sub">Full-stack dev · Investing & growth</span>
                 </a>
-                <a href="https://blog.noah0932.top/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">🌿</span>
-                    <span class="friend-name">Noah's Blog</span>
-                    <span class="friend-desc">Everything has a soul</span>
+                <a href="https://blog.noah0932.top/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">Noah's Blog</span>
+                    <span class="friend-sub">Everything has a soul</span>
                 </a>
-                <a href="https://garden.oldwinter.top/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">🏡</span>
-                    <span class="friend-name">AboutTheGarden</span>
-                    <span class="friend-desc">Digital garden · Knowledge base</span>
+                <a href="https://garden.oldwinter.top/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">AboutTheGarden</span>
+                    <span class="friend-sub">Digital garden · Knowledge base</span>
                 </a>
-                <a href="https://xnzcode.top/" class="friend-card" target="_blank" rel="noopener">
-                    <span class="friend-avatar">🐶</span>
-                    <span class="friend-name">CaiGou's Blog</span>
-                    <span class="friend-desc">Tech director from Longyan</span>
+                <a href="https://xnzcode.top/" class="friend-item" target="_blank" rel="noopener">
+                    <span class="friend-title">CaiGou's Blog</span>
+                    <span class="friend-sub">Tech director from Longyan</span>
                 </a>
             </div>
             <div class="friend-add" style="margin-top:2rem;text-align:center;">
