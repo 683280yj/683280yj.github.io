@@ -164,25 +164,6 @@ body {
 }
 .lang-switch:hover { background: var(--color-accent); color: #fff !important; }
 
-/* ===== Floating Lang Button ===== */
-.lang-float {
-    position: fixed;
-    bottom: 120px; right: 24px;
-    width: 44px; height: 44px;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--color-accent);
-    color: #fff;
-    font-size: 12px; font-weight: 700;
-    border-radius: 50%;
-    text-decoration: none;
-    z-index: 90;
-    box-shadow: 0 4px 16px rgba(99,102,241,0.35);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-.lang-float:hover {
-    transform: scale(1.12);
-    box-shadow: 0 6px 24px rgba(99,102,241,0.5);
-}
 
 /* ===== Hero ===== */
 .hero {
@@ -511,7 +492,7 @@ body {
 .contact-value { font-size: 14px; font-weight: 600; display: block; }
 
 /* ===== Comments ===== */
-.giscus-wrap { max-width: 100%; margin-top: 8px; }
+.giscus-wrap { max-width: 100%; overflow-x: hidden; margin-top: 8px; }
 
 /* ===== Footer ===== */
 .footer {
@@ -585,25 +566,10 @@ body {
 .modal-success { margin-top: 12px; }
 
 /* ===== APlayer Overrides ===== */
-.aplayer {
-    z-index: 85 !important;
-    margin: 0 !important;
-}
-.aplayer.aplayer-fixed {
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-}
-.aplayer.aplayer-fixed .aplayer-body {
-    position: relative !important;
-}
-.aplayer.aplayer-fixed.aplayer-mini .aplayer-body {
-    max-width: 380px !important;
-    margin: 0 auto !important;
-}
-
-/* APlayer bottom spacing for fixed mini player */
-.aplayer.aplayer-fixed + * { margin-bottom: 60px; }
+.aplayer { z-index: 85 !important; margin: 0 !important; }
+.aplayer.aplayer-fixed { bottom: 0 !important; left: 0 !important; right: 0 !important; }
+.aplayer.aplayer-fixed .aplayer-body { position: relative !important; }
+.aplayer.aplayer-fixed.aplayer-mini .aplayer-body { max-width: 380px !important; margin: 0 auto !important; }
 
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
@@ -650,15 +616,8 @@ body {
     .hero-title { font-size: 15px; }
     .section-title { font-size: 20px; }
 
-    .lang-float { bottom: 100px; right: 16px; }
     .friends-grid { grid-template-columns: 1fr; }
     .contact-links { grid-template-columns: 1fr; }
 
     .section { padding: 44px 0; }
-}
-
-/* ===== Giscus wrap ===== */
-.giscus-wrap {
-    max-width: 100%;
-    overflow-x: hidden;
 }

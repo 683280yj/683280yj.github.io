@@ -202,7 +202,7 @@ var observer = new IntersectionObserver(function (entries) {
     });
 }, observerOptions);
 
-document.querySelectorAll('.about-card, .project-card, .timeline-item, .contact-item, .skill-category, .friend-card').forEach(function (el) {
+document.querySelectorAll('.about-card, .project-card, .timeline-item, .contact-item, .skill-category').forEach(function (el) {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
