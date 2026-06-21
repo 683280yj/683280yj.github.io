@@ -634,3 +634,15 @@ a:hover {
         left: -29px;
     }
 }
+
+/* --- Giscus Comments --- */
+.giscus-wrap {
+    margin-top: 0.5rem;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.giscus-wrap iframe {
+    width: 100% !important;
+    max-width: 100% !important;
+}
