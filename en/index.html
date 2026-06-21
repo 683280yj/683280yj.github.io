@@ -16,7 +16,7 @@
     <nav class="nav">
         <div class="nav-inner">
             <a href="#hero" class="nav-logo">YJ</a>
-            <div class="nav-links">
+            <div class="nav-links" id="nav-menu">
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
                 <a href="#tools">Tools</a>
@@ -26,10 +26,18 @@
                 <a href="#contact">Contact</a>
                 <a href="/" class="lang-switch" title="切换到中文">中文</a>
             </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
     <a href="/" class="lang-float" title="切换到中文">中文</a>
+
+    <div id="pet" class="pet" onclick="petTalk()">
+        <div class="pet-body">🐱</div>
+        <div id="pet-bubble" class="pet-bubble" style="display:none;"></div>
+    </div>
 
     <section id="hero" class="hero">
         <div class="container">
@@ -213,17 +221,6 @@
 
                 <article class="project-card">
                     <div class="project-header">
-                        <span class="project-tag">Open Source</span>
-                        <h3>Temp Mail — Disposable Email Service</h3>
-                    </div>
-                    <p class="project-desc">Cloudflare-deployed temporary email system with anonymous signup, inbox, and admin console. Ideal for registration verification and privacy protection, featuring a clean management interface.</p>
-                    <div class="project-links">
-                        <a href="https://mail.idky.tech/admin" class="project-link" target="_blank" rel="noopener">Admin Console →</a>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-header">
                         <span class="project-tag">Personal Page</span>
                         <h3>Bonjour — AI Job-Hunting Profile</h3>
                     </div>
@@ -298,15 +295,15 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2024 – Present</span>
+                        <span class="timeline-date">2025 – Present</span>
                         <h3>AUFE · M.A. in Digital Economy</h3>
-                        <p>Research focus: impact of rural digital economy participation on household consumption structure. Empirical analysis using CFPS microdata.</p>
+                        <p>Enrolled Sep 2025. Research focus: impact of rural digital economy participation on household consumption structure. Empirical analysis using CFPS microdata.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2024 – 2025</span>
+                        <span class="timeline-date">Mar 2025 – May 2025</span>
                         <h3>Chery · Brand Manager (Intern)</h3>
                         <p>Led brand strategy and project execution for Jaecoo / Omoda — brand positioning, marketing campaign planning, and cross-team coordination.</p>
                     </div>
@@ -314,9 +311,17 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2023 – 2024</span>
+                        <span class="timeline-date">Jul 2024 – Oct 2024</span>
                         <h3>Xianyu · Student Ops (Intern)</h3>
                         <p>Managed university student user segment — user growth, community building, and campus scenario development.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 – 2024</span>
+                        <h3>Campus Projects · 3Cs & Innovation</h3>
+                        <p>15th National 3Cs Competition — First Prize (rural logistics optimization). Provincial Innovation Project leader, managed full project lifecycle.</p>
                     </div>
                 </div>
             </div>
@@ -338,11 +343,16 @@
                     <span class="contact-label">GitHub</span>
                     <span class="contact-value">683280yj</span>
                 </a>
-                <a href="https://idkyjun.me" class="contact-item" target="_blank" rel="noopener">
+                <a href="https://idky.tech" class="contact-item" target="_blank" rel="noopener">
                     <span class="contact-icon">🌐</span>
-                    <span class="contact-label">Website</span>
-                    <span class="contact-value">idkyjun.me</span>
+                    <span class="contact-label">Blog</span>
+                    <span class="contact-value">idky.tech</span>
                 </a>
+                <button class="contact-item" onclick="openResumeModal()" style="cursor:pointer;border:none;background:none;width:100%;text-align:left;">
+                    <span class="contact-icon">📄</span>
+                    <span class="contact-label">Resume</span>
+                    <span class="contact-value">Password required</span>
+                </button>
                 <a href="#" class="contact-item">
                     <span class="contact-icon">💼</span>
                     <span class="contact-label">LinkedIn</span>
@@ -351,6 +361,23 @@
             </div>
         </div>
     </section>
+
+    <div id="resume-modal" class="modal-overlay" onclick="closeResumeModal(event)">
+        <div class="modal-box">
+            <h3>🔒 Resume Download</h3>
+            <p>Enter the password to unlock the resume PDF</p>
+            <input type="password" id="resume-password" class="modal-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkResumePwd()">
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="checkResumePwd()">Confirm</button>
+                <button class="btn btn-outline" onclick="closeResumeModal()">Cancel</button>
+            </div>
+            <p id="resume-error" class="modal-error"></p>
+            <div id="resume-success" class="modal-success" style="display:none;">
+                <p>✅ Verified!</p>
+                <a href="/files/resume.pdf" download class="btn btn-primary" style="margin-top:8px;display:inline-block;">Download PDF</a>
+            </div>
+        </div>
+    </div>
 
     <section id="comments" class="section section-alt">
         <div class="container">

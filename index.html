@@ -16,7 +16,7 @@
     <nav class="nav">
         <div class="nav-inner">
             <a href="#hero" class="nav-logo">YJ</a>
-            <div class="nav-links">
+            <div class="nav-links" id="nav-menu">
                 <a href="#about">关于</a>
                 <a href="#skills">技能</a>
                 <a href="#tools">工具</a>
@@ -26,10 +26,18 @@
                 <a href="#contact">联系</a>
                 <a href="/en/" class="lang-switch" title="Switch to English">EN</a>
             </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="菜单" onclick="toggleNav()">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
     <a href="/en/" class="lang-float" title="Switch to English">EN</a>
+
+    <div id="pet" class="pet" onclick="petTalk()">
+        <div class="pet-body">🐱</div>
+        <div id="pet-bubble" class="pet-bubble" style="display:none;"></div>
+    </div>
 
     <section id="hero" class="hero">
         <div class="container">
@@ -288,15 +296,15 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2024 – 至今</span>
+                        <span class="timeline-date">2025 – 至今</span>
                         <h3>安徽财经大学 · 数字经济硕士</h3>
-                        <p>研究方向：农村家庭数字经济参与对消费结构升级的影响。基于 CFPS 微观数据开展实证分析。</p>
+                        <p>2025 年 9 月入学，研究方向：农村家庭数字经济参与对消费结构升级的影响。基于 CFPS 微观数据开展实证分析。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2024 – 2025</span>
+                        <span class="timeline-date">2025.3 – 2025.5</span>
                         <h3>奇瑞 · 品牌经理（实习）</h3>
                         <p>负责 Jaecoo / Omoda 双品牌的品牌策略与项目推进，涵盖品牌定位与市场活动策划。</p>
                     </div>
@@ -304,9 +312,17 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2023 – 2024</span>
+                        <span class="timeline-date">2024.7 – 2024.10</span>
                         <h3>闲鱼 · 大学生运营（实习）</h3>
                         <p>负责大学生用户群体运营，涵盖用户增长、社区建设与校园场景拓展。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 – 2024</span>
+                        <h3>校内项目 · 三创赛 & 大创</h3>
+                        <p>第十五届三创赛全国一等奖（农村物流选址优化方向）；省级大创项目负责人，完成从立项到结项的全流程管理。</p>
                     </div>
                 </div>
             </div>
@@ -333,6 +349,11 @@
                     <span class="contact-label">个人网站</span>
                     <span class="contact-value">idkyjun.me</span>
                 </a>
+                <button class="contact-item" onclick="openResumeModal()" style="cursor:pointer;border:none;background:none;width:100%;text-align:left;">
+                    <span class="contact-icon">📄</span>
+                    <span class="contact-label">简历下载</span>
+                    <span class="contact-value">点击输入密码获取</span>
+                </button>
                 <a href="#" class="contact-item">
                     <span class="contact-icon">💼</span>
                     <span class="contact-label">LinkedIn</span>
@@ -341,6 +362,23 @@
             </div>
         </div>
     </section>
+
+    <div id="resume-modal" class="modal-overlay" onclick="closeResumeModal(event)">
+        <div class="modal-box">
+            <h3>🔒 简历下载</h3>
+            <p>请输入密码以获取简历下载链接</p>
+            <input type="password" id="resume-password" class="modal-input" placeholder="请输入密码" onkeydown="if(event.key==='Enter')checkResumePwd()">
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="checkResumePwd()">确认</button>
+                <button class="btn btn-outline" onclick="closeResumeModal()">取消</button>
+            </div>
+            <p id="resume-error" class="modal-error"></p>
+            <div id="resume-success" class="modal-success" style="display:none;">
+                <p>✅ 验证通过！</p>
+                <a href="/files/resume.pdf" download class="btn btn-primary" style="margin-top:8px;display:inline-block;">下载简历 PDF</a>
+            </div>
+        </div>
+    </div>
 
     <section id="comments" class="section section-alt">
         <div class="container">

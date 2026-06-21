@@ -113,6 +113,44 @@ a:hover {
     color: var(--color-accent);
 }
 
+/* Hamburger toggle */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    transform-origin: center;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 /* --- Hero --- */
 .hero {
     padding: 80px 0 64px;
@@ -622,6 +660,41 @@ a:hover {
         font-size: 13px;
     }
 
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 260px;
+        height: 100vh;
+        flex-direction: column;
+        background: var(--color-surface);
+        box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+        padding: 80px 28px 32px;
+        gap: 8px;
+        transition: right 0.3s ease;
+        z-index: 100;
+        overflow-y: auto;
+    }
+
+    .nav-links.open {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .nav-links .lang-switch {
+        margin-top: 8px;
+        align-self: flex-start;
+    }
+
     .project-card {
         padding: 20px;
     }
@@ -689,6 +762,137 @@ a:hover {
         width: 42px;
         height: 42px;
         font-size: 12px;
+    }
+}
+
+/* --- Modal (Resume Password) --- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-box {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    max-width: 380px;
+    width: 90%;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+}
+
+.modal-box h3 {
+    margin-bottom: 8px;
+    font-size: 1.15rem;
+}
+
+.modal-box p {
+    color: var(--color-text-secondary);
+    font-size: 0.92rem;
+    margin-bottom: 16px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition);
+    box-sizing: border-box;
+}
+
+.modal-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-light);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    justify-content: center;
+}
+
+.modal-error {
+    color: #dc2626;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    display: none;
+}
+
+.modal-success {
+    margin-top: 16px;
+}
+
+.modal-success p {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+/* --- Pet Widget --- */
+.pet {
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    z-index: 998;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.pet:hover {
+    transform: scale(1.15);
+}
+
+.pet-body {
+    font-size: 42px;
+    animation: petBounce 2s ease-in-out infinite;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+}
+
+@keyframes petBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.pet-bubble {
+    position: absolute;
+    bottom: 56px;
+    right: 0;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 13px;
+    padding: 8px 14px;
+    border-radius: 12px 12px 4px 12px;
+    box-shadow: var(--shadow-md);
+    white-space: nowrap;
+    animation: bubbleFade 0.3s ease;
+    max-width: 220px;
+    text-align: center;
+}
+
+@keyframes bubbleFade {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+    .pet {
+        bottom: 68px;
+        right: 16px;
+    }
+    .pet-body {
+        font-size: 34px;
     }
 }
 
