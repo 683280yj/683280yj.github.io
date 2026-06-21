@@ -487,3 +487,51 @@ function md5(string) {
     function add32(a, b) { return (a + b) & 0xFFFFFFFF; }
     return hex(md5cycle([1732584193, -271733879, -1732584194, 271733878], md5blk(string)));
 }
+
+// ==================== Dark Mode ====================
+(function () {
+    var STORAGE_KEY = 'idky-theme';
+    var html = document.documentElement;
+    var toggle = document.getElementById('theme-toggle');
+
+    function getTheme() {
+        var stored = localStorage.getItem(STORAGE_KEY);
+        if (stored === 'dark' || stored === 'light') return stored;
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+        return 'light';
+    }
+
+    function applyTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem(STORAGE_KEY, theme);
+        if (toggle) {
+            toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+            toggle.setAttribute('title', theme === 'dark' ? '切换亮色模式' : '切换暗色模式');
+        }
+        // Sync Giscus
+        var iframe = document.querySelector('.giscus-frame');
+        if (iframe && iframe.contentWindow) {
+            iframe.contentWindow.postMessage({
+                giscus: { setConfig: { theme: theme === 'dark' ? 'dark' : 'light' } }
+            }, 'https://giscus.app');
+        }
+    }
+
+    function toggleTheme() {
+        var current = html.getAttribute('data-theme');
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    // Init
+    applyTheme(getTheme());
+
+    // Toggle button
+    if (toggle) toggle.addEventListener('click', toggleTheme);
+
+    // Listen for system preference changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+        if (!localStorage.getItem(STORAGE_KEY)) {
+            applyTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+})();

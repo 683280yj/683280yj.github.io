@@ -12,6 +12,7 @@
     --color-border: #e8e5e0;
     --color-border-light: #f0ede8;
     --color-shadow: rgba(0,0,0,0.06);
+    --nav-bg: rgba(250,249,247,0.85);
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 20px;
@@ -19,6 +20,55 @@
     --max-width: 860px;
     --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
 }
+
+/* ===== Dark Theme ===== */
+[data-theme="dark"] {
+    --color-bg: #12121e;
+    --color-surface: #1e1e33;
+    --color-surface-alt: #16162a;
+    --color-text: #e2e2f0;
+    --color-text-light: #9090ab;
+    --color-text-lighter: #646480;
+    --color-accent: #a5b4fc;
+    --color-accent-light: rgba(165,180,252,0.1);
+    --color-accent-dark: #818cf8;
+    --color-border: #2a2a48;
+    --color-border-light: #20203d;
+    --color-shadow: rgba(0,0,0,0.38);
+    --nav-bg: rgba(18,18,30,0.88);
+}
+
+/* Theme transition — applied to key containers for smooth switching */
+body, .nav, .hero, .section, .section-alt,
+.about-card, .project-card, .skill-tag, .timeline-content,
+.contact-item, .friend-item, .friends-grid,
+.modal-box, .modal-overlay, .modal-input,
+.footer, .aplayer, .btn, .lang-switch,
+#mood-text, .project-tag {
+    transition: background-color 0.3s ease, color 0.25s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    padding: 0;
+    font-size: 16px;
+    background: var(--color-accent-light);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
+    transition: background 0.25s, transform 0.2s;
+}
+.theme-toggle:hover {
+    background: var(--color-accent);
+    transform: rotate(30deg);
+}
+.theme-toggle:active { transform: rotate(180deg) scale(0.9); }
+[data-theme="dark"] .theme-toggle:hover { background: var(--color-accent); }
 
 /* ===== Reset ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -83,7 +133,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(250,249,247,0.85);
+    background: var(--nav-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
@@ -415,7 +465,7 @@ body {
 }
 
 .friend-item:hover {
-    background: #f0eeff;
+    background: var(--color-accent-light);
 }
 
 .friend-title {
