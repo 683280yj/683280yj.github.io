@@ -1,180 +1,281 @@
-<!doctype html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Green Bean Cake | idkyjun.me</title>
-    <meta name="description" content="A practical personal homepage for quick context, projects, notes, contact, and currently shared work.">
-    <meta name="author" content="Green Bean Cake">
-    <meta property="og:type" content="profile">
-    <meta property="og:title" content="Green Bean Cake | idkyjun.me">
-    <meta property="og:description" content="Personal notes on learning, life, English practice, and small technical experiments.">
-    <meta property="og:url" content="https://idkyjun.me/en/">
-    <meta property="og:image" content="https://idkyjun.me/images/avatar.png">
-    <link rel="canonical" href="https://idkyjun.me/en/">
-    <link rel="alternate" hreflang="zh-CN" href="https://idkyjun.me/">
-    <link rel="alternate" hreflang="en" href="https://idkyjun.me/en/">
-    <link rel="shortcut icon" href="/favicon.ico?v=1722085639685">
-    <link rel="stylesheet" href="/styles/home.css?v=20260528d">
-    <script>
-      document.documentElement.dataset.theme = localStorage.getItem('site-theme') || 'light';
-    </script>
-  </head>
-  <body class="en-home">
-    <header class="topbar">
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="nav-name" href="/en/">Green Bean Cake</a>
-        <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#notes">Writing</a>
-          <a href="#misc">Misc</a>
-        </div>
-        <div class="nav-tools">
-          <button class="tool-button" type="button" data-theme-toggle>Mode</button>
-          <a class="tool-button" href="/">中</a>
-          <a class="tool-button is-active" href="/en/" aria-current="page">EN</a>
-        </div>
-      </nav>
-    </header>
-
-    <main class="page page-en">
-      <section class="profile" id="about">
-        <figure class="portrait-frame">
-          <img src="/images/avatar.png" alt="Green Bean Cake avatar">
-        </figure>
-
-        <div class="profile-copy">
-          <h1>Green Bean Cake</h1>
-          <p class="name-line">你有绿豆糕嘛 <span>idkyjun.me</span></p>
-          <p class="pronunciation">Practical homepage / Notes / Small systems</p>
-
-          <p class="affiliation">GitHub Pages · Namecheap · Cloudflare</p>
-          <p class="role">A compact place to understand what I am building, what I am learning, and how to reach me.</p>
-
-          <div class="bio">
-            <p>I use this site as a long-running personal index: project notes, competition reflections, English practice, and infrastructure notes around GitHub Pages, DNS, Notion, Git, and Docker.</p>
-            <p>The goal is practical: if someone opens this page, they should quickly know what I care about, where my work lives, and which notes are worth reading first.</p>
-          </div>
-
-          <div class="actions">
-            <a class="button button-solid" href="mailto:yggcmm@outlook.com">Email</a>
-            <a class="button" href="/archives/">Archive</a>
-            <a class="button" href="https://github.com/683280yj" target="_blank" rel="noreferrer">GitHub</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section compact-section" id="quick">
-        <h2>Quick Links</h2>
-        <div class="rule"></div>
-        <div class="quick-grid">
-          <a class="quick-card" href="/archives/">
-            <strong>Archive</strong>
-            <span>All posts and older notes</span>
-          </a>
-          <a class="quick-card" href="/share/">
-            <strong>Chinese Share Hub</strong>
-            <span>Files, summaries, and shared notes</span>
-          </a>
-          <a class="quick-card" href="https://github.com/683280yj" target="_blank" rel="noreferrer">
-            <strong>GitHub</strong>
-            <span>Code and experiments</span>
-          </a>
-        </div>
-      </section>
-
-      <section class="section" id="projects">
-        <h2>Current Focus</h2>
-        <div class="rule"></div>
-        <div class="paper-list">
-          <article class="entry">
-            <h3><a href="/share/">Personal Knowledge Sharing</a></h3>
-            <p class="entry-meta">Chinese summary hub for files, notes, and reusable learning artifacts</p>
-            <p>Turning scattered posts and tool notes into a clearer collection that can be shared and revisited.</p>
-          </article>
-          <article class="entry">
-            <h3><a href="/xue-xi-git-he-docker/">Web Infrastructure</a></h3>
-            <p class="entry-meta">GitHub Pages, custom domains, DNS, HTTPS, Git, and deployment basics</p>
-            <p>Keeping the personal site stable while learning the small pieces that make publishing reliable.</p>
-          </article>
-          <article class="entry">
-            <h3><a href="/5SqbiKS3F/">English Practice</a></h3>
-            <p class="entry-meta">Expression notes and everyday practice</p>
-            <p>Starting from small phrases and sentences, turning English practice into a lasting record.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="notes">
-        <h2>Selected Writing</h2>
-        <div class="rule"></div>
-        <div class="timeline">
-          <article class="note">
-            <time datetime="2024-07-27">2024</time>
-            <div>
-              <h3><a href="/sleep-up-late/">7.23</a></h3>
-              <p>Blogging, image hosting, fitness, and a few life observations.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yao Jun — Digital Economy Researcher &amp; Tech Practitioner. Master's student at Anhui University of Finance and Economics, researching the impact of digital economy participation on rural household consumption structure.">
+    <meta name="keywords" content="Yao Jun, digital economy, empirical research, Stata, product design, brand management">
+    <meta property="og:title" content="Yao Jun | Personal Homepage">
+    <meta property="og:description" content="Digital Economy Researcher · Tech Practitioner">
+    <meta property="og:type" content="website">
+    <title>Yao Jun | Personal Homepage</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧑‍💻</text></svg>">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">YJ</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
             </div>
-          </article>
-          <article class="note">
-            <time datetime="2024-07-23">2024</time>
-            <div>
-              <h3><a href="/san-chuang-bi-sai-xiao-ji/">Competition Reflection</a></h3>
-              <p>A short reflection after the competition.</p>
-            </div>
-          </article>
-          <article class="note">
-            <time datetime="2024-07-23">2024</time>
-            <div>
-              <h3><a href="/guan-yu-wei-zhi/">About Location</a></h3>
-              <p>A small English note on "locate on" and "locate in".</p>
-            </div>
-          </article>
         </div>
-      </section>
+    </nav>
 
-      <section class="section" id="misc">
-        <h2>Misc</h2>
-        <div class="rule"></div>
-        <div class="misc-grid">
-          <a class="misc-card" href="/notion-guan-yu-datebase-de-xin-gong-neng/">
-            <strong>Notion</strong>
-            <span>Databases and knowledge systems</span>
-          </a>
-          <a class="misc-card" href="/tags/">
-            <strong>Tags</strong>
-            <span>Browse posts by tags</span>
-          </a>
-          <a class="misc-card" href="/atom.xml">
-            <strong>RSS</strong>
-            <span>Subscribe to updates</span>
-          </a>
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-greeting">Hi, I'm</p>
+                <h1 class="hero-name">Yao Jun</h1>
+                <p class="hero-title">Digital Economy Researcher · Tech Practitioner</p>
+                <p class="hero-bio">
+                    Master's student in Digital Economy at Anhui University of Finance and Economics, researching the impact of digital economy participation on rural household consumption structure. Active in the internet tech product space, driven by data and design.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                </div>
+            </div>
         </div>
-      </section>
-    </main>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">🎓</div>
+                    <h3>Academic</h3>
+                    <p>Master's in Digital Economy at AUFE. Proficient in empirical methods including DEPI, CSU, mediation effects, and moderation effects. Conducting causal inference research on rural household digital economy participation using CFPS microdata.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">💻</div>
+                    <h3>Tech Practice</h3>
+                    <p>Contributed to Tencent's WorkBuddy project and currently working at Alibaba in a technical role. Skilled in product design, frontend development, and data modeling.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">📊</div>
+                    <h3>Industry</h3>
+                    <p>Former Brand Manager at Chery (Jaecoo / Omoda), Operations at Xianyu (Idle Fish). Experience spanning automotive branding, e-commerce platforms, and AI products.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Empirical Research</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Stata</span>
+                        <span class="skill-tag">CFPS</span>
+                        <span class="skill-tag">DEPI</span>
+                        <span class="skill-tag">CSU</span>
+                        <span class="skill-tag">Mediation</span>
+                        <span class="skill-tag">Moderation</span>
+                        <span class="skill-tag">Panel FE</span>
+                        <span class="skill-tag">IV-2SLS</span>
+                        <span class="skill-tag">Clustered SE</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Product &amp; Design</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Product Design</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Ardot</span>
+                        <span class="skill-tag">UI/UX</span>
+                        <span class="skill-tag">Interaction</span>
+                        <span class="skill-tag">Responsive</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub Pages</span>
+                        <span class="skill-tag">Cloudflare</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Ops &amp; Brand</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Brand Mgmt</span>
+                        <span class="skill-tag">User Operations</span>
+                        <span class="skill-tag">Content Creation</span>
+                        <span class="skill-tag">Wind Terminal</span>
+                        <span class="skill-tag">Resume Coaching</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag">AI Product</span>
+                        <h3>WorkBuddy Intelligent Design Assistant</h3>
+                    </div>
+                    <p class="project-desc">Tencent's AI collaboration tool — design capability module. Supports generating UI interfaces, components, and design systems from text descriptions. Contributed to product workflow definition and design capability development.</p>
+                    <div class="project-links">
+                        <a href="https://www.codebuddy.cn" class="project-link" target="_blank" rel="noopener">Learn More →</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag">Thesis</span>
+                        <h3>Impact of Rural Digital Economy Participation on Consumption Structure</h3>
+                    </div>
+                    <p class="project-desc">Master's thesis using CFPS 2010–2022 Anhui rural sample with Stata. Employs panel fixed effects, mediation, moderation, and IV approaches. Targeting <em>Journal of Agrotechnical Economics</em> and above.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Details →</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag">Brand Mgmt</span>
+                        <h3>Chery Jaecoo / Omoda</h3>
+                    </div>
+                    <p class="project-desc">Brand Manager responsible for Chery's Jaecoo and Omoda dual-brand strategy and project execution — brand positioning, marketing campaigns, and cross-functional coordination.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Details →</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag">User Ops</span>
+                        <h3>Xianyu University Student Operations</h3>
+                    </div>
+                    <p class="project-desc">Led user operations for the university student segment on Xianyu (Idle Fish). Drove growth strategies, community engagement, and campus scenario expansion. Built hands-on C-end ops and data analysis experience.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Learn More →</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag">Website</span>
+                        <h3>idkyjun.me</h3>
+                    </div>
+                    <p class="project-desc">Personal academic and portfolio site built with Gridea, hosted on Cloudflare. Inspired by zirconeey's academic style. Showcases research, projects, and tech practice.</p>
+                    <div class="project-links">
+                        <a href="https://idkyjun.me" class="project-link" target="_blank" rel="noopener">Visit →</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag">Writing</span>
+                        <h3>Resume &amp; Interview Guide</h3>
+                    </div>
+                    <p class="project-desc">Drawing from experience coaching 20+ developers on resume revision. Writing a systematic guide covering resume structure optimization, common pitfalls, and interview strategies.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Read →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Education &amp; Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024 – Present</span>
+                        <h3>AUFE · M.A. in Digital Economy</h3>
+                        <p>Research focus: impact of rural digital economy participation on household consumption structure. Empirical analysis using CFPS microdata.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Summer 2026</span>
+                        <h3>Alibaba · Tech (Summer Intern)</h3>
+                        <p>Technical role at Alibaba, also supporting summer intern recruitment initiatives.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025 – 2026</span>
+                        <h3>Tencent · WorkBuddy Project</h3>
+                        <p>Contributing to the development of WorkBuddy, an AI collaboration tool. Focused on intelligent design capabilities and user experience optimization.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024 – 2025</span>
+                        <h3>Chery · Brand Manager (Intern)</h3>
+                        <p>Led brand strategy and project execution for Jaecoo / Omoda — brand positioning, marketing campaign planning, and cross-team coordination.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 – 2024</span>
+                        <h3>Xianyu · Student Ops (Intern)</h3>
+                        <p>Managed university student user segment — user growth, community building, and campus scenario development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p class="contact-intro">Open to academic collaborations, tech opportunities, or just a chat.</p>
+            <div class="contact-links">
+                <a href="mailto:yaojun@example.com" class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value">yaojun@example.com</span>
+                </a>
+                <a href="https://github.com/683280yj" class="contact-item" target="_blank" rel="noopener">
+                    <span class="contact-icon">🐙</span>
+                    <span class="contact-label">GitHub</span>
+                    <span class="contact-value">683280yj</span>
+                </a>
+                <a href="https://idkyjun.me" class="contact-item" target="_blank" rel="noopener">
+                    <span class="contact-icon">🌐</span>
+                    <span class="contact-label">Website</span>
+                    <span class="contact-value">idkyjun.me</span>
+                </a>
+                <a href="#" class="contact-item">
+                    <span class="contact-icon">💼</span>
+                    <span class="contact-label">LinkedIn</span>
+                    <span class="contact-value">Yao Jun</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <footer class="footer">
-      <span>© 2026 idkyjun.me</span>
-      <a href="#about">Back to top</a>
+        <div class="container">
+            <p>&copy; 2026 Yao Jun. Built with ❤️ · Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a></p>
+        </div>
     </footer>
 
-    <script>
-      (function () {
-        var root = document.documentElement;
-        var themeButton = document.querySelector('[data-theme-toggle]');
-        function setTheme(theme) {
-          root.dataset.theme = theme;
-          localStorage.setItem('site-theme', theme);
-          if (themeButton) themeButton.textContent = theme === 'dark' ? 'Light' : 'Mode';
-        }
-        if (themeButton) {
-          themeButton.addEventListener('click', function () {
-            setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
-          });
-        }
-        setTheme(root.dataset.theme || 'light');
-      })();
-    </script>
-  </body>
+    <script src="../script.js"></script>
+</body>
 </html>
