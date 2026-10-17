@@ -260,14 +260,6 @@
       content: ''; position: absolute; inset: 0; opacity: 0.35; pointer-events: none; z-index: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     }
-    .hero-bg-name {
-      position: absolute; bottom: -5%; left: 50%; transform: translateX(-50%);
-      font-family: var(--font-display); font-size: clamp(8rem, 22vw, 20rem);
-      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--bg-name-color); white-space: nowrap;
-      pointer-events: none; user-select: none; z-index: 0; line-height: 1;
-    }
-    body.dark-theme .hero-bg-name { font-family: var(--font-body); }
     .hero-content { position: relative; z-index: 1; max-width: 720px; }
     .hero-logo { width: 80px; height: 60px; color: var(--fg); margin-bottom: 2rem; opacity: 0; animation: fadeInUp 0.9s ease forwards; animation-delay: 0.2s; }
     .hero-eyebrow {
@@ -286,12 +278,6 @@
       opacity: 0; animation: fadeInUp 0.9s ease forwards; animation-delay: 0.7s;
     }
     .hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; opacity: 0; animation: fadeInUp 0.9s ease forwards; animation-delay: 0.9s; }
-
-    /* Name display — toggle based on language */
-    .name-cn { display: inline; }
-    .name-en { display: none; }
-    body.lang-non-cn .name-cn { display: none; }
-    body.lang-non-cn .name-en { display: inline; }
 
     /* ================================================
        BUTTONS
@@ -540,7 +526,6 @@
     .project-card:hover .ob-deco { opacity: 0.18; filter: drop-shadow(0 0 6px var(--glow-color)); }
     body.dark-theme .project-card:hover .ob-deco { opacity: 0.25; }
 
-    .hero-bg-name { display: none; }
     .hero-bg-ob {
       position: absolute; bottom: 2%; left: 50%; transform: translateX(-50%);
       width: clamp(320px, 50vw, 680px); height: auto;
@@ -639,7 +624,6 @@
       .hero { min-height: 100vh; }
       .projects-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
-      .hero-bg-name { font-size: clamp(4rem, 30vw, 8rem); bottom: 5%; }
       header .container { height: 56px; }
       .cap-card { grid-template-columns: 40px 1fr; gap: 1rem; padding: 1.75rem 0.75rem 2rem; }
       .cap-num { width: 28px; height: 34px; }
@@ -652,11 +636,31 @@
       .back-to-top { bottom: 1.25rem; right: 1.25rem; width: 38px; height: 38px; }
       .guestbook-wrap { padding: 1.25rem; }
     }
+
+    .skip-link {
+      position: absolute; left: 1rem; top: -40px; z-index: 200;
+      background: var(--fg); color: var(--bg); padding: 0.5rem 1rem;
+    }
+    .skip-link:focus { top: 0.5rem; }
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal, .hero-logo, .hero-eyebrow, .hero p, .hero-cta {
+        opacity: 1; transform: none; filter: none; animation: none; transition: none;
+      }
+      .tw-cursor { animation: none; }
+    }
   </style>
+  <noscript>
+    <style>.reveal { opacity: 1; transform: none; filter: none; }</style>
+  </noscript>
 </head>
 <body>
-  <!-- YJ Logo + Oracle Bone SVG (reusable) -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <a class="skip-link" href="#content" data-i18n="skip">跳到主要内容</a>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
     <symbol id="yj-logo" viewBox="0 0 52 38">
       <path d="M4 3L17 21V35" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M30 3L17 21" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
@@ -751,8 +755,8 @@
 
   <header id="header" data-component="Site Header">
     <div class="container">
-      <a href="/" class="logo-link">
-        <svg class="logo-svg"><use href="#yj-logo"/></svg>
+      <a href="/" class="logo-link" aria-label="姚军 JUNYAO">
+        <svg class="logo-svg" aria-hidden="true"><use href="#yj-logo"/></svg>
       </a>
       <nav data-component="Navigation">
         <a href="#capabilities" data-i18n="nav.do">我能做什么</a>
@@ -763,8 +767,8 @@
       </nav>
       <div class="header-controls">
         <div class="lang-switcher" data-component="Language Switcher">
-          <button class="lang-btn" id="langBtn" aria-label="Switch language">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <button class="lang-btn" id="langBtn" aria-label="Switch language" aria-expanded="false" aria-controls="langDropdown">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             <span class="lang-label-zh-cn">简体</span>
             <span class="lang-label-zh-tw" style="display:none">繁體</span>
             <span class="lang-label-en" style="display:none">EN</span>
@@ -780,21 +784,20 @@
           </div>
         </div>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- Hero -->
+  <main id="content" tabindex="-1">
+    <h1 class="visually-hidden">姚军 JUNYAO</h1>
     <section class="hero" data-od-id="hero" data-component="Hero Section">
-      <div class="hero-bg-name">YAOJUN</div>
-      <svg class="hero-bg-ob"><use href="#ob-yaojun"/></svg>
+      <svg class="hero-bg-ob" aria-hidden="true"><use href="#ob-yaojun"/></svg>
       <div class="container">
         <div class="hero-content">
-          <svg class="hero-logo"><use href="#yj-logo"/></svg>
+          <svg class="hero-logo" aria-hidden="true"><use href="#yj-logo"/></svg>
           <div class="hero-eyebrow" data-i18n="hero.eyebrow">产品 · 技术 · 数据</div>
           <div class="hero-typewriter"><span class="tw-prefix">&gt; </span><span id="typewriter"></span><span id="tw-cursor" class="tw-cursor">|</span></div>
           <p data-i18n="hero.subtitle">你好，我是姚军。欢迎来到我的作品集。这里收录了我在产品、技术与数据方面的一些实践与探索。</p>
@@ -806,10 +809,10 @@
       </div>
     </section>
 
-    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+    <div class="ob-divider"><svg aria-hidden="true"><use href="#ob-divider"/></svg></div>
 
     <!-- What I Do -->
-    <section id="capabilities" data-od-id="capabilities" data-component="Capabilities Section">
+    <section id="capabilities" tabindex="-1" data-od-id="capabilities" data-component="Capabilities Section">
       <div class="container">
         <div class="section-header reveal">
           <span class="section-badge" data-i18n="cap.subtitle">核心能力</span>
@@ -817,21 +820,21 @@
         </div>
         <div class="capabilities-grid">
           <div class="cap-card reveal" data-component="Capability Card">
-            <svg class="cap-num"><use href="#ob-num-01"/></svg>
+            <svg class="cap-num" aria-hidden="true"><use href="#ob-num-01"/></svg>
             <div class="cap-content">
               <h3 data-i18n="cap.c1.title">产品设计</h3>
               <p data-i18n="cap.c1.desc">从用户调研到原型设计，关注真实需求与体验细节。擅长 PRD 撰写与需求优先级管理。</p>
             </div>
           </div>
           <div class="cap-card reveal" data-component="Capability Card">
-            <svg class="cap-num"><use href="#ob-num-02"/></svg>
+            <svg class="cap-num" aria-hidden="true"><use href="#ob-num-02"/></svg>
             <div class="cap-content">
               <h3 data-i18n="cap.c2.title">技术开发</h3>
               <p data-i18n="cap.c2.desc">全栈探索者，熟悉 JavaScript、Python 与 Next.js。独立开发多个开源项目并持续维护。</p>
             </div>
           </div>
           <div class="cap-card reveal" data-component="Capability Card">
-            <svg class="cap-num"><use href="#ob-num-03"/></svg>
+            <svg class="cap-num" aria-hidden="true"><use href="#ob-num-03"/></svg>
             <div class="cap-content">
               <h3 data-i18n="cap.c3.title">数据分析</h3>
               <p data-i18n="cap.c3.desc">预测建模、空间分析与可视化。用数据讲故事，让决策有依据。</p>
@@ -841,10 +844,10 @@
       </div>
     </section>
 
-    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+    <div class="ob-divider"><svg aria-hidden="true"><use href="#ob-divider"/></svg></div>
 
     <!-- Featured Project -->
-    <section id="featured" data-od-id="featured" data-component="Featured Project">
+    <section id="featured" tabindex="-1" data-od-id="featured" data-component="Featured Project">
       <div class="container">
         <div class="section-header reveal">
           <span class="section-badge" data-i18n="feat.subtitle">深度展示</span>
@@ -887,10 +890,10 @@
       </div>
     </section>
 
-    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+    <div class="ob-divider"><svg aria-hidden="true"><use href="#ob-divider"/></svg></div>
 
     <!-- Projects -->
-    <section id="projects" data-od-id="projects" data-component="Projects Section">
+    <section id="projects" tabindex="-1" data-od-id="projects" data-component="Projects Section">
       <div class="container">
         <div class="section-header reveal">
           <span class="section-badge" data-i18n="proj.subtitle">更多作品与探索</span>
@@ -898,25 +901,25 @@
         </div>
         <div class="projects-grid">
           <a href="https://github.com/683280yj/ai-relay" target="_blank" rel="noopener noreferrer" class="project-card reveal" data-component="Project Card">
-            <svg class="ob-deco"><use href="#ob-gateway"/></svg>
+            <svg class="ob-deco" aria-hidden="true"><use href="#ob-gateway"/></svg>
             <h3>AI Relay</h3>
             <p data-i18n="proj.p1.desc">Serverless AI 网关。多路由、故障转移、兼容 OpenAI，一键部署。</p>
             <div class="project-tags"><span class="tag">Serverless</span><span class="tag">Vercel</span><span class="tag">API Gateway</span></div>
           </a>
           <div class="project-card reveal" data-component="Project Card">
-            <svg class="ob-deco"><use href="#ob-compass"/></svg>
+            <svg class="ob-deco" aria-hidden="true"><use href="#ob-compass"/></svg>
             <h3>Logistics Center Research</h3>
             <p data-i18n="proj.p2.desc">农村物流中心选址研究。季节预测模型，22 组最优方案，运营成本降低 30%。</p>
             <div class="project-tags"><span class="tag">Data Analysis</span><span class="tag">GIS</span><span class="tag">Holt-Winters</span><span class="tag">Python</span></div>
           </div>
           <div class="project-card reveal" data-component="Project Card">
-            <svg class="ob-deco"><use href="#ob-trophy"/></svg>
+            <svg class="ob-deco" aria-hidden="true"><use href="#ob-trophy"/></svg>
             <h3>BUC Innovation Competition</h3>
             <p data-i18n="proj.p3.desc">产品负责人。校园服务平台，全国竞赛一等奖，用户满意度 &gt;90%。</p>
             <div class="project-tags"><span class="tag">Product Design</span><span class="tag">User Research</span><span class="tag">PRD</span><span class="tag">Leadership</span></div>
           </div>
           <div class="project-card reveal" data-component="Project Card">
-            <svg class="ob-deco"><use href="#ob-scroll"/></svg>
+            <svg class="ob-deco" aria-hidden="true"><use href="#ob-scroll"/></svg>
             <h3>vpsblog.idky.tech</h3>
             <p data-i18n="proj.p4.desc">个人技术博客。记录学习笔记、技术探索与项目复盘。</p>
             <div class="project-tags"><span class="tag">WordPress</span><span class="tag">VPS</span><span class="tag">Technical Writing</span></div>
@@ -925,10 +928,10 @@
       </div>
     </section>
 
-    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+    <div class="ob-divider"><svg aria-hidden="true"><use href="#ob-divider"/></svg></div>
 
     <!-- About -->
-    <section id="about" data-od-id="about" data-component="About Section">
+    <section id="about" tabindex="-1" data-od-id="about" data-component="About Section">
       <div class="container">
         <div class="section-header reveal">
           <span class="section-badge" data-i18n="about.subtitle">教育与经历</span>
@@ -967,10 +970,10 @@
       </div>
     </section>
 
-    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+    <div class="ob-divider"><svg aria-hidden="true"><use href="#ob-divider"/></svg></div>
 
     <!-- Skills -->
-    <section id="skills" data-od-id="skills" data-component="Skills Section">
+    <section id="skills" tabindex="-1" data-od-id="skills" data-component="Skills Section">
       <div class="container">
         <div class="section-header reveal">
           <span class="section-badge" data-i18n="skills.subtitle">工具与能力</span>
@@ -985,10 +988,10 @@
       </div>
     </section>
 
-    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+    <div class="ob-divider"><svg aria-hidden="true"><use href="#ob-divider"/></svg></div>
 
     <!-- Tinkering & Exploration -->
-    <section id="tinkering" data-od-id="tinkering" data-component="Tinkering Section">
+    <section id="tinkering" tabindex="-1" data-od-id="tinkering" data-component="Tinkering Section">
       <div class="container">
         <div class="section-header reveal">
           <span class="section-badge" data-i18n="tink.subtitle">工作之外</span>
@@ -1017,10 +1020,10 @@
       </div>
     </section>
 
-    <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+    <div class="ob-divider"><svg aria-hidden="true"><use href="#ob-divider"/></svg></div>
 
     <!-- Contact -->
-    <section id="contact" data-od-id="contact" data-component="Contact Section">
+    <section id="contact" tabindex="-1" data-od-id="contact" data-component="Contact Section">
       <div class="container">
         <div class="section-header reveal">
           <span class="section-badge" data-i18n="contact.badge">联系</span>
@@ -1037,12 +1040,10 @@
         </div>
       </div>
     </section>
-  </main>
 
-  <div class="ob-divider"><svg><use href="#ob-divider"/></svg></div>
+    <div class="ob-divider"><svg aria-hidden="true"><use href="#ob-divider"/></svg></div>
 
-  <!-- Guestbook / 留言板 -->
-  <section id="guestbook" data-od-id="guestbook" data-component="Guestbook">
+    <section id="guestbook" tabindex="-1" data-od-id="guestbook" data-component="Guestbook">
     <div class="container">
       <div class="section-header reveal">
         <span class="section-badge" data-i18n="guestbook.subtitle">踩踩我的空间</span>
@@ -1071,11 +1072,11 @@
         </noscript>
       </div>
     </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- Back to top -->
   <button id="backToTop" class="back-to-top" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
 
   <footer data-component="Site Footer">
@@ -1088,6 +1089,7 @@
     const i18n = {
       'zh-cn': {
         'nav.do': '我能做什么', 'nav.projects': '项目', 'nav.about': '关于', 'nav.guestbook': '留言板', 'nav.contact': '联系',
+        'skip': '跳到主要内容',
         'hero.eyebrow': '产品 · 技术 · 数据',
         'hero.subtitle': '你好，我是姚军。欢迎来到我的作品集。这里收录了我在产品、技术与数据方面的一些实践与探索。',
         'hero.cta1': '浏览作品',
@@ -1122,6 +1124,7 @@
       },
       'zh-tw': {
         'nav.do': '我能做什麼', 'nav.projects': '項目', 'nav.about': '關於', 'nav.guestbook': '留言板', 'nav.contact': '聯繫',
+        'skip': '跳到主要內容',
         'hero.eyebrow': '產品 · 技術 · 數據',
         'hero.subtitle': '你好，我是姚軍。歡迎來到我的作品集。這裡收錄了我在產品、技術與數據方面的一些實踐與探索。',
         'hero.cta1': '瀏覽作品',
@@ -1156,6 +1159,7 @@
       },
       'en': {
         'nav.do': 'What I Do', 'nav.projects': 'Projects', 'nav.about': 'About', 'nav.guestbook': 'Guestbook', 'nav.contact': 'Contact',
+        'skip': 'Skip to content',
         'hero.eyebrow': 'Product · Technology · Data',
         'hero.subtitle': "Hi, I'm JUNYAO. Welcome to my portfolio — a collection of my work and explorations in product, technology, and data.",
         'hero.cta1': 'View Projects',
@@ -1190,6 +1194,7 @@
       },
       'ko': {
         'nav.do': '무엇을 하나요', 'nav.projects': '프로젝트', 'nav.about': '소개', 'nav.guestbook': '방명록', 'nav.contact': '연락',
+        'skip': '본문으로 건너뛰기',
         'hero.eyebrow': '제품 · 기술 · 데이터',
         'hero.subtitle': '안녕하세요, JUNYAO입니다. 제 포트폴리오에 오신 것을 환영합니다. 제품, 기술, 데이터 분야의 작업과 탐구를 모아놓았습니다.',
         'hero.cta1': '프로젝트 보기',
@@ -1224,6 +1229,7 @@
       },
       'ja': {
         'nav.do': 'できること', 'nav.projects': 'プロジェクト', 'nav.about': 'プロフィール', 'nav.guestbook': 'ゲストブック', 'nav.contact': 'お問い合わせ',
+        'skip': '本文へ移動',
         'hero.eyebrow': 'プロダクト · テクノロジー · データ',
         'hero.subtitle': 'こんにちは、JUNYAOです。ポートフォリオへようこそ。プロダクト、テクノロジー、データに関する制作と探求をまとめています。',
         'hero.cta1': '作品を見る',
@@ -1281,17 +1287,27 @@
       document.querySelectorAll('.lang-dropdown button').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
       });
+      closeLangMenu();
+    }
+
+    function closeLangMenu() {
       document.getElementById('langDropdown').classList.remove('open');
+      document.getElementById('langBtn').setAttribute('aria-expanded', 'false');
     }
 
     document.getElementById('langBtn').addEventListener('click', e => {
       e.stopPropagation();
-      document.getElementById('langDropdown').classList.toggle('open');
+      const menu = document.getElementById('langDropdown');
+      const open = menu.classList.toggle('open');
+      e.currentTarget.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     document.querySelectorAll('.lang-dropdown button').forEach(btn => {
       btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
     });
-    document.addEventListener('click', () => document.getElementById('langDropdown').classList.remove('open'));
+    document.addEventListener('click', closeLangMenu);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLangMenu();
+    });
 
     /* Theme toggle */
     function setTheme(dark) {
@@ -1314,9 +1330,12 @@
     /* Smooth scroll */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', function(e) {
-        e.preventDefault();
         const t = document.querySelector(this.getAttribute('href'));
-        if (t) t.scrollIntoView({ behavior: 'smooth' });
+        if (!t) return;
+        e.preventDefault();
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+        t.focus({ preventScroll: true });
       });
     });
 
@@ -1365,7 +1384,11 @@
         setTimeout(typewriterTick, 50);
       }
     }
-    setTimeout(typewriterTick, 1200);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (twEl) twEl.textContent = (typewriterPhrases[currentLang] || typewriterPhrases.en)[0];
+    } else {
+      setTimeout(typewriterTick, 1200);
+    }
 
     /* Back to top button */
     const btt = document.getElementById('backToTop');
@@ -1373,7 +1396,10 @@
       window.addEventListener('scroll', () => {
         btt.classList.toggle('visible', window.scrollY > 600);
       });
-      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      btt.addEventListener('click', () => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      });
     }
 
     /* Console easter egg */
