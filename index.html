@@ -446,11 +446,11 @@
                     <span class="contact-label">博客</span>
                     <span class="contact-value">idky.tech</span>
                 </a>
-                <button class="contact-item" onclick="openResumeModal()" style="cursor:pointer;border:none;background:none;width:100%;text-align:left;">
+                <a href="/files/resume.pdf" class="contact-item" download>
                     <span class="contact-icon">📄</span>
                     <span class="contact-label">简历下载</span>
-                    <span class="contact-value">联系我获取密码</span>
-                </button>
+                    <span class="contact-value">PDF</span>
+                </a>
                 <a href="https://im.idky.tech/login" class="contact-item" target="_blank" rel="noopener">
                     <span class="contact-icon">🖼️</span>
                     <span class="contact-label">图床</span>
@@ -464,25 +464,6 @@
             </div>
         </div>
     </section>
-
-    <!-- 简历密码弹窗 -->
-    <div id="resume-modal" class="modal-overlay" onclick="closeResumeModal(event)">
-        <div class="modal-box">
-            <h3>🔒 简历下载</h3>
-            <p>请输入密码以获取简历下载链接</p>
-            <p style="font-size:12px;color:var(--color-text-light);margin-bottom:12px;">联系我 <a href="mailto:yggcmm@outlook.com" style="color:var(--color-accent);">yggcmm@outlook.com</a> 获取密码</p>
-            <input type="password" id="resume-password" class="modal-input" placeholder="请输入密码" onkeydown="if(event.key==='Enter')checkResumePwd()">
-            <div class="modal-actions">
-                <button class="btn btn-primary" onclick="checkResumePwd()">确认</button>
-                <button class="btn btn-outline" onclick="closeResumeModal()">取消</button>
-            </div>
-            <p id="resume-error" class="modal-error"></p>
-            <div id="resume-success" class="modal-success" style="display:none;">
-                <p>✅ 验证通过！</p>
-                <a href="/files/resume.pdf" download class="btn btn-primary" style="margin-top:8px;display:inline-block;">下载简历 PDF</a>
-            </div>
-        </div>
-    </div>
 
     <footer class="footer">
         <div class="container">
